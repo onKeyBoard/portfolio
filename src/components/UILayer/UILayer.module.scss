@@ -54,8 +54,14 @@
 }
 
 .socials {
-	width: auto;
-	padding: 2rem;
+	background: $p1-accent-4;
+	border-radius: 20px 0 0 20px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	min-width: 170px;
+	height: 60px;
+	padding: 0.5rem;
 	opacity: 0;
 	transition: all ease-in-out 0.5s 0.2s;
 	transform: scale(1) translateZ(200px);
@@ -66,13 +72,24 @@
 	font-size: 2rem;
 	text-align: right;
 	position: absolute;
-	top: 0;
+	top: 2rem;
 	right: 0;
 	z-index: 10;
+	&:after {
+		content: '';
+		position: absolute;
+		bottom: -20px;
+		right: 0;
+		width: 20px;
+		height: 20px;
+		border-style: solid;
+		border-color: darken($p1-accent-4, 18%) transparent transparent transparent;
+		border-width: 20px 20px 0 0;
+	}
 	a {
-		color: $p1-accent;
+		color: $black;
 		&:hover {
-			color: $white;
+			color: transparentize($black, 0.5);
 		}
 	}
 	svg {
@@ -97,7 +114,7 @@
 	}
 	.socials {
 		color: white;
-		transform: scale(0.9) translateY(1rem) translateZ(0);
+		transform: translateY(50px) translateZ(0);
 	}
 	.nav {
 		.nav-inner {
