@@ -1,0 +1,97 @@
+/******************************************/
+/* Variables  */
+/****************************************/
+
+/* Breakpoints, Spacing, and Layout */
+
+$section-padding: 120px;
+$section-padding-top: $section-padding;
+$section-padding-bottom: $section-padding;
+$section-padding-tablet: 60px;
+$section-padding-top-tablet: $section-padding-tablet;
+$section-padding-bottom-tablet: $section-padding-tablet;
+$section-padding-mobile: 30px;
+$section-padding-top-mobile: $section-padding-mobile;
+$section-padding-bottom-mobile: $section-padding-mobile;
+
+$section-gutter: 90px;
+$section-gutter-left: $section-gutter;
+$section-gutter-right: $section-gutter;
+$section-gutter-tablet: 60px;
+$section-gutter-left-tablet: $section-gutter-tablet;
+$section-gutter-right-tablet: $section-gutter-tablet;
+$section-gutter-mobile: 20px;
+$section-gutter-left-mobile: $section-gutter-mobile;
+$section-gutter-right-mobile: $section-gutter-mobile;
+
+$desktop-min: 1024px;
+$desktop-med: 1200px;
+$desktop-max: 1360px;
+
+$tablet-min: 768px;
+$tablet-med: 896px;
+$tablet-max: 1023px;
+
+$mobile-min: 0px;
+$mobile: 360px;
+$mobile-med: 480px;
+$mobile-max: 767px;
+
+$site-min: $mobile;
+$max-width: 1800px;
+
+/* Colors */
+
+$white: #ffffff;
+$black: #000000;
+$light-gray: #c8c8c8;
+$med-gray: #ebebeb;
+$dark-gray: #414042;
+
+/* Palettes */
+$p1-primary-dark: hsl(235, 14%, 14%);
+$p1-primary-light: hsl(256, 80%, 53%);
+$p1-accent: hsl(243, 17%, 75%);
+$p1-accent-2: hsl(232, 90%, 47%);
+$p1-accent-3: hsl(184, 86%, 56%);
+$p1-accent-4: hsl(342, 91%, 46%);
+$p1-alt-light: hsl(270, 5%, 67%);
+$p1-alt-dark: hsl(224, 70%, 5%);
+$p1-white: hsl(105, 67%, 96%);
+
+$body-background-color: $black;
+$body-color: $white;
+/* Mixins */
+
+@mixin glitch-border {
+	position: relative;
+	margin-bottom: 2rem;
+	&:before {
+		content: ' ';
+		position: absolute;
+		top: -10px;
+		left: 0;
+		display: block;
+		width: 100%;
+		height: 20px;
+		border-style: solid;
+		border-width: 2px 2px 0 2px;
+		border-color: $p1-accent;
+		background-color: transparent;
+		transform: perspective(300px) rotateY(15deg) skewX(5deg);
+	}
+	&:after {
+		content: ' ';
+		position: absolute;
+		bottom: -10px;
+		left: 0;
+		display: block;
+		width: 100%;
+		height: 20px;
+		border-style: solid;
+		border-width: 0 2px 2px 2px;
+		border-color: lighten($p1-primary-dark, 50%);
+		background-color: transparent;
+		transform: perspective(300px) rotateY(-15deg) skewX(5deg);
+	}
+}

@@ -1,0 +1,23 @@
+@import '../styles/global/variables.scss';
+
+.canvas_container {
+	border: solid 20px black;
+	border-radius: 50px;
+	background-color: #35354b;
+	background-image: url('/images/space-bg.png');
+	background-size: cover;
+	background-position: center;
+	height: calc(100vh - 150px);
+	width: 100%;
+	max-width: $max-width;
+	transform: translateZ(-100px);
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	canvas {
+		transform: translateZ(-100px);
+		border: solid 4px $p1-accent-2;
+		border-radius: 30px;
+		overflow: hidden;
+	}
+}

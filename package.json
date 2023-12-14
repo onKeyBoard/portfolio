@@ -1,0 +1,37 @@
+{
+  "name": "shawn-pavlas-online-portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.8.8",
+    "@fortawesome/free-brands-svg-icons": "^6.5.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@react-three/drei": "^9.88.17",
+    "@react-three/fiber": "^8.15.11",
+    "@types/three": "^0.158.3",
+    "eslint": "8.42.0",
+    "eslint-config-next": "13.4.4",
+    "graphql": "^16.8.1",
+    "gsap": "file:gsap-bonus.tgz",
+    "next": "13.4.4",
+    "prettier": "^2.8.8",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-slick": "^0.29.0",
+    "sass": "^1.63.3",
+    "slick-carousel": "^1.8.1",
+    "smoothscroll-polyfill": "^0.4.4",
+    "terser-webpack-plugin": "^5.3.9",
+    "three": "^0.158.0",
+    "vanilla-tilt": "^1.8.1",
+    "webpack": "^5.88.1",
+    "webpack-cli": "^5.1.4"
+  }
+}

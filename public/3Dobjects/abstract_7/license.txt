@@ -1,0 +1,11 @@
+Model Information:
+* title:	Abstract 7
+* source:	https://sketchfab.com/3d-models/abstract-7-3dd267c877234813a400075faa223abf
+* author:	tahsinpulok (https://sketchfab.com/tahsinpulok)
+
+Model License:
+* license type:	CC-BY-NC-ND-4.0 (http://creativecommons.org/licenses/by-nc-nd/4.0/)
+* requirements:	Author must be credited. No commercial use. Modified versions can not be distributed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Abstract 7" (https://sketchfab.com/3d-models/abstract-7-3dd267c877234813a400075faa223abf) by tahsinpulok (https://sketchfab.com/tahsinpulok) licensed under CC-BY-NC-ND-4.0 (http://creativecommons.org/licenses/by-nc-nd/4.0/)

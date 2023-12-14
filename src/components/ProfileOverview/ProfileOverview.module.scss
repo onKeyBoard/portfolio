@@ -1,0 +1,35 @@
+@import '../../styles/global/variables.scss';
+
+.profile {
+	.profile_grid {
+		display: grid;
+		grid-template-columns: 1fr 2fr;
+		gap: 1rem;
+		.left,
+		.right {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+		.profile_image {
+			border: solid 2px $p1-primary-light;
+			border-radius: 25px;
+			width: 250px;
+			height: 250px;
+			img {
+				width: 100%;
+				border-radius: 25px;
+			}
+		}
+		.content {
+			max-width: 80%;
+		}
+	}
+	h3 {
+		display: inline-block;
+		width: auto;
+		padding: 0 1rem;
+		@include glitch-border;
+	}
+}
