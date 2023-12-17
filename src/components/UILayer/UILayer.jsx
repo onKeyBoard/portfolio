@@ -25,7 +25,7 @@ const UILayer = ({ handleNavStatusToggle }) => {
 		},
 		{
 			href: 'Experience',
-			imageUrl: 'images/bg3.jpg',
+			imageUrl: 'images/bg3.png',
 			title: 'EXP',
 			description: 'My work',
 		},
