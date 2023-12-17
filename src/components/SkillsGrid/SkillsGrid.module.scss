@@ -12,9 +12,12 @@
 		justify-content: flex-end;
 		align-items: center;
 		border-right: solid 1px $p1-primary-light;
-		border-bottom: solid 1px $p1-primary-light;
+		border-top: solid 1px $p1-primary-light;
 		&:nth-child(6n) {
 			border-right: none;
+		}
+		&:nth-child(-n + 6) {
+			border-top: none;
 		}
 		.icon {
 			height: 100px;
