@@ -7,7 +7,7 @@ export const GET_BIO = gql`
 			profileImageUrl
 			headline
 			body {
-				text
+				raw
 			}
 		}
 	}
