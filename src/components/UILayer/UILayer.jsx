@@ -18,7 +18,7 @@ const UILayer = ({ handleNavStatusToggle }) => {
 		},
 		{
 			href: 'skills',
-			imageUrl: 'images/skills.jpg',
+			imageUrl: 'images/bg2.jpg',
 			title: 'Skills',
 			description: 'My work experience',
 			pageContent: <SkillsGrid />,
@@ -72,10 +72,7 @@ const UILayer = ({ handleNavStatusToggle }) => {
 				<a href='https://www.instagram.com/shawnpavlas/' target='_blank'>
 					<FontAwesomeIcon icon={faInstagram} />
 				</a>
-				<a
-					href='https://www.linkedin.com/in/shawn-pavlas-b96638245/'
-					target='_blank'
-				>
+				<a href='https://www.linkedin.com/in/shawn-pavlas/' target='_blank'>
 					<FontAwesomeIcon icon={faLinkedin} />
 				</a>
 			</div>

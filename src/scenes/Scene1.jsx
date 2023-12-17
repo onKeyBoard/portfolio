@@ -27,7 +27,7 @@ export default function CanvasContainer({ mouseX, zoomedIn }) {
 	}, [mouseX, zoomedIn, bgPosX])
 
 	return (
-		<section className={styles.canvas_container} ref={containerRef}>
+		<section className={styles['canvas-container']} ref={containerRef}>
 			<MainScene mouseX={mouseX} zoomedIn={zoomedIn} />
 		</section>
 	)

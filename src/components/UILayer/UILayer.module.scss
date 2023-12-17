@@ -1,19 +1,27 @@
 @import '../../styles/global/variables.scss';
 
 .container {
+	background: transparent;
 	width: 100%;
 	height: 100vh;
 	max-width: $max-width;
 	position: relative;
+	box-shadow: inset 0 -150px 0 0 darken($p1-accent-2, 35%);
+	transition: all ease-in-out 0.3s;
+	&.opened {
+		background: $black;
+		box-shadow: inset 0 -150px 0 0 darken($p1-accent-2, 100%);
+	}
 }
 
 .title {
-	background: black;
+	// background: black;
 	border-style: solid;
 	border-color: black $p1-accent-2 $p1-accent-2 black;
-	border-width: 4px;
+	// WIP! - border width set to zero experimentally
+	border-width: 0px;
 	border-radius: 30px 0 30px 0;
-	box-shadow: 0 -20px 0 0 black;
+	// box-shadow: 0 -20px 0 0 black;
 	width: auto;
 	padding: 1rem;
 	transform: scale(1) translateZ(200px);
@@ -29,9 +37,11 @@
 	opacity: 0;
 	animation: fadeIn 1s 0.8s forwards;
 	.inner {
-		border: solid 3px $p1-accent;
+		background: black;
+		border: solid 3px transparent;
 		border-radius: 16px;
 		padding: 0.7rem;
+		transition: all ease-in-out 0.5s 0.3s;
 	}
 	h1,
 	h3 {
@@ -41,7 +51,7 @@
 		font-size: 2.4rem;
 		line-height: 0.9;
 		font-weight: 400;
-		color: rgb(234, 12, 90);
+		color: $p1-accent-4;
 		text-transform: uppercase;
 		padding: 0 6px;
 	}
@@ -54,14 +64,11 @@
 }
 
 .socials {
-	background: $p1-accent-4;
-	border-radius: 20px 0 0 20px;
 	display: flex;
-	justify-content: flex-start;
+	justify-content: center;
 	align-items: center;
-	min-width: 170px;
+	gap: 1rem;
 	height: 60px;
-	padding: 0.5rem;
 	opacity: 0;
 	transition: all ease-in-out 0.5s 0.2s;
 	transform: scale(1) translateZ(200px);
@@ -69,52 +76,89 @@
 	will-change: transform;
 	backface-visibility: hidden;
 	animation: fadeIn 1s 0.8s forwards;
-	font-size: 2rem;
-	text-align: right;
 	position: absolute;
 	top: 2rem;
-	right: 0;
+	right: 2rem;
 	z-index: 10;
-	&:after {
-		content: '';
-		position: absolute;
-		bottom: -20px;
-		right: 0;
-		width: 20px;
-		height: 20px;
-		border-style: solid;
-		border-color: darken($p1-accent-4, 18%) transparent transparent transparent;
-		border-width: 20px 20px 0 0;
-	}
 	a {
-		color: $black;
+		color: $p1-accent-4;
+		background: $black;
+		border: solid 2px transparent;
+		border-radius: 16px;
+		font-size: 2rem;
+		line-height: 60px;
+		text-align: center;
+		width: 60px;
+		height: 60px;
+		transition: all ease-in-out 0.5s 0.3s;
 		&:hover {
-			color: transparentize($black, 0.5);
+			color: $white;
+			transition: all ease-in-out 0.2s;
 		}
 	}
-	svg {
-		margin: 0 0.5rem;
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 100%;
+	padding: 0.5rem 2rem;
+	z-index: 1;
+	transition: all ease-in-out 0.3s;
+	animation: slideInUp cubic-bezier(0.075, 0.82, 0.165, 1) 1s 0.3s forwards;
+	background-color: $p1-accent-2;
+	background-size: 8px 8px;
+	opacity: 0;
+	.content {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		.copyright {
+			display: inline-block;
+			border: solid 2px $p1-accent;
+			border-radius: 25px;
+			padding: 0.4rem 0.8rem;
+			width: auto;
+		}
+		h4 {
+			color: $p1-accent;
+			font-size: 0.8rem;
+			text-transform: uppercase;
+		}
+		@media screen and (max-width: $tablet-min) {
+			position: relative;
+		}
 	}
 }
 
 .opened {
 	.title {
 		transition: all ease-in-out 0.5s 0.3s;
-		background: rgba(0, 0, 0, 0.2);
-		h1,
-		h3 {
-			transition: all ease-out 0.5s 0.25s;
-		}
-		h1 {
-			color: $white;
-		}
-		h3 {
-			color: $white;
+		.inner {
+			background: transparent;
+			border-color: $white;
+			h1,
+			h3 {
+				transition: all ease-out 0.5s 0.25s;
+			}
+			h1 {
+				color: $white;
+			}
+			h3 {
+				color: $white;
+			}
 		}
 	}
 	.socials {
-		color: white;
-		transform: translateY(50px) translateZ(0);
+		a {
+			color: $white;
+			background: transparent;
+			border-color: white;
+			&:hover {
+				opacity: 0.8;
+			}
+		}
 	}
 	.nav {
 		.nav-inner {
@@ -147,46 +191,11 @@
 			flex-wrap: nowrap;
 			justify-content: center;
 			align-items: flex-end;
-			gap: 1rem;
+			gap: 2rem;
 			z-index: 5;
 			@media screen and (max-width: $tablet-min) {
 				gap: 0.5rem;
 			}
-		}
-	}
-}
-
-.footer {
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	width: 100%;
-	padding: 0.5rem 2rem;
-	// border-left: solid 20px black;
-	// border-right: solid 20px black;
-	z-index: 1;
-	transition: all ease-in-out 0.3s;
-	animation: slideInUp cubic-bezier(0.075, 0.82, 0.165, 1) 1s 0.3s forwards;
-	background: $p1-accent;
-	opacity: 0;
-	.content {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		.copyright {
-			display: inline-block;
-			border: solid 2px $p1-accent-4;
-			border-radius: 25px;
-			padding: 0.4rem 0.8rem;
-			width: auto;
-		}
-		h4 {
-			color: $p1-accent-4;
-			font-size: 0.8rem;
-			text-transform: uppercase;
-		}
-		@media screen and (max-width: $tablet-min) {
-			position: relative;
 		}
 	}
 }
