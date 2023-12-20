@@ -2,10 +2,11 @@
 
 .canvas-container {
 	border-radius: 25px 25px 0 0;
-	background-color: black;
-	background-image: url('/images/space-bg.png');
+	background-color: transparent;
+	background-image: url('/images/space-pixel-bg.png');
 	background-size: cover;
-	background-position: center;
+	background-position: center top;
+	background-repeat: repeat-x;
 	margin: 0 1rem;
 	height: calc(100vh - 360px);
 	width: calc(100% - 2rem);

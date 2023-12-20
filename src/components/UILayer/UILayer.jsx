@@ -11,27 +11,27 @@ const UILayer = ({ handleNavStatusToggle }) => {
 	const data = [
 		{
 			href: 'about',
-			imageUrl: 'images/programming.png',
+			imageUrl: 'images/space-pixel-bg.png',
 			title: 'Profile',
 			description: 'About me',
 			pageContent: <ProfileOverview />,
 		},
 		{
 			href: 'skills',
-			imageUrl: 'images/bg2.jpg',
+			imageUrl: 'images/space-pixel-bg.png',
 			title: 'Skills',
 			description: 'My work experience',
 			pageContent: <SkillsGrid />,
 		},
 		{
 			href: 'Experience',
-			imageUrl: 'images/bg3.png',
+			imageUrl: 'images/space-pixel-bg.png',
 			title: 'EXP',
 			description: 'My work',
 		},
 		{
 			href: 'Extras',
-			imageUrl: 'images/bg4.jpg',
+			imageUrl: 'images/space-pixel-bg.png',
 			title: 'Extras',
 			description: 'Get in touch',
 		},
@@ -60,6 +60,7 @@ const UILayer = ({ handleNavStatusToggle }) => {
 				cardStatuses.some((status) => status === 'max') ? styles['opened'] : ''
 			}`}
 		>
+			<div className={styles['edge']}></div>
 			<div className={styles['title']}>
 				<div className={styles['inner']}>
 					<h1>Shawn Pavlas</h1>
@@ -98,7 +99,7 @@ const UILayer = ({ handleNavStatusToggle }) => {
 			<div className={styles['footer']}>
 				<div className={styles['content']}>
 					<div className={styles['info']}>
-						<h4>Powered by React & NextJS.</h4>
+						<h4>Built with React & NextJS.</h4>
 					</div>
 					<div className={styles['copyright']}>
 						<h4>© 2023</h4>

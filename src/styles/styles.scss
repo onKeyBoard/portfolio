@@ -20,7 +20,6 @@
 html,
 body {
 	background-color: $body-background-color;
-	background-color: #000000;
 	opacity: 1;
 	background-image: linear-gradient(
 			#08081e 1.2000000000000002px,
@@ -31,7 +30,7 @@ body {
 			#08081e 1.2000000000000002px,
 			#000000 1.2000000000000002px
 		);
-	background-size: 20px 20px;
+	background-size: 1rem 1rem;
 	// background-image: url('/images/grid-bg.png');
 	// background-size: cover;
 	// background-position: center;

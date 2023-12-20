@@ -42,7 +42,7 @@ function MainScene({ mouseX, zoomedIn }) {
 		>
 			<CameraController zoomedIn={zoomedIn} />
 			<ambientLight intensity={0.5} />
-			<fog attach='fog' args={['#121ed2', 5, 18]} />
+			<fog attach='fog' args={['#121ed2', 5, 16]} />
 			<spotLight
 				angle={2}
 				color='#ffffff'
@@ -74,9 +74,9 @@ function PersonalComputer({ mouseX, ...props }) {
 		Object.values(nodes).forEach(
 			(node) => (node.receiveShadow = node.castShadow = true)
 		)
-		const geometry = new THREE.PlaneGeometry(2, 32)
+		const geometry = new THREE.CircleGeometry(2, 32)
 		const material = new THREE.MeshBasicMaterial({
-			color: 0x35354b,
+			color: 0x000000,
 		})
 
 		const plane = new THREE.Mesh(geometry, material)
