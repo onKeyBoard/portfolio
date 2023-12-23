@@ -1,0 +1,42 @@
+@import 'src/styles/global/variables.scss';
+
+.card {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background: darken($p1-accent-2, 10%);
+	border-radius: 25px;
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+	.image-container {
+		width: 50%;
+		height: 50%;
+		overflow: hidden;
+		border-radius: 25px;
+		.image {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transform: scale(1.2);
+			opacity: 1;
+			transition: all cubic-bezier(0.23, 1, 0.32, 1) 0.5s;
+		}
+		.content {
+			h3 {
+				font-size: 1.5rem;
+				margin-bottom: 0.5rem;
+			}
+			h2 {
+				font-size: 1.5rem;
+				margin-bottom: 0.5rem;
+			}
+			p {
+				font-size: 1rem;
+				margin-bottom: 0.5rem;
+			}
+		}
+	}
+}
