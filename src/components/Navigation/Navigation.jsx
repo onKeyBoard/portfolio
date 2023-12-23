@@ -11,23 +11,23 @@ const Navigation = ({ handleNavStatusToggle }) => {
 		{
 			href: 'about',
 			imageUrl: 'images/sky-bg.png',
-			title: 'Profile',
+			title: 'About',
 			description: 'About me',
-			pageContent: <ProfileOverview />,
+			fullContent: <ProfileOverview />,
 		},
 		{
 			href: 'skills',
 			imageUrl: 'images/sky-bg.png',
 			title: 'Skills',
 			description: 'My work experience',
-			pageContent: <SkillsGrid />,
+			fullContent: <SkillsGrid />,
 		},
 		{
 			href: 'Experience',
 			imageUrl: 'images/sky-bg.png',
 			title: 'EXP',
 			description: 'My work',
-			pageContent: <ExperienceSection />,
+			fullContent: <ExperienceSection />,
 		},
 		{
 			href: 'Extras',
@@ -69,7 +69,7 @@ const Navigation = ({ handleNavStatusToggle }) => {
 							status={cardStatuses[index]}
 							onClick={() => handleClick(index)}
 							onClickClose={() => resetCardStatuses()}
-							pageContent={item.pageContent}
+							fullContent={item.fullContent}
 						/>
 					))}
 				</div>

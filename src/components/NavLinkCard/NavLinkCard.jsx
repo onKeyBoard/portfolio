@@ -7,7 +7,7 @@ const NavLinkCard = ({
 	status,
 	onClick,
 	onClickClose,
-	pageContent,
+	fullContent,
 }) => {
 	// Use an enum to make sure the status is only one of three values
 	const StatusEnum = {
@@ -46,9 +46,9 @@ const NavLinkCard = ({
 	const fullCard = () => (
 		<div className={styles['border']}>
 			{cardContent}
-			{pageContent && (
-				<div className={styles['page-content']}>
-					<div>{pageContent}</div>
+			{fullContent && (
+				<div className={styles['full-content']}>
+					<div>{fullContent}</div>
 				</div>
 			)}
 			<button className={styles['close']} onClick={onClickClose}>

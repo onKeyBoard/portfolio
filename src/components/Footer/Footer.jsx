@@ -11,7 +11,7 @@ const Footer = ({ toggledStyle }) => {
 					<h4>Built with React & NextJS.</h4>
 				</div>
 				<div className={styles['copyright']}>
-					<h4>© 2023</h4>
+					<h4>© 2024</h4>
 				</div>
 			</div>
 		</footer>

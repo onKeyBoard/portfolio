@@ -93,16 +93,16 @@ a.border {
 					display: block;
 				}
 			}
-			.page-content {
-				min-height: calc(100% - 233px);
+			.full-content {
+				height: calc(100% - 233px);
 				opacity: 1;
 				background: rgba(0, 0, 0, 0.5);
 				border-bottom: solid 3px $black;
 				padding: 0 1rem;
+				overflow-y: scroll;
 				> div {
 					height: 100%;
 					opacity: 0;
-					overflow-y: scroll;
 					padding: 2rem 0 4.5rem 0;
 					transform: translateY(50px);
 					animation: revealPageContent 0.5s 0.5s forwards;
@@ -115,6 +115,7 @@ a.border {
 		transform: scaleX(0.001);
 		position: absolute;
 		overflow: hidden;
+		pointer-events: none;
 	}
 	@media (max-width: $tablet-min) {
 		width: calc(50% - 1rem);
