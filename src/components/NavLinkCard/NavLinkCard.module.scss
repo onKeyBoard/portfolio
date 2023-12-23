@@ -3,28 +3,33 @@
 a.border {
 	cursor: pointer;
 	will-change: transform;
-	transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 2s;
-	&:before {
-		content: '';
-		position: absolute;
-		top: -15px;
-		left: -8px;
-		width: 100%;
-		height: 15px;
-		border: none;
-		background: linear-gradient(270deg, $p1-accent-2, $p1-accent);
-		transform: perspective(300px) skewX(45deg);
-	}
-	&:after {
-		content: '';
-		position: absolute;
-		top: -7px;
-		left: -15px;
-		width: 15px;
-		height: 100%;
-		border: none;
-		background: linear-gradient(0deg, $p1-accent-2, $p1-primary-dark);
-		transform: perspective(300px) skewY(45deg);
+	transition: all cubic-bezier(0.75, 1.82, 0.165, 1) 2s;
+	// &:before {
+	// 	content: '';
+	// 	position: absolute;
+	// 	top: -15px;
+	// 	left: -8px;
+	// 	width: 100%;
+	// 	height: 15px;
+	// 	border: none;
+	// 	background: linear-gradient(270deg, $p1-accent-2, $p1-accent);
+	// 	transform: perspective(300px) skewX(45deg);
+	// }
+	// &:after {
+	// 	content: '';
+	// 	position: absolute;
+	// 	top: -7px;
+	// 	left: -15px;
+	// 	width: 15px;
+	// 	height: 100%;
+	// 	border: none;
+	// 	background: linear-gradient(0deg, $p1-accent-2, $p1-primary-dark);
+	// 	transform: perspective(300px) skewY(45deg);
+	// }
+	.card {
+		.image img {
+			opacity: 0;
+		}
 	}
 	&:hover {
 		background: darken($p1-accent-2, 5%);
@@ -35,11 +40,9 @@ a.border {
 			.title {
 				transform: scale(1.1);
 			}
-			.image {
-				img {
-					transform: scale(1.1);
-					opacity: 1;
-				}
+			.image img {
+				transform: scale(1.1);
+				opacity: 1;
 			}
 		}
 	}
@@ -48,7 +51,7 @@ a.border {
 .wrapper {
 	width: calc(25% - 1rem);
 	width: 200px;
-	height: 200px;
+	height: 150px;
 	transition: width cubic-bezier(0.23, 1, 0.32, 1) 0.3s,
 		height cubic-bezier(0.39, 0.575, 0.565, 1) 0.3s 0.1s,
 		transform cubic-bezier(0.39, 0.575, 0.565, 1) 0.6s;
@@ -65,13 +68,19 @@ a.border {
 		transform: translate3d(0, 0, 0) translateY(0);
 		.border {
 			border-radius: 30px;
-			padding: 2px;
+			padding: 0;
 			background: $p1-accent-2;
 			.card {
 				border-radius: 28px 28px 0 0;
 				float: none;
 				width: 100%;
+				height: 170px;
 				.image {
+					background-color: #10102a;
+					opacity: 1;
+					background-image: linear-gradient(#5eecec 1px, transparent 1px),
+						linear-gradient(to right, #5eecec 1px, #10102a 1px);
+					background-size: 20px 20px;
 					img {
 						opacity: 0.9;
 						animation: subtleBGMotion 5s infinite;
@@ -85,10 +94,10 @@ a.border {
 				}
 			}
 			.page-content {
-				min-height: calc(100% - 255px);
+				min-height: calc(100% - 233px);
 				opacity: 1;
 				background: rgba(0, 0, 0, 0.5);
-				border-radius: 0 0 5px 5px;
+				border-bottom: solid 3px $black;
 				padding: 0 1rem;
 				> div {
 					height: 100%;
@@ -115,9 +124,10 @@ a.border {
 .border {
 	display: block;
 	padding: 4px;
-	background: lighten($p1-accent-2, 15%);
+	background: transparent;
 	background-size: 200% 200%;
 	background-position: 0% 50%;
+	border-radius: 22px;
 	transition: all ease-in-out 0.3s;
 	transform: translate3d(0, 0, 0);
 	width: 100%;
@@ -125,23 +135,18 @@ a.border {
 	border: none;
 	position: relative;
 	.card {
-		border-radius: 5px;
+		border-radius: 20px;
 		transform: scale(1);
 		position: relative;
 		overflow: hidden;
-		height: 192px;
-		// width: 90%;
+		height: 148px;
+		width: 100%;
 		float: right;
 		.image {
 			width: 100%;
 			height: 100%;
 			opacity: 1;
 			transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
-			background-color: #10102a;
-			opacity: 1;
-			background-image: linear-gradient(#5eecec 1px, transparent 1px),
-				linear-gradient(to right, #5eecec 1px, #10102a 1px);
-			background-size: 20px 20px;
 			img {
 				width: 100%;
 				height: 100%;
@@ -223,11 +228,11 @@ a.border {
 @keyframes revealCloseButton {
 	0% {
 		opacity: 0;
-		transform: translateY(-50px);
+		transform: translateY(-50px) translateX(-50%);
 	}
 	100% {
 		opacity: 1;
-		transform: translateY(0px);
+		transform: translateY(0px) translateX(-50%);
 	}
 }
 

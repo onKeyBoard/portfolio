@@ -1,11 +1,11 @@
 import { Suspense } from 'react'
-import PageHero from '../components/PageHero/PageHero'
+import MainContent from '../components/MainContent/MainContent'
 import BlockyLoader from '../components/BlockyLoader/BlockyLoader'
 
 const PageContent = () => {
 	return (
 		<Suspense fallback={<BlockyLoader />}>
-			<PageHero />
+			<MainContent />
 		</Suspense>
 	)
 }

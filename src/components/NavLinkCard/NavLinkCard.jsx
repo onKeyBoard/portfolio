@@ -1,7 +1,6 @@
-import styles from './LinkCard.module.scss'
-import HoverTilter from '../HoverTilter/HoverTilter'
+import styles from './NavLinkCard.module.scss'
 
-const LinkCard = ({
+const NavLinkCard = ({
 	imageUrl,
 	title,
 	description,
@@ -82,4 +81,4 @@ const LinkCard = ({
 	)
 }
 
-export default LinkCard
+export default NavLinkCard

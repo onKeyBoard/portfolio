@@ -1,0 +1,131 @@
+@import '../../styles/global/variables.scss';
+
+.header {
+	width: calc(100% - 2rem);
+	height: 170px;
+	position: absolute;
+	top: 1rem;
+	left: 1rem;
+	right: 1rem;
+	z-index: 10;
+	display: flex;
+	justify-content: space-between;
+	padding: 1rem;
+	background: linear-gradient(
+		45deg,
+		transparentize($p1-alt-dark, 0.8),
+		transparentize($p1-accent-4, 1),
+		transparentize($p1-accent-2, 0.8)
+	);
+	border-radius: 25px 25px 0 0;
+	border-bottom: solid 3px $black;
+	backdrop-filter: blur(10px);
+	transition: all ease-in-out 1s;
+	.title {
+		width: auto;
+		transform: scale(1) translateZ(200px);
+		transition: all ease-in-out 0.2s;
+		backface-visibility: hidden;
+		transform-style: preserve-3d;
+		will-change: transform;
+		text-align: center;
+		opacity: 0;
+		animation: fadeIn 1s 0.8s forwards;
+		.inner {
+			border: solid 3px $p1-accent;
+			border-radius: 16px;
+			padding: 0.7rem;
+			transition: all ease-in-out 0.5s 0.3s;
+		}
+		h1,
+		h3 {
+			transition: all ease-in-out 0.3s;
+		}
+		h1 {
+			font-size: 2.4rem;
+			line-height: 0.9;
+			font-weight: 400;
+			color: $p1-accent-4;
+			text-transform: uppercase;
+			padding: 0 6px;
+		}
+		h3 {
+			color: $white;
+			font-size: 1.7rem;
+			line-height: 1;
+			transform: translateY(-3px);
+		}
+	}
+
+	.socials {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 5px;
+		height: 60px;
+		opacity: 0;
+		transition: all ease-in-out 0.5s 0.2s;
+		transform: scale(1) translateZ(200px);
+		transform-style: preserve-3d;
+		will-change: transform;
+		backface-visibility: hidden;
+		animation: fadeIn 1s 0.8s forwards;
+		a {
+			color: $p1-accent-4;
+			border: solid 2px transparent;
+			border-radius: 16px;
+			font-size: 2rem;
+			line-height: 60px;
+			text-align: center;
+			width: 60px;
+			height: 60px;
+			transition: all ease-in-out 0.5s 0.3s;
+			&:hover {
+				color: $white;
+				transition: all ease-in-out 0.2s;
+			}
+		}
+	}
+
+	&.toggled {
+		backdrop-filter: blur(0);
+		.title {
+			transition: all ease-in-out 0.5s 0.3s;
+			.inner {
+				background: transparent;
+				border-color: transparent;
+				h1,
+				h3 {
+					transition: all ease-out 0.5s 0.25s;
+				}
+				h1 {
+					color: $white;
+				}
+				h3 {
+					color: $white;
+				}
+			}
+		}
+
+		.socials {
+			a {
+				color: $white;
+				background: transparent;
+				&:hover {
+					opacity: 0.8;
+				}
+			}
+		}
+	}
+}
+
+// Animation Keyframes
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
