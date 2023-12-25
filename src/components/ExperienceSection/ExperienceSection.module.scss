@@ -1,4 +1,8 @@
 .container {
+	.title {
+		font-size: 2rem;
+		margin-bottom: 1rem;
+	}
 	.cards {
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);

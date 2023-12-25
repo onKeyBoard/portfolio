@@ -2,21 +2,32 @@
 
 .grid {
 	display: grid;
-	grid-template-columns: repeat(6, 1fr);
+	grid-template-columns: repeat(7, 1fr);
 	grid-gap: 0;
+	@for $i from 1 through 30 {
+		.card:nth-child(#{$i}) {
+			animation-delay: 0.09s * ($i - 1);
+		}
+	}
 	.card {
+		opacity: 0;
+		animation: fadeIn 0.1s ease-in forwards,
+			fadeInBorder 0.5s 2s ease-in forwards;
 		text-align: center;
 		padding: 2rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-end;
 		align-items: center;
-		border-right: solid 1px transparentize($p1-primary-light, 0.5);
-		border-top: solid 1px transparentize($p1-primary-light, 0.5);
-		&:nth-child(6n) {
+		border-right: solid 1px transparentize($white, 0.8);
+		border-top: solid 1px transparentize($white, 0.8);
+		border-color: transparent;
+		// background: $black;
+		// border-radius: 25px;
+		&:nth-child(7n) {
 			border-right: none;
 		}
-		&:nth-child(-n + 6) {
+		&:nth-child(-n + 7) {
 			border-top: none;
 		}
 		.icon {
@@ -46,5 +57,26 @@
 				border-top: none;
 			}
 		}
+	}
+}
+
+/* Animation */
+
+@keyframes fadeIn {
+	0% {
+		transform: translateY(10px);
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0px);
+	}
+}
+@keyframes fadeInBorder {
+	0% {
+		border-color: transparent;
+	}
+	100% {
+		border-color: transparentize($white, 0.8);
 	}
 }

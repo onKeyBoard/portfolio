@@ -1,12 +1,14 @@
 import { Suspense, useState, useLayoutEffect } from 'react'
 import * as THREE from 'three'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import limitMouseX from '../../utils/generalUtils'
 import { useGLTF, Html } from '@react-three/drei'
 import BlockyLoader from '../BlockyLoader/BlockyLoader'
 import styles from './Scene3D.module.scss'
 
 // The main scene component renders the 3D scene in a canvas
 export default function Scene3D({ mouseX, zoomedIn }) {
+	// TODO: Fix positioning of Html overlay on line 20
 	return (
 		<Canvas
 			shadows
@@ -39,7 +41,7 @@ function PersonalComputer({ mouseX, ...props }) {
 		)
 		const geometry = new THREE.CircleGeometry(2, 32)
 		const material = new THREE.MeshBasicMaterial({
-			color: 0xd81159,
+			color: 0x31153c,
 		})
 
 		const plane = new THREE.Mesh(geometry, material)
@@ -53,11 +55,8 @@ function PersonalComputer({ mouseX, ...props }) {
 	}, [])
 
 	useFrame(() => {
-		// Normalize the mouse X coordinate to a value between -1 and 1
-		const normalizedMouseX = (mouseX / window.innerWidth) * 2 - 1
-
 		// Calculate the rotation based on the normalized mouse X coordinate
-		const targetRotationY = (normalizedMouseX * Math.PI) / 8
+		const targetRotationY = limitMouseX(mouseX, 6)
 
 		// Use the lerp function to calculate the new rotation with a smoothing effect
 		const newRotationY = THREE.MathUtils.lerp(rotationY, targetRotationY, 0.05)

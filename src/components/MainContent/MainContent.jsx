@@ -4,34 +4,60 @@ import Scene3D from '../Scene3D/Scene3D'
 import Header from '../Header/Header'
 import Navigation from '../Navigation/Navigation'
 import Footer from '../Footer/Footer'
+import limitMouseX from '../../utils/generalUtils'
 
 const MainContent = () => {
 	const [mouseX, setMouseX] = useState(0)
 	const [isAnyCardOpen, setIsAnyCardOpen] = useState(false)
+	const [hoverText, setHoverText] = useState('Hello, World!')
 
 	const containerRef = useRef(null)
 	const bgPosX = useRef(0)
+	const textRef = useRef(null)
+	const textRotation = useRef(0)
 
 	// Animates the background image
-
 	useEffect(() => {
 		let animationFrameId
+
+		let normalizedMouseX = limitMouseX(mouseX, 1)
+
 		const animate = () => {
-			if (containerRef.current && !isAnyCardOpen) {
+			if (containerRef.current && textRef.current && !isAnyCardOpen) {
+				// Move the background image
 				bgPosX.current += (mouseX * 0.25 - bgPosX.current) * 0.1
 				containerRef.current.style.backgroundPositionX = `-${bgPosX.current}px`
+				// Rotate the text
+				textRotation.current +=
+					(normalizedMouseX * 10 - textRotation.current) * 0.1
+				textRef.current.style.transform = `rotate3d(${
+					normalizedMouseX * 0.8
+				}, -2, 0, ${textRotation.current}deg)`
+
 				animationFrameId = requestAnimationFrame(animate)
 			}
 		}
+
 		animate()
 
 		return () => {
 			cancelAnimationFrame(animationFrameId)
 		}
-	}, [mouseX, isAnyCardOpen, bgPosX])
+	}, [mouseX, isAnyCardOpen, bgPosX, textRotation])
 
-	const onPageCardClick = () => {
+	const switchToggleState = () => {
 		setIsAnyCardOpen((prevState) => !prevState)
+	}
+
+	const switchHoverText = (textValue) => {
+		const hoverHeadline = document.getElementById('headline')
+		hoverHeadline.style.opacity = '0'
+		hoverHeadline.style.transform = 'translateY(20px) scale(0.9)'
+		setTimeout(() => {
+			hoverHeadline.style.opacity = '1'
+			hoverHeadline.style.transform = 'translateY(0) scale(1)'
+			setHoverText(textValue)
+		}, 200)
 	}
 
 	return (
@@ -50,7 +76,13 @@ const MainContent = () => {
 				</section>
 				<div className={styles['ui-layer']}>
 					<Header toggledStyle={isAnyCardOpen} />
-					<Navigation handleNavStatusToggle={onPageCardClick} />
+					<div id='headline' className={styles['hover-headline']}>
+						<h2 ref={textRef}>{hoverText}</h2>
+					</div>
+					<Navigation
+						handleNavStatusToggle={switchToggleState}
+						handleCardHover={switchHoverText}
+					/>
 					<Footer toggledStyle={isAnyCardOpen} />
 				</div>
 			</div>

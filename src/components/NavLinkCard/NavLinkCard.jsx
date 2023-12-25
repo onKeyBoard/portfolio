@@ -7,6 +7,7 @@ const NavLinkCard = ({
 	status,
 	onClick,
 	onClickClose,
+	onHover,
 	fullContent,
 }) => {
 	// Use an enum to make sure the status is only one of three values
@@ -25,6 +26,10 @@ const NavLinkCard = ({
 		onClick()
 	}
 
+	const handleHover = () => {
+		onHover()
+	}
+
 	const cardContent = (
 		<div className={styles['card']}>
 			<div className={styles['image']}>
@@ -38,7 +43,11 @@ const NavLinkCard = ({
 	)
 	// Render the min card if the status is not max, otherwise render the full card
 	const minCard = () => (
-		<a className={styles['border']} onClick={handleClick}>
+		<a
+			className={styles['border']}
+			onClick={handleClick}
+			onMouseEnter={handleHover}
+		>
 			{cardContent}
 		</a>
 	)

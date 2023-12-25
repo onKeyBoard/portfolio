@@ -18,7 +18,7 @@
 		transparentize($p1-accent-2, 0.8)
 	);
 	border-radius: 25px 25px 0 0;
-	border-bottom: solid 3px $black;
+	border-bottom: solid 3px transparentize($p1-accent-2, 0.7);
 	backdrop-filter: blur(10px);
 	transition: all ease-in-out 1s;
 	.title {
@@ -32,17 +32,21 @@
 		opacity: 0;
 		animation: fadeIn 1s 0.8s forwards;
 		.inner {
-			border: solid 3px $p1-accent;
+			border: solid 2px transparentize($p1-accent, 0.5);
 			border-radius: 16px;
 			padding: 0.7rem;
 			transition: all ease-in-out 0.5s 0.3s;
+			img {
+				height: 100px;
+				width: auto;
+			}
 		}
 		h1,
 		h3 {
 			transition: all ease-in-out 0.3s;
 		}
 		h1 {
-			font-size: 2.4rem;
+			font-size: 2.2rem;
 			line-height: 0.9;
 			font-weight: 400;
 			color: $p1-accent-4;
@@ -51,6 +55,7 @@
 		}
 		h3 {
 			color: $white;
+			font-family: $subhead-font-family;
 			font-size: 1.7rem;
 			line-height: 1;
 			transform: translateY(-3px);

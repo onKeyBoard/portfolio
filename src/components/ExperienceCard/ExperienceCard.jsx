@@ -10,7 +10,10 @@ const ExperienceCard = ({ company, title, dates, description, imageUrl }) => {
 				<h3>{company}</h3>
 				<h2>{title}</h2>
 				<b>{dates}</b>
-				<p>{description}</p>
+				<div className={styles['description']}>
+					<h3>Areas of Focus</h3>
+					<p>{description}</p>
+				</div>
 			</div>
 		</div>
 	)

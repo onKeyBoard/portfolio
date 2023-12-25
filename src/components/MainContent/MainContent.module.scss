@@ -31,6 +31,28 @@
 			position: relative;
 		}
 
+		.hover-headline {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			@extend %flex-center;
+			pointer-events: none;
+			z-index: 4;
+			transition: all ease-in 0.1s;
+			h2 {
+				font-size: 5rem;
+				font-weight: 700;
+				color: $white;
+				-webkit-text-stroke: 3px $p1-accent-4;
+				-webkit-text-fill-color: transparent;
+			}
+			&.blur {
+				-webkit-text-filter: blur(10px);
+			}
+		}
+
 		.canvas-layer {
 			border-radius: 25px;
 			background-image: url('/images/sky-bg.png');
@@ -51,5 +73,16 @@
 				background-size: auto 100%;
 			}
 		}
+	}
+}
+
+// Animation //
+
+@keyframes subtleRotation {
+	0% {
+		transform: translateY(-50%) rotate3d(1, 2, 0, -25deg);
+	}
+	100% {
+		transform: translateY(-60%) rotate3d(1, 2, 0, 25deg);
 	}
 }

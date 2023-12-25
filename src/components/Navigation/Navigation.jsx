@@ -1,39 +1,39 @@
-import { useState } from 'react'
+import { useState, useEffect, lazy } from 'react'
 import styles from './Navigation.module.scss'
 import NavLinkCard from '../NavLinkCard/NavLinkCard'
 import ProfileOverview from '../ProfileOverview/ProfileOverview'
 import SkillsGrid from '../SkillsGrid/SkillsGrid'
 import ExperienceSection from '../ExperienceSection/ExperienceSection'
 
-const Navigation = ({ handleNavStatusToggle }) => {
+const Navigation = ({ handleNavStatusToggle, handleCardHover }) => {
 	// TODO: make this data dynamic
 	const data = [
 		{
 			href: 'about',
 			imageUrl: 'images/sky-bg.png',
 			title: 'About',
-			description: 'About me',
+			description: 'Nice to meet you',
 			fullContent: <ProfileOverview />,
 		},
 		{
 			href: 'skills',
 			imageUrl: 'images/sky-bg.png',
 			title: 'Skills',
-			description: 'My work experience',
+			description: 'What I do',
 			fullContent: <SkillsGrid />,
 		},
 		{
 			href: 'Experience',
 			imageUrl: 'images/sky-bg.png',
 			title: 'EXP',
-			description: 'My work',
+			description: 'My work history',
 			fullContent: <ExperienceSection />,
 		},
 		{
 			href: 'Extras',
 			imageUrl: 'images/sky-bg.png',
 			title: 'Extras',
-			description: 'Get in touch',
+			description: 'Projects and beyond',
 		},
 	]
 
@@ -47,6 +47,10 @@ const Navigation = ({ handleNavStatusToggle }) => {
 		setCardStatuses(newCardStatuses)
 		// run the toggle functions
 		handleNavStatusToggle(true)
+	}
+
+	const handleHover = (index) => {
+		handleCardHover(data[index].description)
 	}
 
 	const resetCardStatuses = () => {
@@ -69,6 +73,7 @@ const Navigation = ({ handleNavStatusToggle }) => {
 							status={cardStatuses[index]}
 							onClick={() => handleClick(index)}
 							onClickClose={() => resetCardStatuses()}
+							onHover={() => handleHover(index)}
 							fullContent={item.fullContent}
 						/>
 					))}

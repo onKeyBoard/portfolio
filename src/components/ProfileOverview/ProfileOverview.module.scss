@@ -2,19 +2,38 @@
 
 .profile_grid {
 	display: grid;
-	grid-template-columns: 1fr 2fr;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-areas: 'photo bio bio' 'info bio bio';
 	gap: 1rem;
 	height: 100%;
-	padding: 1rem 4rem;
-	.left,
-	.right {
+	padding: 1rem;
+	.photo,
+	.info,
+	.bio {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		background: transparentize($black, 0.8);
+		border-radius: 25px;
+		padding: 1.5rem;
+		opacity: 0;
+	}
+	.photo {
+		grid-area: photo;
+		animation: fadeInLeft 0.5s 0.5s ease-in-out forwards;
+	}
+	.bio {
+		grid-area: bio;
+		background: transparentize($black, 0.7);
+		animation: fadeInRight 0.5s 0.5s ease-in-out forwards;
+	}
+	.info {
+		grid-area: info;
+		background: transparentize($black, 0.6);
+		animation: fadeInUp 0.5s 0.5s ease-in-out forwards;
 	}
 	.profile_image {
-		border: solid 2px $p1-primary-light;
 		border-radius: 25px;
 		width: 250px;
 		height: 250px;
@@ -24,11 +43,46 @@
 		}
 	}
 	.content {
-		max-width: 100%;
+		max-width: 80%;
 		h3 {
 			display: inline-block;
 			width: auto;
 			padding-bottom: 0.5rem;
 		}
+	}
+}
+
+// Animations //
+
+@keyframes fadeInLeft {
+	0% {
+		opacity: 0;
+		transform: translateX(-50px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes fadeInRight {
+	0% {
+		opacity: 0;
+		transform: translateX(50px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes fadeInUp {
+	0% {
+		opacity: 0;
+		transform: translateY(50px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
 	}
 }

@@ -7,21 +7,24 @@ const ExperienceSection = () => {
 			company: 'Needmore Designs',
 			title: 'Front End Developer',
 			dates: '2014 - 2015',
-			description: 'Description 1',
+			description:
+				'Bespoke WordPress and Shopify themes, E-commerce, PHP, SQL, Liquid, JavaScript, node.js, Gulp, Sass.',
 			imageUrl: 'images/sky-bg.png',
 		},
 		{
 			company: 'Speak! Agency',
 			title: 'Front End Developer',
 			dates: '2015 - 2019',
-			description: 'Description 2',
+			description:
+				'Custom WordPress themes, Web Apps, Marketing, JavaScript, PHP, SQL, Sass.',
 			imageUrl: 'images/sky-bg.png',
 		},
 		{
 			company: 'Singularity Interactive',
 			title: 'Software Engineer',
 			dates: '2019 - 2022',
-			description: 'Description 3',
+			description:
+				'React, React Native, Node.js, GraphQL, TypeScript, AWS, Sass, CI/CD, Material UI, Tailwind CSS, Docker, Kubernetes, Next.js, Gatsby, Storybook, Jest, Cypress, and more.',
 			imageUrl: 'images/sky-bg.png',
 		},
 		{
@@ -35,7 +38,7 @@ const ExperienceSection = () => {
 
 	return (
 		<div className={styles['container']}>
-			<h1>Places I've worked</h1>
+			<h3 className={styles['title']}>Places I've worked</h3>
 			<div className={styles['cards']}>
 				{data.map(({ company, title, dates, description, imageUrl }, index) => (
 					<ExperienceCard
