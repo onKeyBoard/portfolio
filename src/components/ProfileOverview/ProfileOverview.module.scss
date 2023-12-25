@@ -21,17 +21,17 @@
 	}
 	.photo {
 		grid-area: photo;
-		animation: fadeInLeft 0.5s 0.5s ease-in-out forwards;
+		animation: fadeInLeft 0.5s 0.5s ease-out forwards;
 	}
 	.bio {
 		grid-area: bio;
 		background: transparentize($black, 0.7);
-		animation: fadeInRight 0.5s 0.5s ease-in-out forwards;
+		animation: fadeInRight 0.5s 0.6s ease-out forwards;
 	}
 	.info {
 		grid-area: info;
 		background: transparentize($black, 0.6);
-		animation: fadeInUp 0.5s 0.5s ease-in-out forwards;
+		animation: fadeInUp 0.5s 0.7s ease-out forwards;
 	}
 	.profile_image {
 		border-radius: 25px;

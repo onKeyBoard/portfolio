@@ -11,8 +11,8 @@
 	}
 	.card {
 		opacity: 0;
-		animation: fadeIn 0.1s ease-in forwards,
-			fadeInBorder 0.5s 2s ease-in forwards;
+		animation: fadeIn 0.3s ease-out forwards,
+			fadeInBorder 0.5s 2s ease-out forwards;
 		text-align: center;
 		padding: 2rem;
 		display: flex;
@@ -64,7 +64,7 @@
 
 @keyframes fadeIn {
 	0% {
-		transform: translateY(10px);
+		transform: translateY(-50px);
 		opacity: 0;
 	}
 	100% {

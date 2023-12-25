@@ -19,7 +19,7 @@ const Navigation = ({ handleNavStatusToggle, handleCardHover }) => {
 			href: 'skills',
 			imageUrl: 'images/sky-bg.png',
 			title: 'Skills',
-			description: 'What I do',
+			description: 'What I can do',
 			fullContent: <SkillsGrid />,
 		},
 		{
@@ -33,7 +33,7 @@ const Navigation = ({ handleNavStatusToggle, handleCardHover }) => {
 			href: 'Extras',
 			imageUrl: 'images/sky-bg.png',
 			title: 'Extras',
-			description: 'Projects and beyond',
+			description: 'Other things I do',
 		},
 	]
 
