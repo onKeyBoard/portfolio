@@ -6,7 +6,8 @@
 	right: 1rem;
 	left: 1rem;
 	background: linear-gradient(45deg, $p1-alt-dark, $p1-accent-4, $p1-accent-2);
-	border-top: solid 3px $black;
+	// background: $p1-primary-dark;
+	// border-top: solid 3px $black;
 	border-radius: 0 0 25px 25px;
 	width: calc(100% - 2rem);
 	padding: 0.5rem 1rem 0.7rem 2rem;

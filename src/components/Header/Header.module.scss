@@ -12,14 +12,11 @@
 	justify-content: space-between;
 	padding: 1rem;
 	background: linear-gradient(
-		45deg,
-		transparentize($p1-alt-dark, 0.8),
-		transparentize($p1-accent-4, 1),
-		transparentize($p1-accent-2, 0.8)
+		180deg,
+		transparentize($p1-accent-2, 0.3),
+		transparent
 	);
 	border-radius: 25px 25px 0 0;
-	border-bottom: solid 3px transparentize($p1-accent-2, 0.7);
-	backdrop-filter: blur(10px);
 	transition: all ease-in-out 1s;
 	.title {
 		width: auto;

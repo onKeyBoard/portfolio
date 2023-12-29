@@ -1,49 +1,33 @@
 @import '../../styles/global/variables.scss';
 
 a.border {
+	background: linear-gradient(45deg, transparent, transparent, $p1-accent-4);
+	background-size: 280% 280%;
+	background-position: 0% 50%;
 	cursor: pointer;
 	will-change: transform;
-	transition: all cubic-bezier(0.75, 1.82, 0.165, 1) 2s;
-	// &:before {
-	// 	content: '';
-	// 	position: absolute;
-	// 	top: -15px;
-	// 	left: -8px;
-	// 	width: 100%;
-	// 	height: 15px;
-	// 	border: none;
-	// 	background: linear-gradient(270deg, $p1-accent-2, $p1-accent);
-	// 	transform: perspective(300px) skewX(45deg);
-	// }
-	// &:after {
-	// 	content: '';
-	// 	position: absolute;
-	// 	top: -7px;
-	// 	left: -15px;
-	// 	width: 15px;
-	// 	height: 100%;
-	// 	border: none;
-	// 	background: linear-gradient(0deg, $p1-accent-2, $p1-primary-dark);
-	// 	transform: perspective(300px) skewY(45deg);
-	// }
+	box-shadow: inset 0 0 0 -3px $p1-accent-4;
+	transition: all cubic-bezier(0.75, 1.82, 0.165, 1) 2s,
+		background-position ease-in-out 0.5s 0.2s;
 	.card {
 		.image img {
 			opacity: 0;
 		}
 	}
 	&:hover {
-		background: darken($p1-accent-2, 5%);
-		transition: all cubic-bezier(0.23, 1, 0.32, 1) 0.3s;
-		transform: translateY(-15px);
-		background-position: 100% 50%;
+		transition: all cubic-bezier(0.23, 1, 0.32, 1) 0.3s,
+			background-position ease-in-out 0.2s;
+		transform: translateY(-20px);
+		background-position: 50% 50%;
+		box-shadow: inset 0 0 0 3px $p1-accent-4;
 		.card {
 			.title {
 				transform: scale(1.1);
 			}
-			.image img {
-				transform: scale(1.1);
-				opacity: 1;
-			}
+			// .image img {
+			// 	transform: scale(1.1);
+			// 	opacity: 1;
+			// }
 		}
 	}
 }
@@ -67,7 +51,7 @@ a.border {
 		height: 100%;
 		transform: translate3d(0, 0, 0) translateY(0);
 		.border {
-			border-radius: 30px;
+			border-radius: 25px;
 			padding: 0;
 			background: linear-gradient(
 				45deg,
@@ -76,19 +60,19 @@ a.border {
 				$p1-accent-2
 			);
 			.card {
-				border-radius: 28px 28px 0 0;
+				border-radius: 25px 25px 0 0;
 				float: none;
 				width: 100%;
 				height: 170px;
 				.image {
-					background-color: #10102a;
-					opacity: 1;
-					background-image: linear-gradient(#5eecec 1px, transparent 1px),
-						linear-gradient(to right, #5eecec 1px, #10102a 1px);
-					background-size: 20px 20px;
+					background-color: $p1-alt-dark;
+					opacity: 0;
+					animation: fadeIn 0.7s ease-out 0.5s forwards;
 					img {
 						opacity: 0.9;
-						animation: subtleBGMotion 5s infinite;
+						height: 100vh;
+						animation: subtleBGMotion linear 240s infinite;
+						filter: blur(10px) grayscale(50%);
 					}
 				}
 				.title {
@@ -102,13 +86,13 @@ a.border {
 				height: calc(100% - 233px);
 				opacity: 1;
 				background: rgba(0, 0, 0, 0.4);
-				border-bottom: solid 3px $black;
-				padding: 0 1rem;
+				// border-bottom: solid 3px $black;
+				padding: 0;
 				overflow-y: scroll;
 				> div {
 					height: 100%;
 					opacity: 0;
-					padding: 2rem 0 4.5rem 0;
+					padding-bottom: 4rem;
 					transform: translateY(50px);
 					animation: revealPageContent 0.5s 0.5s forwards;
 				}
@@ -231,6 +215,16 @@ a.border {
 }
 
 // animate reveal close button
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
 @keyframes revealCloseButton {
 	0% {
 		opacity: 0;
@@ -278,15 +272,9 @@ a.border {
 
 @keyframes subtleBGMotion {
 	0% {
-		transform: translateX(0px) translateY(0px) scale(1.2);
-	}
-	25% {
-		transform: translateX(8px) translateY(5px) scale(1.2);
-	}
-	50% {
-		transform: translateX(5px) translateY(8px) scale(1.2);
+		transform: rotateZ(0deg) scale(2);
 	}
 	100% {
-		transform: translateX(0px) translateY(0px) scale(1.2);
+		transform: rotateZ(359deg) scale(2);
 	}
 }

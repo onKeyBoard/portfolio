@@ -1,6 +1,6 @@
 import styles from './Header.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons'
 
 const Header = ({ toggledStyle }) => {
 	const headerClass = toggledStyle
@@ -18,8 +18,8 @@ const Header = ({ toggledStyle }) => {
 			</div>
 
 			<div className={styles['socials']}>
-				<a href='https://www.instagram.com/shawnpavlas/' target='_blank'>
-					<FontAwesomeIcon icon={faInstagram} />
+				<a href='https://github.com/onKeyBoard' target='_blank'>
+					<FontAwesomeIcon icon={faGithub} />
 				</a>
 				<a href='https://www.linkedin.com/in/shawn-pavlas/' target='_blank'>
 					<FontAwesomeIcon icon={faLinkedin} />

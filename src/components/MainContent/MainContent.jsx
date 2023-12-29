@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import styles from './MainContent.module.scss'
-import Scene3D from '../Scene3D/Scene3D'
+import Scene3D from '../Scene3D2/Scene3D'
 import Header from '../Header/Header'
 import Navigation from '../Navigation/Navigation'
 import Footer from '../Footer/Footer'
@@ -14,6 +14,7 @@ const MainContent = () => {
 	const containerRef = useRef(null)
 	const bgPosX = useRef(0)
 	const textRef = useRef(null)
+	const textBgRef = useRef(null)
 	const textRotation = useRef(0)
 
 	// Animates the background image
@@ -26,7 +27,8 @@ const MainContent = () => {
 			if (containerRef.current && textRef.current && !isAnyCardOpen) {
 				// Move the background image
 				bgPosX.current += (mouseX * 0.25 - bgPosX.current) * 0.1
-				containerRef.current.style.backgroundPositionX = `-${bgPosX.current}px`
+				containerRef.current.style.backgroundPositionX = `${bgPosX.current}px`
+				textBgRef.current.style.backgroundPositionX = `-${bgPosX.current}px`
 				// Rotate the text
 				textRotation.current +=
 					(normalizedMouseX * 10 - textRotation.current) * 0.1
@@ -52,10 +54,10 @@ const MainContent = () => {
 	const switchHoverText = (textValue) => {
 		const hoverHeadline = document.getElementById('headline')
 		hoverHeadline.style.opacity = '0'
-		hoverHeadline.style.transform = 'translateY(20px) scale(0.9)'
+		hoverHeadline.style.transform = 'translateY(10px)'
 		setTimeout(() => {
 			hoverHeadline.style.opacity = '1'
-			hoverHeadline.style.transform = 'translateY(0) scale(1)'
+			hoverHeadline.style.transform = 'translateY(0)'
 			setHoverText(textValue)
 		}, 200)
 	}
@@ -77,7 +79,14 @@ const MainContent = () => {
 				<div className={styles['ui-layer']}>
 					<Header toggledStyle={isAnyCardOpen} />
 					<div id='headline' className={styles['hover-headline']}>
-						<h2 ref={textRef}>{hoverText}</h2>
+						<div
+							className={`${styles['headline-background']} ${
+								isAnyCardOpen ? styles['hide'] : ''
+							}`}
+							ref={textRef}
+						>
+							<h2 ref={textBgRef}>{hoverText}</h2>
+						</div>
 					</div>
 					<Navigation
 						handleNavStatusToggle={switchToggleState}

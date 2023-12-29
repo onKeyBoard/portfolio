@@ -9,31 +9,27 @@ const Navigation = ({ handleNavStatusToggle, handleCardHover }) => {
 	// TODO: make this data dynamic
 	const data = [
 		{
-			href: 'about',
 			imageUrl: 'images/sky-bg.png',
-			title: 'About',
+			title: 'Hello',
 			description: 'Nice to meet you',
 			fullContent: <ProfileOverview />,
 		},
 		{
-			href: 'skills',
 			imageUrl: 'images/sky-bg.png',
 			title: 'Skills',
-			description: 'What I can do',
+			description: "I'm an engineer",
 			fullContent: <SkillsGrid />,
 		},
 		{
-			href: 'Experience',
 			imageUrl: 'images/sky-bg.png',
-			title: 'EXP',
-			description: 'My work history',
+			title: 'Work',
+			description: 'I build things',
 			fullContent: <ExperienceSection />,
 		},
 		{
-			href: 'Extras',
 			imageUrl: 'images/sky-bg.png',
 			title: 'Extras',
-			description: 'Other things I do',
+			description: "But that's not all",
 		},
 	]
 
@@ -63,18 +59,17 @@ const Navigation = ({ handleNavStatusToggle, handleCardHover }) => {
 		<div className={styles['nav-container']}>
 			<div className={styles['nav']}>
 				<div className={styles['nav-inner']}>
-					{data.map((item, index) => (
+					{data.map(({ imageUrl, title, description, fullContent }, index) => (
 						<NavLinkCard
 							key={index}
-							href={item.href}
-							imageUrl={item.imageUrl}
-							title={item.title}
-							description={item.description}
+							imageUrl={imageUrl}
+							title={title}
+							description={description}
 							status={cardStatuses[index]}
 							onClick={() => handleClick(index)}
 							onClickClose={() => resetCardStatuses()}
 							onHover={() => handleHover(index)}
-							fullContent={item.fullContent}
+							fullContent={fullContent}
 						/>
 					))}
 				</div>

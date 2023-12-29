@@ -1,5 +1,6 @@
 import styles from './ExperienceSection.module.scss'
 import ExperienceCard from '../ExperienceCard/ExperienceCard'
+import SectionTitleBanner from '../SectionTitleBanner/SectionTitleBanner'
 
 const ExperienceSection = () => {
 	const data = [
@@ -38,7 +39,11 @@ const ExperienceSection = () => {
 
 	return (
 		<div className={styles['container']}>
-			<h3 className={styles['title']}>Places I've worked</h3>
+			<div className={styles['banner']}>
+				<div className={styles['headline']}>
+					<SectionTitleBanner text="I've been honing my skills at design and marketing agencies and software development studios since 2014." />
+				</div>
+			</div>
 			<div className={styles['cards']}>
 				{data.map(({ company, title, dates, description, imageUrl }, index) => (
 					<ExperienceCard

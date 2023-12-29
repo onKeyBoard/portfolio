@@ -1,0 +1,28 @@
+@import '../../styles/global/variables.scss';
+
+.container {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 1rem;
+	.item {
+		list-style-type: none;
+		.icon {
+			font-size: 3rem;
+			color: $p1-accent-4;
+			transition: all 0.2s ease-in-out;
+			transform: scale(1);
+			&:hover {
+				color: $white;
+				transform: scale(1.1);
+			}
+		}
+	}
+	.location {
+		grid-column: 1 / -1;
+		justify-self: center;
+		svg {
+			margin-right: 0.5rem;
+			color: $p1-accent-4;
+		}
+	}
+}

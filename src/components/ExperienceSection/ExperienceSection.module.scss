@@ -1,12 +1,11 @@
+@import '../../styles/global/variables.scss';
+
 .container {
-	.title {
-		font-size: 2rem;
-		margin-bottom: 1rem;
-	}
 	.cards {
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
 		grid-gap: 1rem;
+		padding: 2rem;
 		@media screen and (max-width: 1200px) {
 			grid-template-columns: repeat(3, 1fr);
 		}

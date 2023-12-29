@@ -14,24 +14,30 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		background: transparentize($black, 0.8);
+		background: transparentize($p1-alt-dark, 0.8);
 		border-radius: 25px;
 		padding: 1.5rem;
 		opacity: 0;
 	}
 	.photo {
 		grid-area: photo;
-		animation: fadeInLeft 0.5s 0.5s ease-out forwards;
+		animation: fadeInLeft 0.7s 0.3s cubic-bezier(0.46, 0.03, 0.52, 0.96)
+			forwards;
 	}
 	.bio {
 		grid-area: bio;
-		background: transparentize($black, 0.7);
-		animation: fadeInRight 0.5s 0.6s ease-out forwards;
+		background: transparentize($p1-alt-dark, 0.7);
+		animation: fadeInRight 0.7s 0.5s cubic-bezier(0.46, 0.03, 0.52, 0.96)
+			forwards;
 	}
 	.info {
 		grid-area: info;
-		background: transparentize($black, 0.6);
-		animation: fadeInUp 0.5s 0.7s ease-out forwards;
+		background: linear-gradient(
+			45deg,
+			transparentize($black, 0.6),
+			transparentize($p1-alt-dark, 0.6)
+		);
+		animation: fadeInUp 0.7s 0.6s cubic-bezier(0.46, 0.03, 0.52, 0.96) forwards;
 	}
 	.profile_image {
 		border-radius: 25px;
@@ -50,6 +56,29 @@
 			padding-bottom: 0.5rem;
 		}
 	}
+	// responsiveness
+	@media screen and (max-width: $tablet-min) {
+		grid-template-columns: 1fr;
+		grid-template-areas: 'photo' 'info' 'bio';
+		.photo,
+		.info,
+		.bio {
+			width: 100%;
+			padding: 1rem;
+		}
+		.photo {
+			animation: fadeInUp 0.7s 0.3s cubic-bezier(0.46, 0.03, 0.52, 0.96)
+				forwards;
+		}
+		.bio {
+			animation: fadeInUp 0.7s 0.5s cubic-bezier(0.46, 0.03, 0.52, 0.96)
+				forwards;
+		}
+		.info {
+			animation: fadeInUp 0.7s 0.6s cubic-bezier(0.46, 0.03, 0.52, 0.96)
+				forwards;
+		}
+	}
 }
 
 // Animations //
@@ -57,7 +86,7 @@
 @keyframes fadeInLeft {
 	0% {
 		opacity: 0;
-		transform: translateX(-50px);
+		transform: translateX(-20px);
 	}
 	100% {
 		opacity: 1;
@@ -68,7 +97,7 @@
 @keyframes fadeInRight {
 	0% {
 		opacity: 0;
-		transform: translateX(50px);
+		transform: translateX(20px);
 	}
 	100% {
 		opacity: 1;
@@ -79,7 +108,7 @@
 @keyframes fadeInUp {
 	0% {
 		opacity: 0;
-		transform: translateY(50px);
+		transform: translateY(20px);
 	}
 	100% {
 		opacity: 1;

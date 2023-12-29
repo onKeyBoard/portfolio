@@ -1,7 +1,7 @@
 import BlockyLoader from '../BlockyLoader/BlockyLoader.jsx'
 import { RichText } from '@graphcms/rich-text-react-renderer'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import SectionTitle from '../SectionTitle/SectionTitle.jsx'
+import SocialLinksBlock from '../SocialLinksBlock/SocialLinksBlock.jsx'
 import styles from './ProfileOverview.module.scss'
 import { useQuery } from '@apollo/client'
 import { GET_BIO } from '../../queries/bio.js'
@@ -24,12 +24,11 @@ const ProfileOverview = () => {
 				</div>
 			</div>
 			<div className={styles['info']}>
-				<b>Github: @onKeyBoard</b>
-				<b>Location: Colorado, USA</b>
+				<SocialLinksBlock />
 			</div>
 			<div className={styles['bio']}>
 				<div className={styles['content']}>
-					{headline && <h3>{headline}</h3>}
+					{headline && <SectionTitle text={headline} />}
 					{bodyContent && <RichText content={bodyContent} />}
 				</div>
 			</div>
