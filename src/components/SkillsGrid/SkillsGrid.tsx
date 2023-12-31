@@ -1,8 +1,9 @@
+import React from 'react'
 import styles from './SkillsGrid.module.scss'
 import { useQuery } from '@apollo/client'
 import { GET_SKILLS } from '../../queries/skills.js'
-import BlockyLoader from '../BlockyLoader/BlockyLoader.jsx'
-import SectionTitleBanner from '../SectionTitleBanner/SectionTitleBanner.jsx'
+import BlockyLoader from '../BlockyLoader/BlockyLoader.tsx'
+import SectionTitleBanner from '../SectionTitleBanner/SectionTitleBanner'
 
 const SkillsGrid = () => {
 	const { loading, error, data } = useQuery(GET_SKILLS)
@@ -12,10 +13,7 @@ const SkillsGrid = () => {
 
 	return (
 		<>
-			<SectionTitleBanner
-				text="I've spent a lot of time working with these technologies"
-				centerText
-			/>
+			<SectionTitleBanner text="I've spent a lot of time working with these technologies" />
 			<div className={styles['grid']}>
 				{skills.map(({ id, title, iconUrl }) => (
 					<div key={id} className={styles['card']}>

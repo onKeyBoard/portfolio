@@ -1,6 +1,11 @@
+import React from 'react'
 import styles from './Footer.module.scss'
 
-const Footer = ({ toggledStyle }) => {
+interface FooterProps {
+	toggledStyle: boolean
+}
+
+const Footer = ({ toggledStyle }: FooterProps) => {
 	const footerClass = toggledStyle
 		? `${styles['footer']} ${styles['toggled']}`
 		: `${styles['footer']}`

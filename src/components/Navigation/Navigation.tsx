@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy } from 'react'
+import React, { useState } from 'react'
 import styles from './Navigation.module.scss'
 import NavLinkCard from '../NavLinkCard/NavLinkCard'
 import ProfileOverview from '../ProfileOverview/ProfileOverview'
@@ -6,9 +6,23 @@ import SkillsGrid from '../SkillsGrid/SkillsGrid'
 import ExperienceSection from '../ExperienceSection/ExperienceSection'
 import ContentExtras from '../ContentExtras/ContentExtras'
 
-const Navigation = ({ handleNavStatusToggle, handleCardHover }) => {
+interface NavigationProps {
+	handleNavStatusToggle: (status: boolean) => void
+	handleCardHover: (description: string) => void
+}
+
+interface NavLinkCardData {
+	title: string
+	description: string
+	fullContent: JSX.Element
+}
+
+const Navigation = ({
+	handleNavStatusToggle,
+	handleCardHover,
+}: NavigationProps) => {
 	// TODO: make this data dynamic
-	const data = [
+	const data: NavLinkCardData[] = [
 		{
 			title: 'Hello',
 			description: 'Nice to meet you',

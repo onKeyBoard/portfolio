@@ -1,0 +1,24 @@
+@import '../../styles/global/variables.scss';
+
+.button {
+	transition: all 0.2s ease-in-out;
+	margin-top: 1rem;
+	padding: 0.5rem 1rem;
+	&.primary {
+		background-color: transparent;
+		color: $p1-accent-4;
+		border: 1px solid $p1-accent-4;
+		border-radius: 7px;
+	}
+	&.secondary {
+		background-color: $black;
+		color: $p1-accent-4;
+		border: 1px solid $black;
+		border-radius: 7px;
+	}
+	&:hover {
+		background-color: $p1-accent-4;
+		color: $black;
+		border: 1px solid $p1-accent-4;
+	}
+}

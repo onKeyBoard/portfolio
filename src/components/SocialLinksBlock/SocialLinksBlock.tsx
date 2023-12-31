@@ -1,11 +1,20 @@
+import React from 'react'
 import styles from './SocialLinksBlock.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import {
 	faGithub,
 	faLinkedin,
 	faInstagram,
 } from '@fortawesome/free-brands-svg-icons'
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
+
+interface SocialLinksProps {
+	name: string
+	icon: string
+	url: string
+	index: number
+}
 
 const SocialLinksBlock = () => {
 	const data = [
@@ -24,9 +33,9 @@ const SocialLinksBlock = () => {
 			icon: 'faInstagram',
 			url: 'instagram.com/shawnpavlas',
 		},
-	]
+	] as SocialLinksProps[]
 
-	const getIcon = (iconName) => {
+	const getIcon = (iconName: string): IconDefinition => {
 		switch (iconName) {
 			case 'faGithub':
 				return faGithub
@@ -34,12 +43,14 @@ const SocialLinksBlock = () => {
 				return faLinkedin
 			case 'faInstagram':
 				return faInstagram
+			default:
+				return faGithub
 		}
 	}
 
 	return (
 		<div className={styles['container']}>
-			{data.map(({ name, icon, url, index }) => (
+			{data.map(({ name, icon, url }, index) => (
 				<li key={index} className={styles['item']}>
 					<a
 						href={`https://${url}`}
@@ -47,7 +58,7 @@ const SocialLinksBlock = () => {
 						aria-label={`${name} link`}
 					>
 						<div className={styles['icon']}>
-							<FontAwesomeIcon icon={getIcon(icon)} alt={name} />
+							<FontAwesomeIcon icon={getIcon(icon)} />
 						</div>
 					</a>
 				</li>

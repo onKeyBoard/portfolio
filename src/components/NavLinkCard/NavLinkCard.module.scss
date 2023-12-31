@@ -49,12 +49,15 @@ a.border {
 				$p1-accent-4,
 				$p1-accent-2
 			);
+			position: relative;
 			.card {
 				border-radius: 25px 25px 0 0;
-				float: none;
+				position: absolute;
+				top: 0;
+				left: 0;
 				width: 100%;
 				height: 4rem;
-				background: transparentize($p1-alt-dark, 0.8);
+				background: transparent;
 				.title {
 					font-size: 2.2rem;
 					margin-top: 1rem;
@@ -64,10 +67,10 @@ a.border {
 				}
 			}
 			.full-content {
-				height: calc(100% - 5.5rem);
+				height: calc(100% - 1.5rem);
 				opacity: 1;
 				background: transparentize($p1-alt-dark, 0.8);
-				padding: 4rem 0 0 0;
+				padding: 8rem 0 0 0;
 				overflow-y: scroll;
 				> div {
 					height: 100%;
@@ -155,6 +158,7 @@ a.border {
 		width: 2rem;
 		height: 2rem;
 		background: $white;
+		border: none;
 		display: flex;
 		justify-content: center;
 		align-items: center;

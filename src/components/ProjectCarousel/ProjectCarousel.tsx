@@ -1,12 +1,17 @@
 import styles from './ProjectCarousel.module.scss'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useQuery } from '@apollo/client'
 import { GET_PROJECT } from '../../queries/projects.js'
-import ProjectCarouselSlide from '../ProjectCarouselSlide/ProjectCarouselSlide.jsx'
+import ProjectCarouselSlide from '../ProjectCarouselSlide/ProjectCarouselSlide'
+import Button from '../Button/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
 
-const ProjectCarousel = ({ projectId }) => {
+interface ProjectCarouselProps {
+	projectId: string
+}
+
+const ProjectCarousel = ({ projectId }: ProjectCarouselProps) => {
 	const { loading, error, data } = useQuery(GET_PROJECT, {
 		variables: { id: projectId },
 	})
@@ -16,13 +21,12 @@ const ProjectCarousel = ({ projectId }) => {
 	const [startOfSlides, setStartOfSlides] = useState(true)
 	const [endOfSlides, setEndOfSlides] = useState(false)
 
+	// Reset the slide index when the projectId changes
 	useEffect(() => {
 		setCurrentSlide(0)
 		setStartOfSlides(true)
 		setEndOfSlides(false)
 	}, [projectId])
-
-	let totalSlides = 0
 
 	// Handle slide change events
 	const handleSlideChange = (direction) => {
@@ -59,12 +63,39 @@ const ProjectCarousel = ({ projectId }) => {
 	const { project } = data
 	const { title, year, type, description, link, projectSlides } = project
 
-	// Let's set up some variables to help manage the carousel and make it more dynamic
-	// First, we'll set totalSlides to the length of the projectSlides array
-	totalSlides = projectSlides.length
+	const totalSlides = projectSlides.length
+
+	const carouselOverviewContent = (
+		<div className={styles['carousel-overview']}>
+			<h2>{title}</h2>
+			{year && (
+				<div className={styles['year']}>
+					<b>{year}</b>
+				</div>
+			)}
+			{type && (
+				<div className={styles['type']}>
+					<b>{type}</b>
+				</div>
+			)}
+			{description && (
+				<div className={styles['description']}>
+					<p>{description}</p>
+				</div>
+			)}
+			{link && (
+				<div className={styles['link']}>
+					<a href={link} target='_blank' rel='noopener noreferrer'>
+						<Button text='View Project' />
+					</a>
+				</div>
+			)}
+		</div>
+	)
 
 	return (
 		<section className={styles['carousel']}>
+			{carouselOverviewContent}
 			<div className={styles['slide-container']}>
 				<div className={styles['slides']}>
 					{projectSlides.map(({ id, imageUrl, title, description }, index) => (
@@ -93,23 +124,6 @@ const ProjectCarousel = ({ projectId }) => {
 					>
 						<FontAwesomeIcon icon={faAngleRight} />
 					</button>
-				</div>
-			</div>
-			<div className={styles['carousel-overview']}>
-				<h2>{title}</h2>
-				<div className={styles['year']}>
-					<b>{year}</b>
-				</div>
-				<div className={styles['type']}>
-					<b>{type}</b>
-				</div>
-				<div className={styles['description']}>
-					<p>{description}</p>
-				</div>
-				<div className={styles['link']}>
-					<a href={link} target='_blank' rel='noopener noreferrer'>
-						Visit
-					</a>
 				</div>
 			</div>
 		</section>

@@ -1,4 +1,14 @@
+import React from 'react'
 import styles from './NavLinkCard.module.scss'
+
+interface NavLinkCardProps {
+	title: string
+	status: string
+	onClick: () => void
+	onClickClose: () => void
+	onHover: () => void
+	fullContent?: React.ReactNode
+}
 
 const NavLinkCard = ({
 	title,
@@ -7,7 +17,7 @@ const NavLinkCard = ({
 	onClickClose,
 	onHover,
 	fullContent,
-}) => {
+}: NavLinkCardProps) => {
 	// Use an enum to make sure the status is only one of three values
 	const StatusEnum = {
 		MIN: 'min',

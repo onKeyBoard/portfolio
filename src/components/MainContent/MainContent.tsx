@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import styles from './MainContent.module.scss'
 import Scene3D from '../Scene3D2/Scene3D'
 import Header from '../Header/Header'
@@ -11,20 +11,25 @@ const MainContent = () => {
 	const [isAnyCardOpen, setIsAnyCardOpen] = useState(false)
 	const [hoverText, setHoverText] = useState('Hello, World!')
 
-	const containerRef = useRef(null)
-	const bgPosX = useRef(0)
-	const textRef = useRef(null)
-	const textBgRef = useRef(null)
-	const textRotation = useRef(0)
+	const containerRef = useRef<HTMLDivElement>(null)
+	const bgPosX = useRef<number>(0)
+	const textRef = useRef<HTMLDivElement>(null)
+	const textBgRef = useRef<HTMLDivElement>(null)
+	const textRotation = useRef<number>(0)
 
 	// Animates the background image
 	useEffect(() => {
-		let animationFrameId
+		let animationFrameId: number
 
 		let normalizedMouseX = limitMouseX(mouseX, 1)
 
 		const animate = () => {
-			if (containerRef.current && textRef.current && !isAnyCardOpen) {
+			if (
+				containerRef.current &&
+				textRef.current &&
+				textBgRef.current &&
+				!isAnyCardOpen
+			) {
 				// Move the background image
 				bgPosX.current += (mouseX * 0.25 - bgPosX.current) * 0.1
 				containerRef.current.style.backgroundPositionX = `${bgPosX.current}px`
@@ -51,8 +56,12 @@ const MainContent = () => {
 		setIsAnyCardOpen((prevState) => !prevState)
 	}
 
-	const switchHoverText = (textValue) => {
-		const hoverHeadline = document.getElementById('headline')
+	const switchHoverText = (textValue: string) => {
+		const hoverHeadline: HTMLElement | null =
+			document.getElementById('headline')
+		// If the headline is not found, return
+		if (!hoverHeadline) return
+		// Animate the headline
 		hoverHeadline.style.opacity = '0'
 		hoverHeadline.style.transform = 'translateY(10px)'
 		setTimeout(() => {

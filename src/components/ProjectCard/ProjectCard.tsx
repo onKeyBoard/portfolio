@@ -1,6 +1,21 @@
+import React from 'react'
 import styles from './ProjectCard.module.scss'
 
-const ProjectCard = ({ title, imageUrl, year, active, handleClick }) => {
+interface ProjectCardProps {
+	title: string
+	imageUrl: string
+	year: string
+	active: boolean
+	handleClick: () => void
+}
+
+const ProjectCard = ({
+	title,
+	imageUrl,
+	year,
+	active,
+	handleClick,
+}: ProjectCardProps) => {
 	return (
 		<button
 			className={`${styles['card']} ${active ? styles['active'] : ''}`}

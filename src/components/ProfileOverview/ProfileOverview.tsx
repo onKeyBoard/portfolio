@@ -1,10 +1,20 @@
-import BlockyLoader from '../BlockyLoader/BlockyLoader.jsx'
+import React from 'react'
+import BlockyLoader from '../BlockyLoader/BlockyLoader'
 import { RichText } from '@graphcms/rich-text-react-renderer'
-import SectionTitle from '../SectionTitle/SectionTitle.jsx'
-import SocialLinksBlock from '../SocialLinksBlock/SocialLinksBlock.jsx'
+import { RichTextContent } from '@graphcms/rich-text-types'
+import SectionTitle from '../SectionTitle/SectionTitle'
+import SocialLinksBlock from '../SocialLinksBlock/SocialLinksBlock'
 import styles from './ProfileOverview.module.scss'
 import { useQuery } from '@apollo/client'
 import { GET_BIO } from '../../queries/bio.js'
+
+interface ProfileOverviewData {
+	profileImageUrl: string
+	headline: string
+	body: {
+		raw: RichTextContent
+	}
+}
 
 const ProfileOverview = () => {
 	const { loading, error, data } = useQuery(GET_BIO)
@@ -14,7 +24,7 @@ const ProfileOverview = () => {
 		profileImageUrl,
 		headline,
 		body: { raw: bodyContent },
-	} = data.bio
+	} = data.bio as ProfileOverviewData
 
 	return (
 		<section className={styles['profile_grid']}>

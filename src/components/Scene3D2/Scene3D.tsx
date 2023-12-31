@@ -1,4 +1,4 @@
-import { Suspense, useState, useLayoutEffect } from 'react'
+import React, { Suspense, useState } from 'react'
 import * as THREE from 'three'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import limitMouseX from '../../utils/generalUtils'
@@ -6,8 +6,13 @@ import { useGLTF, Html } from '@react-three/drei'
 import BlockyLoader from '../BlockyLoader/BlockyLoader'
 import styles from './Scene3D.module.scss'
 
+interface Scene3DProps {
+	mouseX: number
+	zoomedIn: boolean
+}
+
 // The main scene component renders the 3D scene in a canvas
-export default function Scene3D({ mouseX, zoomedIn }) {
+export default function Scene3D({ mouseX, zoomedIn }: Scene3DProps) {
 	return (
 		<Canvas
 			shadows
@@ -53,7 +58,7 @@ function PersonalComputer({ mouseX, ...props }) {
 function CameraController({ zoomedIn }) {
 	const { camera } = useThree()
 	const targetPosition = zoomedIn
-		? new THREE.Vector3(1, 1, -2)
+		? new THREE.Vector3(0, 1, 0)
 		: new THREE.Vector3(0, 1, 9)
 
 	useFrame(() => {

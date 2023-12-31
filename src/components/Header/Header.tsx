@@ -1,8 +1,13 @@
+import React from 'react'
 import styles from './Header.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons'
 
-const Header = ({ toggledStyle }) => {
+interface HeaderProps {
+	toggledStyle: boolean
+}
+
+const Header = ({ toggledStyle }: HeaderProps) => {
 	const headerClass = toggledStyle
 		? `${styles['header']} ${styles['toggled']}`
 		: `${styles['header']}`
