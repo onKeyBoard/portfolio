@@ -1,9 +1,7 @@
 import styles from './NavLinkCard.module.scss'
 
 const NavLinkCard = ({
-	imageUrl,
 	title,
-	description,
 	status,
 	onClick,
 	onClickClose,
@@ -32,12 +30,8 @@ const NavLinkCard = ({
 
 	const cardContent = (
 		<div className={styles['card']}>
-			<div className={styles['image']}>
-				<img src={imageUrl} alt={title} />
-			</div>
 			<div className={styles['content']}>
 				<h2 className={styles['title']}>{title}</h2>
-				<p className={styles['description']}>{description}</p>
 			</div>
 		</div>
 	)

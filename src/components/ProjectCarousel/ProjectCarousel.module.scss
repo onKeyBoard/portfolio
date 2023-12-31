@@ -1,0 +1,93 @@
+@import '../../styles/global/variables.scss';
+
+.carousel {
+	padding: 1rem;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: stretch;
+	gap: 1rem;
+	.slide-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		width: 75%;
+		border-radius: 25px;
+		background: transparentize($p1-alt-dark, 0.5);
+		opacity: 0;
+		animation: fadeInLeft 0.5s ease-in-out forwards;
+		position: relative;
+		.slides {
+			border-bottom: solid 2px transparentize($white, 0.8);
+			width: 100%;
+		}
+		.controls {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			width: 100%;
+			padding: 1rem;
+			button {
+				background: transparent;
+				font-size: 1rem;
+				border: solid 2px $white;
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				transition: all cubic-bezier(0.23, 1, 0.32, 1) 0.5s;
+				&:hover {
+					border: solid 2px $p1-accent-4;
+					color: $p1-accent-4;
+				}
+				&:disabled {
+					background: transparentize($black, 0.8);
+					border: solid 2px transparentize($black, 0.5);
+					color: transparentize($black, 0.5);
+					cursor: not-allowed;
+				}
+			}
+		}
+	}
+	.carousel-overview {
+		background: transparentize($p1-alt-dark, 0.3);
+		padding: 2rem;
+		border-radius: 25px;
+		width: 25%;
+		opacity: 0;
+		animation: fadeInRight 0.5s ease-in-out forwards;
+		.year {
+			display: inline-block;
+			color: $p1-accent-3;
+		}
+		.description {
+			margin-top: 1rem;
+			padding-top: 1rem;
+			border-top: solid 2px transparentize($white, 0.5);
+			font-size: 12px;
+		}
+	}
+}
+
+// animation keyframes
+
+@keyframes fadeInLeft {
+	0% {
+		opacity: 0;
+		transform: translateX(-20px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes fadeInRight {
+	0% {
+		opacity: 0;
+		transform: translateX(20px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}

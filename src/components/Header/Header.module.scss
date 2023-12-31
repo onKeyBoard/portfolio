@@ -90,7 +90,7 @@
 	}
 
 	&.toggled {
-		backdrop-filter: blur(0);
+		background: none;
 		.title {
 			transition: all ease-in-out 0.5s 0.3s;
 			.inner {

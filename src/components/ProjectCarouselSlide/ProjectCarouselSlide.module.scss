@@ -1,0 +1,45 @@
+@import '../../styles/global/variables.scss';
+
+.slide {
+	height: 50vh;
+	overflow: hidden;
+	position: relative;
+	.image {
+		height: 50vh;
+		padding: 1rem;
+		opacity: 0;
+		animation: fadeIn 0.5s ease-in-out forwards;
+		img {
+			height: 100%;
+			width: 100%;
+			object-fit: contain;
+			object-position: center;
+			border-radius: 25px;
+		}
+	}
+	.info {
+		padding: 1rem;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		background: transparentize($p1-alt-dark, 0.5);
+	}
+}
+
+.slide-inactive {
+	display: none;
+}
+
+// animation keyframes
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+		transform: scale(0.99);
+	}
+	100% {
+		opacity: 1;
+		transform: translateX(1);
+	}
+}

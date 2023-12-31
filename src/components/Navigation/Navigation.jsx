@@ -4,32 +4,30 @@ import NavLinkCard from '../NavLinkCard/NavLinkCard'
 import ProfileOverview from '../ProfileOverview/ProfileOverview'
 import SkillsGrid from '../SkillsGrid/SkillsGrid'
 import ExperienceSection from '../ExperienceSection/ExperienceSection'
+import ContentExtras from '../ContentExtras/ContentExtras'
 
 const Navigation = ({ handleNavStatusToggle, handleCardHover }) => {
 	// TODO: make this data dynamic
 	const data = [
 		{
-			imageUrl: 'images/sky-bg.png',
 			title: 'Hello',
 			description: 'Nice to meet you',
 			fullContent: <ProfileOverview />,
 		},
 		{
-			imageUrl: 'images/sky-bg.png',
 			title: 'Skills',
 			description: "I'm an engineer",
 			fullContent: <SkillsGrid />,
 		},
 		{
-			imageUrl: 'images/sky-bg.png',
 			title: 'Work',
 			description: 'I build things',
 			fullContent: <ExperienceSection />,
 		},
 		{
-			imageUrl: 'images/sky-bg.png',
 			title: 'Extras',
 			description: "But that's not all",
+			fullContent: <ContentExtras />,
 		},
 	]
 
@@ -59,12 +57,10 @@ const Navigation = ({ handleNavStatusToggle, handleCardHover }) => {
 		<div className={styles['nav-container']}>
 			<div className={styles['nav']}>
 				<div className={styles['nav-inner']}>
-					{data.map(({ imageUrl, title, description, fullContent }, index) => (
+					{data.map(({ title, description, fullContent }, index) => (
 						<NavLinkCard
 							key={index}
-							imageUrl={imageUrl}
 							title={title}
-							description={description}
 							status={cardStatuses[index]}
 							onClick={() => handleClick(index)}
 							onClickClose={() => resetCardStatuses()}

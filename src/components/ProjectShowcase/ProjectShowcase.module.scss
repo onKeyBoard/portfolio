@@ -1,0 +1,10 @@
+@import '../../styles/global/variables.scss';
+
+.showcase-nav {
+	background: transparent;
+	padding: 0 1rem;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-gap: 1rem;
+	justify-content: center;
+}

@@ -8,7 +8,6 @@ import styles from './Scene3D.module.scss'
 
 // The main scene component renders the 3D scene in a canvas
 export default function Scene3D({ mouseX, zoomedIn }) {
-	// TODO: Fix positioning of Html overlay on line 20
 	return (
 		<Canvas
 			shadows
@@ -32,7 +31,7 @@ export default function Scene3D({ mouseX, zoomedIn }) {
 // The 3D object component
 function PersonalComputer({ mouseX, ...props }) {
 	const [rotationY, setRotationY] = useState(0)
-	const { scene, nodes } = useGLTF('3Dobjects/office_window/scene.gltf')
+	const { scene } = useGLTF('3Dobjects/office_window/scene.gltf')
 
 	useFrame(() => {
 		// Calculate the rotation based on the normalized mouse X coordinate
@@ -54,11 +53,11 @@ function PersonalComputer({ mouseX, ...props }) {
 function CameraController({ zoomedIn }) {
 	const { camera } = useThree()
 	const targetPosition = zoomedIn
-		? new THREE.Vector3(1, 1, 0)
+		? new THREE.Vector3(1, 1, -2)
 		: new THREE.Vector3(0, 1, 9)
 
 	useFrame(() => {
-		camera.position.lerp(targetPosition, 0.02)
+		camera.position.lerp(targetPosition, 0.01)
 		camera.lookAt(0, 0, 0)
 		camera.updateProjectionMatrix()
 	})
