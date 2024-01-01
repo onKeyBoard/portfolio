@@ -7,12 +7,16 @@
 	padding: 0 1rem;
 	.carousel {
 		width: 75%;
+		height: 72vh;
 	}
 	.showcase-nav {
 		.showcase-nav-title {
 			background: transparentize($p1-alt-dark, 0.1);
-			padding: 1rem;
+			height: 7vh;
 			text-align: center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 			h5 {
 				color: $p1-accent-4;
 				font-size: 1.5rem;
@@ -20,16 +24,24 @@
 		}
 		.showcase-cards {
 			padding: 1rem;
+			height: 65vh;
 			overflow: hidden;
-			display: flex;
-			flex-direction: column;
-			justify-content: flex-start;
-			align-items: center;
-			gap: 1rem;
+			overflow-y: scroll;
 		}
-		background: transparentize($p1-alt-dark, 0.3);
+		background: $p1-alt-dark;
 		border-radius: 0 25px 25px 0;
 		overflow: hidden;
 		width: 25%;
+		position: relative;
+		&:after {
+			content: '';
+			display: block;
+			height: 50px;
+			width: 100%;
+			background: linear-gradient(-180deg, transparent, $p1-alt-dark);
+			position: absolute;
+			bottom: 0;
+			left: 0;
+		}
 	}
 }

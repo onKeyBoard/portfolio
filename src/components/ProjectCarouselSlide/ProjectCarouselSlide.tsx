@@ -28,7 +28,7 @@ const ProjectCarouselSlide = ({
 			)
 		} else {
 			return (
-				<Zoom>
+				<Zoom classDialog={styles['zoom-custom']}>
 					<img src={imageUrl} alt={title} />
 				</Zoom>
 			)

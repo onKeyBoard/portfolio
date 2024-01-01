@@ -1,14 +1,14 @@
 @import '../../styles/global/variables.scss';
 
 .slide {
-	height: 60vh;
+	height: 100%;
 	.image {
 		opacity: 0;
 		transform-style: preserve-3d;
 		animation: fadeIn 0.5s ease-in-out forwards;
 		div {
 			div {
-				height: 52vh;
+				height: 57vh;
 				padding: 1rem;
 			}
 		}
@@ -34,6 +34,21 @@
 
 .slide-inactive {
 	display: none;
+}
+
+.zoom-custom [data-rmiz-modal-overlay='hidden'] {
+	background-color: $p1-alt-dark;
+}
+.zoom-custom [data-rmiz-modal-overlay='visible'] {
+	background-color: $p1-alt-dark;
+}
+.zoom-custom [data-rmiz-btn-unzoom] {
+	background-color: $p1-accent-4;
+	color: #000;
+}
+.zoom-custom [data-rmiz-btn-unzoom]:focus-visible {
+	outline-offset: 0.4rem;
+	outline: 0.2rem solid $p1-accent-4;
 }
 
 // animation keyframes
