@@ -1,6 +1,8 @@
 import React from 'react'
 import styles from './ProjectCarouselSlide.module.scss'
 import Zoom from 'react-medium-image-zoom'
+import { isVideo } from '../../utils/cloudinaryUtils'
+import VideoPlayer from '../VideoPlayer/VideoPlayer'
 import 'react-medium-image-zoom/dist/styles.css'
 
 interface ProjectCarouselSlideProps {
@@ -17,13 +19,24 @@ const ProjectCarouselSlide = ({
 	active,
 }: ProjectCarouselSlideProps) => {
 	const slideStatusClass = active ? styles['slide'] : styles['slide-inactive']
-	return (
-		<div className={slideStatusClass}>
-			<div className={styles['image']}>
+	const renderMedia = () => {
+		if (isVideo(imageUrl)) {
+			return (
+				<div>
+					<VideoPlayer url={imageUrl} />
+				</div>
+			)
+		} else {
+			return (
 				<Zoom>
 					<img src={imageUrl} alt={title} />
 				</Zoom>
-			</div>
+			)
+		}
+	}
+	return (
+		<div className={slideStatusClass}>
+			<div className={styles['image']}>{renderMedia()}</div>
 			<div className={styles['info']}>
 				<h5>{title}</h5>
 				<p>{description}</p>

@@ -13,6 +13,8 @@ const VideoPlayer = ({ url }: VideoProps) => {
 				className={styles['react-player']}
 				url={url}
 				controls={true}
+				playing={true}
+				loop={true}
 				width='100%'
 				height='100%'
 			/>
