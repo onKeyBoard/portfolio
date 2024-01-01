@@ -15,17 +15,12 @@ const ProjectShowcase = ({ category }: ProjectShowcaseProps) => {
 	// Category must match one of the enums in the Project model
 	const categoryEnums = ['Personal', 'Professional']
 	// Fallback: if the category prop is not one of the enums, set it to 'Professional'
-	const [projectCategory, setProjectCategory] = useState<string>()
-
-	useEffect(() => {
-		setProjectCategory(
-			category && categoryEnums.includes(category) ? category : 'Professional'
-		)
-	}, [])
+	const validCategory =
+		category && categoryEnums.includes(category) ? category : 'Professional'
 
 	// Get the projects from the database
 	const { loading, error, data } = useQuery(GET_PROJECTS_SIMPLE, {
-		variables: { category: projectCategory },
+		variables: { category: validCategory },
 	})
 
 	useEffect(() => {
@@ -50,7 +45,7 @@ const ProjectShowcase = ({ category }: ProjectShowcaseProps) => {
 					<h5>Select a project</h5>
 				</div>
 				<div className={styles['showcase-cards']}>
-					{projects.map(({ id, title, year, type, imageUrl }) => (
+					{projects.map(({ id, title, year, imageUrl }) => (
 						<ProjectCard
 							active={selectedProject === id}
 							key={id}
