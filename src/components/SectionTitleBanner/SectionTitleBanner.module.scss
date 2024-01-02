@@ -1,10 +1,10 @@
 @import '../../styles/global/variables.scss';
 
 .wrapper {
-	background: transparentize($p1-alt-dark, 0.5);
-	margin-top: 4px;
+	background: transparentize($p1-alt-dark, 0.8);
 	padding: 0 2rem;
 	animation: expandY 0.5s cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s forwards;
+	text-align: center;
 }
 
 @keyframes expandY {

@@ -17,17 +17,14 @@
 		background-color: transparent;
 		background-size: 1rem 1rem;
 		width: 100%;
-		max-width: $max-width;
 		height: 100%;
 		@extend %flex-center;
-		box-shadow: 0 0 50px 0 $black;
 
 		.ui-layer,
 		.canvas-layer {
 			background: transparent;
 			width: 100%;
 			height: 100vh;
-			max-width: $max-width;
 			position: relative;
 		}
 
@@ -47,9 +44,8 @@
 			transition: all ease-in 0.1s;
 			.headline-background {
 				background: $p1-accent-4;
-				// backdrop-filter: blur(10px);
 				padding: 2rem;
-				border-radius: 25px;
+				border-radius: 10px;
 				position: relative;
 				opacity: 1;
 				transition: opacity ease-in-out 0.4s 0.8s;
@@ -91,35 +87,23 @@
 		}
 
 		.canvas-layer {
-			border-radius: 25px;
 			background-image: url('/images/sky-bg.png');
 			background-color: $p1-accent-2;
 			background-size: auto 110%;
 			background-position: center top;
 			background-repeat: repeat-x;
-			margin: 0 1rem;
-			height: calc(100% - 2rem);
-			width: calc(100% - 2rem);
-			max-width: calc($max-width - 2rem);
+			// height: calc(100% - 2rem);
+			// width: calc(100% - 2rem);
+			// max-width: calc($max-width - 2rem);
+			width: 100%;
+			height: 100%;
 			transform: translateZ(-100px);
 			overflow: hidden;
 			position: absolute;
-			top: 1rem;
 			transition: background-size cubic-bezier(0.19, 1, 0.22, 1) 2s;
 			&.zoomed {
 				background-size: auto 100%;
 			}
 		}
-	}
-}
-
-// Animation //
-
-@keyframes subtleRotation {
-	0% {
-		transform: translateY(-50%) rotate3d(1, 2, 0, -25deg);
-	}
-	100% {
-		transform: translateY(-60%) rotate3d(1, 2, 0, 25deg);
 	}
 }

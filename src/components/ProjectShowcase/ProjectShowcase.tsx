@@ -12,6 +12,7 @@ interface ProjectShowcaseProps {
 
 const ProjectShowcase = ({ category }: ProjectShowcaseProps) => {
 	const [selectedProject, setSelectedProject] = useState(null)
+	const [showNav, setShowNav] = useState(true)
 	// Category must match one of the enums in the Project model
 	const categoryEnums = ['Personal', 'Professional']
 	// Fallback: if the category prop is not one of the enums, set it to 'Professional'

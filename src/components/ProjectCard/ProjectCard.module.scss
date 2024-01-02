@@ -2,16 +2,17 @@
 
 .card {
 	background: transparent;
-	border: solid 3px $p1-accent-3;
+	border: solid 3px transparentize($white, 0.5);
 	border-radius: 18px;
 	overflow: hidden;
 	padding: 0;
-	margin-bottom: 1rem;
 	width: 100%;
+	height: 200px;
 	transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	flex-shrink: 0;
 	cursor: pointer;
 	&:hover {
-		border: solid 3px $p1-accent-4;
+		border: solid 3px $white;
 		transform: scale(1.05);
 	}
 	&.active {

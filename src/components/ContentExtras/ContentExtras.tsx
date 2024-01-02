@@ -1,11 +1,11 @@
 import styles from './ContentExtras.module.scss'
 import React from 'react'
-import ProjectShowcase from '../ProjectShowcase/ProjectShowcase'
+import ProjectBrowser from '../ProjectBrowser/ProjectBrowser'
 
 const ContentExtras = () => {
 	return (
 		<div className={styles['content-extras']}>
-			<ProjectShowcase category='Personal' />
+			<ProjectBrowser category='Personal' />
 		</div>
 	)
 }

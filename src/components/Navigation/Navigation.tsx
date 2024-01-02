@@ -47,7 +47,7 @@ const Navigation = ({
 
 	const [cardStatuses, setCardStatuses] = useState(data.map(() => 'min'))
 
-	const handleClick = (index) => {
+	const handleClick = (index: number) => {
 		// set the status of the clicked card to 'max' and all others to 'hidden'
 		const newCardStatuses = cardStatuses.map((status, i) =>
 			i === index ? 'max' : 'hidden'
@@ -57,7 +57,7 @@ const Navigation = ({
 		handleNavStatusToggle(true)
 	}
 
-	const handleHover = (index) => {
+	const handleHover = (index: number) => {
 		handleCardHover(data[index].description)
 	}
 

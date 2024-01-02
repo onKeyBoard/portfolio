@@ -27,39 +27,51 @@ a.border {
 	width: calc(25% - 1rem);
 	width: 200px;
 	height: 150px;
-	transition: width cubic-bezier(0.23, 1, 0.32, 1) 0.3s,
-		height cubic-bezier(0.39, 0.575, 0.565, 1) 0.3s 0.1s,
-		transform cubic-bezier(0.39, 0.575, 0.565, 1) 0.6s;
-	-webkit-transition: width cubic-bezier(0.23, 1, 0.32, 1) 0.3s,
-		height cubic-bezier(0.39, 0.575, 0.565, 1) 0.3s 0.1s,
-		transform cubic-bezier(0.39, 0.575, 0.565, 1) 0.3s;
+	border-radius: 10px;
+	transition: width cubic-bezier(0.23, 1, 0.32, 1) 0.3s 0.1s,
+		height cubic-bezier(0.39, 0.575, 0.565, 1) 0.3s,
+		transform cubic-bezier(0.39, 0.575, 0.565, 1) 0.6s,
+		background-color ease-in-out 0.3s;
 	-webkit-transform-style: preserve-3d;
 	transform-style: preserve-3d;
 	transform: translate3d(0, 0, 0) translateY(-80px);
 	will-change: width, height, transform;
 	&.expanded {
+		border-radius: 0px;
 		width: 100%;
 		height: 100%;
 		transform: translate3d(0, 0, 0) translateY(0);
+		padding: 0.5rem;
+		background-color: transparentize($white, 0.5);
+		transition: width cubic-bezier(0.23, 1, 0.32, 1) 0.3s,
+			height cubic-bezier(0.39, 0.575, 0.565, 1) 0.3s 0.1s,
+			transform cubic-bezier(0.39, 0.575, 0.565, 1) 0.6s,
+			background-color ease-in-out 0.3s 0.8s;
 		.border {
-			border-radius: 25px;
+			border-radius: 10px;
 			background: linear-gradient(
 				45deg,
-				$p1-alt-dark,
-				$p1-accent-4,
-				$p1-accent-2
+				transparentize($p1-alt-dark, 0.3),
+				transparentize($p1-accent-4, 0.3),
+				transparentize($p1-accent-2, 0.3)
 			);
+			backdrop-filter: blur(10px);
 			position: relative;
 			.card {
-				border-radius: 25px 25px 0 0;
-				position: absolute;
-				top: 0;
-				left: 0;
+				border-radius: 10px 10px 0 0;
 				width: 100%;
-				height: 4rem;
-				background: transparent;
+				height: 6.8rem;
+				background: transparentize($p1-primary-dark, 0.8);
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-start;
+				align-items: center;
+				.content {
+					width: auto;
+					height: auto;
+				}
 				.title {
-					font-size: 2.2rem;
+					font-size: 2rem;
 					margin-top: 1rem;
 				}
 				.description {
@@ -67,15 +79,18 @@ a.border {
 				}
 			}
 			.full-content {
-				height: calc(100% - 1.5rem);
+				display: flex;
+				flex-direction: column;
+				width: 100%;
+				height: calc(100% - 6.8rem);
 				opacity: 1;
-				background: transparentize($p1-alt-dark, 0.8);
-				padding: 8rem 0 0 0;
+				background: transparentize($p1-primary-dark, 0.8);
+				border-radius: 0 0 10px 10px;
 				overflow-y: scroll;
 				> div {
-					height: 100%;
+					flex-grow: 1;
 					opacity: 0;
-					padding-bottom: 4rem;
+					padding-bottom: 3rem;
 					transform: translateY(50px);
 					animation: revealPageContent 0.5s 0.5s forwards;
 				}
@@ -150,35 +165,57 @@ a.border {
 		margin-top: 0;
 		transition: opacity ease-in-out 0.5s 0.2s, transform ease-in-out 0.5s;
 	}
-	.close {
+	.bottom-bar {
+		width: 100%;
+		height: 3rem;
+		background: $black;
 		position: absolute;
-		bottom: 0.6rem;
-		left: 50%; /* Center horizontally */
-		transform: translateX(-50%); /* Center horizontally */
+		bottom: 0;
+		left: 0;
+		right: 0;
+		padding-right: 0.5rem;
+		border-radius: 0 0 10px 10px;
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		opacity: 0;
+		animation: revealBottomBar 0.5s 0.3s forwards;
+	}
+	.close {
 		width: 2rem;
 		height: 2rem;
-		background: $white;
 		border: none;
+		font-size: 1.5rem;
+		line-height: 2rem;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		opacity: 0;
-		animation: revealCloseButton 0.5s 0.4s forwards;
-		svg {
-			width: 1rem;
-			height: 1rem;
-			fill: $p1-accent-2;
-		}
+		animation: revealCloseButton 0.5s 0.5s forwards;
+		background: $white;
+		color: $black;
+		background: black;
+		color: $white;
+		transition: all ease-in-out 0.3s;
 		&:hover {
-			background: black;
-			svg {
-				stroke: $white;
-			}
+			background: $white;
+			color: $black;
 		}
 	}
 }
 
 // animate reveal close button
+
+@keyframes revealBottomBar {
+	0% {
+		opacity: 0;
+		transform: translateY(50px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0px);
+	}
+}
 
 @keyframes fadeIn {
 	0% {
@@ -192,11 +229,11 @@ a.border {
 @keyframes revealCloseButton {
 	0% {
 		opacity: 0;
-		transform: translateY(-50px) translateX(-50%);
+		transform: translateX(-50px);
 	}
 	100% {
 		opacity: 1;
-		transform: translateY(0px) translateX(-50%);
+		transform: translateX(0px);
 	}
 }
 

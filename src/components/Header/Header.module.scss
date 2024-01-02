@@ -1,12 +1,12 @@
 @import '../../styles/global/variables.scss';
 
 .header {
-	width: calc(100% - 2rem);
+	width: calc(100% - 1rem);
 	height: 170px;
 	position: absolute;
-	top: 1rem;
-	left: 1rem;
-	right: 1rem;
+	top: 0.5rem;
+	left: 0.5rem;
+	right: 0.5rem;
 	z-index: 10;
 	display: flex;
 	justify-content: space-between;
@@ -16,7 +16,7 @@
 		transparentize($p1-accent-2, 0.3),
 		transparent
 	);
-	border-radius: 25px 25px 0 0;
+	border-radius: 10px 10px 0 0;
 	transition: all ease-in-out 1s;
 	.title {
 		width: auto;
@@ -29,7 +29,7 @@
 		opacity: 0;
 		animation: fadeIn 1s 0.8s forwards;
 		.inner {
-			border: solid 2px transparentize($p1-accent, 0.5);
+			border: solid 2px transparentize($white, 0.5);
 			border-radius: 16px;
 			padding: 0.7rem;
 			transition: all ease-in-out 0.5s 0.3s;
@@ -56,6 +56,7 @@
 			font-size: 1.7rem;
 			line-height: 1;
 			transform: translateY(-3px);
+			font-weight: 400;
 		}
 	}
 

@@ -1,5 +1,7 @@
 import React from 'react'
 import styles from './NavLinkCard.module.scss'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
 interface NavLinkCardProps {
 	title: string
@@ -64,22 +66,11 @@ const NavLinkCard = ({
 					<div>{fullContent}</div>
 				</div>
 			)}
-			<button className={styles['close']} onClick={onClickClose}>
-				<svg
-					xmlns='http://www.w3.org/2000/svg'
-					width='24'
-					height='24'
-					viewBox='0 0 24 24'
-					stroke='black'
-					strokeWidth='2'
-					strokeLinecap='round'
-					strokeLinejoin='round'
-					className='feather feather-x'
-				>
-					<line x1='18' y1='6' x2='6' y2='18'></line>
-					<line x1='6' y1='6' x2='18' y2='18'></line>
-				</svg>
-			</button>
+			<div className={styles['bottom-bar']}>
+				<button className={styles['close']} onClick={onClickClose}>
+					<FontAwesomeIcon icon={faXmark} />
+				</button>
+			</div>
 		</div>
 	)
 

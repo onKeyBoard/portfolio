@@ -4,6 +4,7 @@ import { useQuery } from '@apollo/client'
 import { GET_PROJECT } from '../../queries/projects.js'
 import ProjectCarouselSlide from '../ProjectCarouselSlide/ProjectCarouselSlide'
 import Button from '../Button/Button'
+import BlockyLoader from '../BlockyLoader/BlockyLoader'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
 
@@ -29,35 +30,24 @@ const ProjectCarousel = ({ projectId }: ProjectCarouselProps) => {
 	}, [projectId])
 
 	// Handle slide change events
-	const handleSlideChange = (direction) => {
-		console.log(direction)
-		switch (direction) {
-			case 'prev':
-				if (currentSlide === 0) {
-					setStartOfSlides(true)
-					return
-				} else {
-					setStartOfSlides(false)
-					setEndOfSlides(false)
-				}
-				setCurrentSlide((prevState) => prevState - 1)
-				break
-			case 'next':
-				if (currentSlide === projectSlides.length - 1) {
-					setEndOfSlides(true)
-					return
-				} else {
-					setStartOfSlides(false)
-					setEndOfSlides(false)
-				}
-				setCurrentSlide((prevState) => prevState + 1)
-				break
-			default:
-				break
+	const handleSlideChange = (direction: 'prev' | 'next') => {
+		let newSlide = currentSlide
+
+		if (direction === 'prev' && currentSlide > 0) {
+			newSlide = currentSlide - 1
+		} else if (
+			direction === 'next' &&
+			currentSlide < projectSlides.length - 1
+		) {
+			newSlide = currentSlide + 1
 		}
+
+		setStartOfSlides(newSlide === 0)
+		setEndOfSlides(newSlide === projectSlides.length - 1)
+		setCurrentSlide(newSlide)
 	}
 
-	if (loading) return <p>Loading...</p>
+	if (loading) return <BlockyLoader />
 	if (error) return <p>Error : {error.message}</p>
 
 	const { project } = data
@@ -74,9 +64,13 @@ const ProjectCarousel = ({ projectId }: ProjectCarouselProps) => {
 				</div>
 			)}
 			{type && (
-				<div className={styles['type']}>
-					<b>{type}</b>
-				</div>
+				<ul className={styles['type-list']}>
+					{type.map((type: string, index: number) => (
+						<li className={styles['type-item']} key={index}>
+							{type}
+						</li>
+					))}
+				</ul>
 			)}
 			{description && (
 				<div className={styles['description']}>

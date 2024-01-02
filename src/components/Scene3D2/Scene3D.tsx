@@ -28,13 +28,18 @@ export default function Scene3D({ mouseX, zoomedIn }: Scene3DProps) {
 					</Html>
 				}
 			>
-				<PersonalComputer scale={1.1} position={[0, -1.5, 0]} mouseX={mouseX} />
+				<PersonalComputer
+					scale={1.1}
+					position={[0, -1.5, 0]}
+					mouseX={mouseX}
+					zoomedIn={zoomedIn}
+				/>
 			</Suspense>
 		</Canvas>
 	)
 }
 // The 3D object component
-function PersonalComputer({ mouseX, ...props }) {
+function PersonalComputer({ mouseX, zoomedIn, ...props }) {
 	const [rotationY, setRotationY] = useState(0)
 	const { scene } = useGLTF('3Dobjects/office_window/scene.gltf')
 
@@ -46,7 +51,7 @@ function PersonalComputer({ mouseX, ...props }) {
 		const newRotationY = THREE.MathUtils.lerp(rotationY, targetRotationY, 0.05)
 
 		// Update the rotation state variable
-		setRotationY(newRotationY)
+		!zoomedIn && setRotationY(newRotationY)
 
 		// Apply the calculated rotation to the 3D object
 		scene.rotation.y = newRotationY
@@ -58,11 +63,11 @@ function PersonalComputer({ mouseX, ...props }) {
 function CameraController({ zoomedIn }) {
 	const { camera } = useThree()
 	const targetPosition = zoomedIn
-		? new THREE.Vector3(0, 1, 0)
+		? new THREE.Vector3(0, 1, 6)
 		: new THREE.Vector3(0, 1, 9)
 
 	useFrame(() => {
-		camera.position.lerp(targetPosition, 0.01)
+		camera.position.lerp(targetPosition, 0.05)
 		camera.lookAt(0, 0, 0)
 		camera.updateProjectionMatrix()
 	})
