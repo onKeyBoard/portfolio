@@ -1,9 +1,9 @@
 import styles from './ProjectBrowser.module.scss'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useQuery } from '@apollo/client'
 import { GET_PROJECTS_SIMPLE } from '../../queries/projects.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
+import { faAngleDown, faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 import BlockyLoader from '../BlockyLoader/BlockyLoader'
 import ProjectCard from '../ProjectCard/ProjectCard'
 import Button from '../Button/Button'
@@ -15,16 +15,29 @@ interface ProjectShowcaseProps {
 }
 
 const ProjectShowcase = ({ category }: ProjectShowcaseProps) => {
-	const [selectedProject, setSelectedProject] = useState(null)
-	const [showNav, setShowNav] = useState(true)
+	const [selectedProject, setSelectedProject] = useState<string | null>(null)
+	const [showNav, setShowNav] = useState<boolean>(true)
+	const [loading, setLoading] = useState<boolean>(true)
 	// Category must match one of the enums in the Project model
 	const categoryEnums = ['Personal', 'Professional']
 	// Fallback: if the category prop is not one of the enums, set it to 'Professional'
 	const validCategory =
 		category && categoryEnums.includes(category) ? category : 'Professional'
 
+	// Artificially delay the loading state to prevent any performance issues with animations
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			setLoading(false)
+		}, 500)
+		return () => clearTimeout(timer)
+	}, [])
+
 	// Get the projects from the database
-	const { loading, error, data } = useQuery(GET_PROJECTS_SIMPLE, {
+	const {
+		loading: queryLoading,
+		error,
+		data,
+	} = useQuery(GET_PROJECTS_SIMPLE, {
 		variables: { category: validCategory },
 	})
 
@@ -33,7 +46,7 @@ const ProjectShowcase = ({ category }: ProjectShowcaseProps) => {
 		setShowNav(false)
 	}
 
-	if (loading) return <BlockyLoader />
+	if (loading || queryLoading) return <BlockyLoader />
 	if (error) return <p>Error : {error.message}</p>
 	const { projects } = data
 
@@ -42,9 +55,16 @@ const ProjectShowcase = ({ category }: ProjectShowcaseProps) => {
 			{selectedProject && (
 				<ProjectCarousel key={selectedProject} projectId={selectedProject} />
 			)}
-			<div className={styles['go-back']}>
-				<Button handleClick={() => setShowNav(true)} text='Select a project' />
-			</div>
+			<a
+				className={styles['go-back']}
+				href='#'
+				onClick={() => setShowNav(true)}
+			>
+				<div className={styles['icon-group']}>
+					<FontAwesomeIcon icon={faAngleLeft} />
+					<span>Go back</span>
+				</div>
+			</a>
 		</div>
 	)
 

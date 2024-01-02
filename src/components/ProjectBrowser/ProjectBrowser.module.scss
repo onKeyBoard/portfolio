@@ -3,8 +3,6 @@
 .container {
 	display: flex;
 	width: 100%;
-	// flex-wrap: nowrap;
-	// gap: 1rem;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
@@ -15,6 +13,36 @@
 		height: 72vh;
 		opacity: 0;
 		animation: revealCarousel 0.5s cubic-bezier(0.46, 0.03, 0.52, 0.96) forwards;
+		position: relative;
+		.go-back {
+			text-decoration: none;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			background: $black;
+			color: $white;
+			border-radius: 0 25px 0 25px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 3rem;
+			width: 9rem;
+			font-size: 1.3rem;
+			transition: all 0.3s ease-in-out;
+			.icon-group {
+				opacity: 0;
+				animation: revealIcon 0.5s 0.1s cubic-bezier(0.46, 0.03, 0.52, 0.96)
+					forwards;
+				span {
+					display: inline-block;
+					margin-left: 0.5rem;
+				}
+			}
+			&:hover {
+				background: $white;
+				color: $black;
+			}
+		}
 	}
 	.browse-nav {
 		width: 100%;

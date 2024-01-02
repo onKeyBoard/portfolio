@@ -3,11 +3,7 @@ import React from 'react'
 import ProjectBrowser from '../ProjectBrowser/ProjectBrowser'
 
 const ContentExtras = () => {
-	return (
-		<div className={styles['content-extras']}>
-			<ProjectBrowser category='Personal' />
-		</div>
-	)
+	return <ProjectBrowser category='Personal' />
 }
 
 export default ContentExtras
