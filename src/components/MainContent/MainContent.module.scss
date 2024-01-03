@@ -44,7 +44,7 @@
 			transition: all ease-in 0.1s;
 			.headline-background {
 				background: $p1-accent-4;
-				padding: 2rem;
+				padding: 1rem 2rem;
 				border-radius: 10px;
 				position: relative;
 				opacity: 1;
@@ -71,7 +71,7 @@
 			}
 			h2 {
 				font-size: 4rem;
-				font-weight: 700;
+				font-weight: 900;
 				background: url('/images/sky-bg.png');
 				background-size: cover;
 				background-position: center top;
@@ -79,7 +79,7 @@
 				background-clip: text;
 				color: transparent;
 				margin-bottom: 0;
-				line-height: 1.05;
+				line-height: 1.15;
 			}
 			&.blur {
 				-webkit-text-filter: blur(10px);

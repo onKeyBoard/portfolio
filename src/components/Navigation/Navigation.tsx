@@ -25,22 +25,22 @@ const Navigation = ({
 	const data: NavLinkCardData[] = [
 		{
 			title: 'Hello',
-			description: 'Nice to meet you',
+			description: 'Nice to meet you.',
 			fullContent: <ProfileOverview />,
 		},
 		{
 			title: 'Skills',
-			description: "I'm an engineer",
+			description: "I'm an engineer.",
 			fullContent: <SkillsGrid />,
 		},
 		{
 			title: 'Work',
-			description: 'I build things',
+			description: 'I build things.',
 			fullContent: <ExperienceSection />,
 		},
 		{
 			title: 'Extras',
-			description: "But that's not all",
+			description: "But wait, there's more!",
 			fullContent: <ContentExtras />,
 		},
 	]

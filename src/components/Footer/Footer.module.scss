@@ -21,10 +21,14 @@
 		justify-content: space-between;
 		align-items: center;
 		transition: all ease-in-out 0.3s;
+		.info {
+			display: inline-flex;
+			gap: 0.5rem;
+		}
 		.copyright {
 			display: inline-block;
-			border: solid 2px $black;
-			border-radius: 25px;
+			// border: solid 2px $black;
+			// border-radius: 25px;
 			padding: 0.4rem 0.8rem;
 			width: auto;
 		}
@@ -40,6 +44,15 @@
 	&.toggled {
 		.content {
 			opacity: 0;
+		}
+	}
+	@media screen and (max-width: $mobile-max) {
+		.content {
+			.info {
+				h4 {
+					display: none;
+				}
+			}
 		}
 	}
 }

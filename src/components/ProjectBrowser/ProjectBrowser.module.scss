@@ -27,7 +27,8 @@
 			align-items: center;
 			height: 3rem;
 			width: 9rem;
-			font-size: 1.3rem;
+			font-size: 1rem;
+			@include heading-font;
 			transition: all 0.3s ease-in-out;
 			.icon-group {
 				opacity: 0;
@@ -36,6 +37,7 @@
 				span {
 					display: inline-block;
 					margin-left: 0.5rem;
+					transform: translateY(-5%);
 				}
 			}
 			&:hover {
