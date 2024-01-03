@@ -54,8 +54,6 @@ const Navigation = ({
 		data.map(() => 'min')
 	)
 
-	const [navOpen, setNavOpen] = useState<boolean>(false)
-
 	const handleClick = (index: number) => {
 		// set the status of the clicked card to 'max' and all others to 'hidden'
 		const newCardStatuses = cardStatuses.map((status, i) =>
@@ -76,41 +74,26 @@ const Navigation = ({
 		handleNavStatusToggle(false)
 	}
 
-	const mobileNavToggle = () => {
-		setNavOpen((prevNavOpen) => !prevNavOpen)
-	}
-
 	return (
-		<>
-			<div className={styles['nav-container']}>
-				<div className={styles['nav']}>
-					<div
-						className={`${styles['nav-inner']} ${
-							navOpen ? styles['open'] : ''
-						}`}
-					>
-						{data.map(
-							({ title, fullContent }: NavLinkCardData, index: number) => (
-								<NavLinkCard
-									key={index}
-									title={title}
-									status={cardStatuses[index]}
-									onClick={() => handleClick(index)}
-									onClickClose={() => resetCardStatuses()}
-									onHover={() => handleHover(index)}
-									fullContent={fullContent}
-								/>
-							)
-						)}
-					</div>
+		<div className={styles['nav-container']}>
+			<div className={styles['nav']}>
+				<div className={styles['nav-inner']}>
+					{data.map(
+						({ title, fullContent }: NavLinkCardData, index: number) => (
+							<NavLinkCard
+								key={index}
+								title={title}
+								status={cardStatuses[index]}
+								onClick={() => handleClick(index)}
+								onClickClose={() => resetCardStatuses()}
+								onHover={() => handleHover(index)}
+								fullContent={fullContent}
+							/>
+						)
+					)}
 				</div>
 			</div>
-			<div className={styles['mobile-nav-toggle']}>
-				<ButtonUnstyled handleClick={mobileNavToggle}>
-					<FontAwesomeIcon icon={faBars} />
-				</ButtonUnstyled>
-			</div>
-		</>
+		</div>
 	)
 }
 

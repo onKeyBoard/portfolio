@@ -77,7 +77,7 @@ const NavLinkCard = ({
 	return (
 		<div
 			className={`${styles['wrapper']} ${
-				status === StatusEnum.MAX ? styles['expanded'] : ''
+				status === StatusEnum.MAX ? styles['max'] : ''
 			} ${isHidden ? styles['hidden'] : ''}`}
 		>
 			{status === StatusEnum.MAX ? fullCard() : minCard()}

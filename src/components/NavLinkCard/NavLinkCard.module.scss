@@ -1,5 +1,6 @@
 @import '../../styles/global/variables.scss';
 
+// Styles related to the min card form exclusively to manage hover effects
 a.border {
 	background: linear-gradient(45deg, transparent, transparent, $p1-accent-4);
 	background-size: 280% 280%;
@@ -24,10 +25,10 @@ a.border {
 	// mobile styles
 	@media (max-width: $mobile-max) {
 		background: transparent;
-		// backdrop-filter: blur(10px);
 	}
 }
 
+// full styles for cards in min and max states
 .wrapper {
 	width: calc(25% - 1rem);
 	width: 200px;
@@ -41,7 +42,48 @@ a.border {
 	transform-style: preserve-3d;
 	transform: translate3d(0, 0, 0) translateY(-80px);
 	will-change: width, height, transform;
-	&.expanded {
+	.border {
+		display: block;
+		border-radius: 22px;
+		transition: all ease-in-out 0.3s;
+		transform: translate3d(0, 0, 0);
+		width: 100%;
+		height: 100%;
+		border: none;
+		position: relative;
+		.card {
+			border-radius: 20px;
+			transform: scale(1);
+			position: relative;
+			overflow: hidden;
+			height: 100%;
+			width: 100%;
+			float: right;
+			.content {
+				width: 100%;
+				height: 100%;
+				text-align: center;
+			}
+			.title {
+				background: transparent;
+				color: $white;
+				font-family: $nav-font-family;
+				font-size: 1.6rem;
+				font-weight: unset;
+				line-height: 1.6rem;
+				text-transform: uppercase;
+				width: 100%;
+				height: 100%;
+				text-align: center;
+				transition: all cubic-bezier(0.23, 1, 0.32, 1) 0.5s;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
+		}
+	}
+	&.max {
 		border-radius: 0px;
 		width: 100%;
 		height: 100%;
@@ -63,14 +105,18 @@ a.border {
 			backdrop-filter: blur(10px);
 			position: relative;
 			.card {
+				position: absolute;
+				opacity: 0;
+				animation: revealFullHeader 0.5s 0.5s forwards;
 				border-radius: 10px 10px 0 0;
 				width: 100%;
 				height: 6.8rem;
-				background: transparentize($p1-primary-dark, 0.8);
+				background: none;
 				display: flex;
 				flex-direction: column;
 				justify-content: flex-start;
 				align-items: center;
+				z-index: 12;
 				.content {
 					width: auto;
 					height: auto;
@@ -82,26 +128,65 @@ a.border {
 					border-radius: 0 0 20px 20px;
 					box-shadow: 0 0 20px 0 transparentize($white, 0.5);
 					padding: 0.5rem 2rem;
-				}
-				.description {
-					display: block;
+					background: transparent;
+					backdrop-filter: blur(10px);
 				}
 			}
 			.full-content {
+				padding: 7.8rem 1rem 1rem 1rem;
+				transition: opacity ease-in-out 0.5s 0.2s, transform ease-in-out 0.5s;
 				display: flex;
 				flex-direction: column;
 				width: 100%;
-				height: calc(100% - 6.8rem);
+				height: 100%;
 				opacity: 1;
 				background: transparentize($p1-primary-dark, 0.8);
-				border-radius: 0 0 10px 10px;
+				border-radius: 10px;
 				overflow-y: scroll;
+				scroll-behavior: smooth;
 				> div {
 					flex-grow: 1;
 					opacity: 0;
 					padding-bottom: 3rem;
 					transform: translateY(50px);
 					animation: revealPageContent 0.5s 0.5s forwards;
+				}
+			}
+			.bottom-bar {
+				width: 100%;
+				height: 3rem;
+				background: $black;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				padding-right: 0.5rem;
+				border-radius: 0 0 10px 10px;
+				display: flex;
+				justify-content: flex-end;
+				align-items: center;
+				opacity: 0;
+				animation: revealBottomBar 0.5s 0.3s forwards;
+				.close {
+					width: 2rem;
+					height: 2rem;
+					border: none;
+					font-size: 1.5rem;
+					line-height: 2rem;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					opacity: 0;
+					animation: revealCloseButton 0.5s 0.5s forwards;
+					background: $white;
+					color: $black;
+					background: black;
+					color: $white;
+					transition: all ease-in-out 0.3s;
+					&:hover {
+						background: $white;
+						color: $black;
+					}
 				}
 			}
 		}
@@ -130,115 +215,37 @@ a.border {
 				}
 			}
 		}
-		&.expanded {
+		&.max {
 			.border {
+				position: relative;
 				.card {
+					position: absolute;
+					background: transparent;
+					height: auto;
+					top: 0;
 					.title {
 						font-size: 1.5rem;
 					}
+				}
+				.full-content {
+					height: calc(100% - 5rem);
+					padding-top: 5rem;
 				}
 			}
 		}
 	}
 }
 
-.border {
-	display: block;
-	background-size: 200% 200%;
-	background-position: 0% 50%;
-	border-radius: 22px;
-	transition: all ease-in-out 0.3s;
-	transform: translate3d(0, 0, 0);
-	width: 100%;
-	height: 100%;
-	border: none;
-	position: relative;
-	.card {
-		border-radius: 20px;
-		transform: scale(1);
-		position: relative;
-		overflow: hidden;
-		height: 100%;
-		width: 100%;
-		float: right;
-		.content {
-			width: 100%;
-			height: 100%;
-			text-align: center;
-		}
-		.title {
-			background: transparent;
-			color: $white;
-			font-family: $nav-font-family;
-			font-size: 1.6rem;
-			font-weight: unset;
-			line-height: 1.6rem;
-			text-transform: uppercase;
-			width: 100%;
-			height: 100%;
-			text-align: center;
-			transition: all cubic-bezier(0.23, 1, 0.32, 1) 0.5s;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-		}
-		.description {
-			display: none;
-		}
-		.full-content {
-			border: solid 1px $white;
-			border-radius: 25px;
-			padding: 1rem;
-		}
-	}
-	.full-content {
-		height: 0;
+// animate reveal close button
+
+@keyframes revealFullHeader {
+	0% {
 		opacity: 0;
-		overflow: hidden;
-		margin-top: 0;
-		transition: opacity ease-in-out 0.5s 0.2s, transform ease-in-out 0.5s;
 	}
-	.bottom-bar {
-		width: 100%;
-		height: 3rem;
-		background: $black;
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		padding-right: 0.5rem;
-		border-radius: 0 0 10px 10px;
-		display: flex;
-		justify-content: flex-end;
-		align-items: center;
-		opacity: 0;
-		animation: revealBottomBar 0.5s 0.3s forwards;
-	}
-	.close {
-		width: 2rem;
-		height: 2rem;
-		border: none;
-		font-size: 1.5rem;
-		line-height: 2rem;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		opacity: 0;
-		animation: revealCloseButton 0.5s 0.5s forwards;
-		background: $white;
-		color: $black;
-		background: black;
-		color: $white;
-		transition: all ease-in-out 0.3s;
-		&:hover {
-			background: $white;
-			color: $black;
-		}
+	100% {
+		opacity: 1;
 	}
 }
-
-// animate reveal close button
 
 @keyframes revealBottomBar {
 	0% {

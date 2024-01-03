@@ -11,13 +11,6 @@
 	transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 	flex-shrink: 0;
 	cursor: pointer;
-	&:hover {
-		border: solid 3px $white;
-		transform: scale(1.05);
-	}
-	&.active {
-		border: solid 3px $white;
-	}
 	.content {
 		background: transparentize($p1-alt-dark, 0.5);
 		width: 100%;
@@ -29,6 +22,8 @@
 				height: 100%;
 				width: 100%;
 				object-fit: cover;
+				transform: scale(1.1);
+				transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 			}
 		}
 		.overlay {
@@ -44,5 +39,17 @@
 			justify-content: center;
 			background: transparentize($black, 0.5);
 		}
+	}
+	&:hover {
+		border: solid 3px $white;
+		transform: scale(1.05);
+		.image-container {
+			img {
+				transform: scale(1);
+			}
+		}
+	}
+	&.active {
+		border: solid 3px $white;
 	}
 }
