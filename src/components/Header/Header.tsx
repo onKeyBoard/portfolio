@@ -23,9 +23,6 @@ const Header = ({ toggledStyle }: HeaderProps) => {
 			</div>
 
 			<div className={styles['socials']}>
-				<a href='https://github.com/onKeyBoard' target='_blank'>
-					<FontAwesomeIcon icon={faGithub} />
-				</a>
 				<a href='https://www.linkedin.com/in/shawn-pavlas/' target='_blank'>
 					<FontAwesomeIcon icon={faLinkedin} />
 				</a>

@@ -21,6 +21,11 @@ a.border {
 			}
 		}
 	}
+	// mobile styles
+	@media (max-width: $mobile-max) {
+		background: transparent;
+		// backdrop-filter: blur(10px);
+	}
 }
 
 .wrapper {
@@ -108,8 +113,32 @@ a.border {
 		overflow: hidden;
 		pointer-events: none;
 	}
+	//==================================================
+	// Mobile Styles
+	//==================================================
 	@media (max-width: $tablet-min) {
 		width: calc(50% - 1rem);
+	}
+	@media (max-width: $mobile-max) {
+		width: calc(100% - 1rem);
+		height: 2.6rem;
+		.border {
+			border-radius: 5px;
+			.card {
+				.title {
+					font-size: 1.1rem;
+				}
+			}
+		}
+		&.expanded {
+			.border {
+				.card {
+					.title {
+						font-size: 1.5rem;
+					}
+				}
+			}
+		}
 	}
 }
 

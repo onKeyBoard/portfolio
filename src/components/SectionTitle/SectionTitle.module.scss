@@ -2,7 +2,7 @@
 
 .title {
 	h2 {
-		font-size: 2em;
+		font-size: 1.8em;
 		margin-bottom: 0;
 		color: transparent;
 		background: url('/images/sky-bg.png') center;
@@ -11,8 +11,11 @@
 		background-repeat: repeat-x;
 		background-clip: text;
 		text-shadow: -5px -5px 0 $white;
+		@media screen and (max-width: $desktop-max) {
+			font-size: 1.5em;
+		}
 		@media screen and (max-width: $mobile-max) {
-			font-size: 2.25em;
+			font-size: 1.5em;
 		}
 	}
 }

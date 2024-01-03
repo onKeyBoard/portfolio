@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import styles from './Navigation.module.scss'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 import NavLinkCard from '../NavLinkCard/NavLinkCard'
 import ProfileOverview from '../ProfileOverview/ProfileOverview'
 import SkillsGrid from '../SkillsGrid/SkillsGrid'
 import ExperienceSection from '../ExperienceSection/ExperienceSection'
 import ContentExtras from '../ContentExtras/ContentExtras'
+import ButtonUnstyled from '../ButtonUnstyled/ButtonUnstyled'
 
 interface NavigationProps {
 	handleNavStatusToggle: (status: boolean) => void
@@ -16,6 +19,8 @@ interface NavLinkCardData {
 	description: string
 	fullContent: JSX.Element
 }
+
+type CardStatus = 'min' | 'max' | 'hidden'
 
 const Navigation = ({
 	handleNavStatusToggle,
@@ -45,7 +50,11 @@ const Navigation = ({
 		},
 	]
 
-	const [cardStatuses, setCardStatuses] = useState(data.map(() => 'min'))
+	const [cardStatuses, setCardStatuses] = useState<CardStatus[]>(
+		data.map(() => 'min')
+	)
+
+	const [navOpen, setNavOpen] = useState<boolean>(false)
 
 	const handleClick = (index: number) => {
 		// set the status of the clicked card to 'max' and all others to 'hidden'
@@ -67,24 +76,41 @@ const Navigation = ({
 		handleNavStatusToggle(false)
 	}
 
+	const mobileNavToggle = () => {
+		setNavOpen((prevNavOpen) => !prevNavOpen)
+	}
+
 	return (
-		<div className={styles['nav-container']}>
-			<div className={styles['nav']}>
-				<div className={styles['nav-inner']}>
-					{data.map(({ title, description, fullContent }, index) => (
-						<NavLinkCard
-							key={index}
-							title={title}
-							status={cardStatuses[index]}
-							onClick={() => handleClick(index)}
-							onClickClose={() => resetCardStatuses()}
-							onHover={() => handleHover(index)}
-							fullContent={fullContent}
-						/>
-					))}
+		<>
+			<div className={styles['nav-container']}>
+				<div className={styles['nav']}>
+					<div
+						className={`${styles['nav-inner']} ${
+							navOpen ? styles['open'] : ''
+						}`}
+					>
+						{data.map(
+							({ title, fullContent }: NavLinkCardData, index: number) => (
+								<NavLinkCard
+									key={index}
+									title={title}
+									status={cardStatuses[index]}
+									onClick={() => handleClick(index)}
+									onClickClose={() => resetCardStatuses()}
+									onHover={() => handleHover(index)}
+									fullContent={fullContent}
+								/>
+							)
+						)}
+					</div>
 				</div>
 			</div>
-		</div>
+			<div className={styles['mobile-nav-toggle']}>
+				<ButtonUnstyled handleClick={mobileNavToggle}>
+					<FontAwesomeIcon icon={faBars} />
+				</ButtonUnstyled>
+			</div>
+		</>
 	)
 }
 

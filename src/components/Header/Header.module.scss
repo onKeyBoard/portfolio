@@ -117,6 +117,10 @@
 	}
 	// Mobile
 	@media screen and (max-width: $mobile-max) {
+		transition: all ease-in-out 0.5s;
+		&.toggled {
+			transform: translateY(-100%);
+		}
 		.title {
 			h1 {
 				font-size: 1.4rem;
