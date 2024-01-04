@@ -32,7 +32,7 @@
 			transition: all 0.3s ease-in-out;
 			.icon-group {
 				opacity: 0;
-				animation: revealIcon 0.5s 0.1s cubic-bezier(0.46, 0.03, 0.52, 0.96)
+				animation: revealIcon 0.5s 0.5s cubic-bezier(0.46, 0.03, 0.52, 0.96)
 					forwards;
 				span {
 					display: inline-block;

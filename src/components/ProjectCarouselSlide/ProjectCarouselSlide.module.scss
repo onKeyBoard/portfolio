@@ -8,7 +8,7 @@
 		animation: fadeIn 0.5s ease-in-out forwards;
 		div {
 			div {
-				height: 57vh;
+				height: 55vh;
 			}
 		}
 		img {
@@ -26,8 +26,13 @@
 		align-items: center;
 		text-align: center;
 		padding: 0 1rem;
-		height: 8vh;
+		height: 10vh;
 		width: 100%;
+		p {
+			margin: 0.5rem 0 0 0;
+			font-size: 0.6rem;
+			color: $p1-accent-4;
+		}
 	}
 	//==================================================
 	// Media Queries
