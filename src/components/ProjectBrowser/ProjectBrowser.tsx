@@ -53,6 +53,12 @@ const ProjectShowcase = ({ category }: ProjectShowcaseProps) => {
 		setCarouselIsLoaded(true)
 	}
 
+	// Back Button functionality
+	const handleBackButton = () => {
+		setSelectedProject(null)
+		setShowNav(true)
+	}
+
 	if (loading || queryLoading) return <BlockyLoader />
 	if (error) return <p>Error : {error.message}</p>
 	const { projects } = data
@@ -67,7 +73,7 @@ const ProjectShowcase = ({ category }: ProjectShowcaseProps) => {
 				/>
 			)}
 			{carouselIsLoaded && (
-				<ButtonUnstyled handleClick={() => setShowNav(true)}>
+				<ButtonUnstyled handleClick={() => handleBackButton()}>
 					<div className={styles['go-back']}>
 						<div className={styles['icon-group']}>
 							<FontAwesomeIcon icon={faAngleLeft} />

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import ReactPlayer from 'react-player'
 import styles from './VideoPlayer.module.scss'
 
@@ -8,6 +8,14 @@ interface VideoProps {
 }
 
 const VideoPlayer = ({ url, status }: VideoProps) => {
+	const playerRef = useRef<ReactPlayer>(null)
+
+	useEffect(() => {
+		if (status) {
+			playerRef.current?.seekTo(0)
+		}
+	}, [status])
+
 	return (
 		<div className={styles['player-wrapper']}>
 			<ReactPlayer
@@ -18,6 +26,7 @@ const VideoPlayer = ({ url, status }: VideoProps) => {
 				loop={true}
 				width='100%'
 				height='100%'
+				ref={playerRef}
 			/>
 		</div>
 	)
