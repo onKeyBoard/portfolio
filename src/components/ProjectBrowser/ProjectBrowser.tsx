@@ -18,6 +18,7 @@ const ProjectShowcase = ({ category }: ProjectShowcaseProps) => {
 	const [selectedProject, setSelectedProject] = useState<string | null>(null)
 	const [showNav, setShowNav] = useState<boolean>(true)
 	const [loading, setLoading] = useState<boolean>(true)
+	const [carouselIsLoaded, setCarouselIsLoaded] = useState<boolean>(false)
 	// Category must match one of the enums in the Project model
 	const categoryEnums = ['Personal', 'Professional']
 	// Fallback: if the category prop is not one of the enums, set it to 'Professional'
@@ -41,9 +42,15 @@ const ProjectShowcase = ({ category }: ProjectShowcaseProps) => {
 		variables: { category: validCategory },
 	})
 
+	// Update the necessary states when a project is selected
 	const loadProjectSlides = (projectId: string) => {
 		setSelectedProject(projectId)
 		setShowNav(false)
+	}
+	// Callback function for the Carousel component. When it has loaded, we can show the back button.
+	// This is nice because it means we won't animate the button reveal until the carousel is also revealed.
+	const showBackButton = () => {
+		setCarouselIsLoaded(true)
 	}
 
 	if (loading || queryLoading) return <BlockyLoader />
@@ -53,16 +60,22 @@ const ProjectShowcase = ({ category }: ProjectShowcaseProps) => {
 	const carouselContent = (
 		<div className={styles['carousel']}>
 			{selectedProject && (
-				<ProjectCarousel key={selectedProject} projectId={selectedProject} />
+				<ProjectCarousel
+					key={selectedProject}
+					projectId={selectedProject}
+					onLoaded={() => showBackButton()}
+				/>
 			)}
-			<ButtonUnstyled handleClick={() => setShowNav(true)}>
-				<div className={styles['go-back']}>
-					<div className={styles['icon-group']}>
-						<FontAwesomeIcon icon={faAngleLeft} />
-						<span>Go back</span>
+			{carouselIsLoaded && (
+				<ButtonUnstyled handleClick={() => setShowNav(true)}>
+					<div className={styles['go-back']}>
+						<div className={styles['icon-group']}>
+							<FontAwesomeIcon icon={faAngleLeft} />
+							<span>Go back</span>
+						</div>
 					</div>
-				</div>
-			</ButtonUnstyled>
+				</ButtonUnstyled>
+			)}
 		</div>
 	)
 
