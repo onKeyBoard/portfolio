@@ -102,23 +102,25 @@ const ProjectCarousel = ({ projectId }: ProjectCarouselProps) => {
 						/>
 					))}
 				</div>
-				<div className={styles['controls']}>
-					<button
-						onClick={() => handleSlideChange('prev')}
-						disabled={startOfSlides ? true : undefined}
-					>
-						<FontAwesomeIcon icon={faAngleLeft} />
-					</button>
-					<div className={styles['slide-count']}>
-						{currentSlide + 1} / {totalSlides}
+				{totalSlides >= 2 && (
+					<div className={styles['controls']}>
+						<button
+							onClick={() => handleSlideChange('prev')}
+							disabled={startOfSlides ? true : undefined}
+						>
+							<FontAwesomeIcon icon={faAngleLeft} />
+						</button>
+						<div className={styles['slide-count']}>
+							{currentSlide + 1} / {totalSlides}
+						</div>
+						<button
+							onClick={() => handleSlideChange('next')}
+							disabled={endOfSlides ? true : undefined}
+						>
+							<FontAwesomeIcon icon={faAngleRight} />
+						</button>
 					</div>
-					<button
-						onClick={() => handleSlideChange('next')}
-						disabled={endOfSlides ? true : undefined}
-					>
-						<FontAwesomeIcon icon={faAngleRight} />
-					</button>
-				</div>
+				)}
 			</div>
 		</section>
 	)

@@ -25,7 +25,7 @@ const ProjectCarouselSlide = ({
 		if (isVideo(imageUrl)) {
 			return (
 				<div>
-					<VideoPlayer url={imageUrl} />
+					<VideoPlayer url={imageUrl} status={active} />
 				</div>
 			)
 		} else {
