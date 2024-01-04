@@ -8,7 +8,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Squada+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap');
 
 $primary-font-family: 'Roboto Mono', Helvetica, Arial, sans-serif;
 $headline-font-family: 'Rubik', Helvetica, Arial, sans-serif;
@@ -40,7 +40,8 @@ $section-gutter-right-mobile: $section-gutter-mobile;
 
 $desktop-min: 1024px;
 $desktop-med: 1200px;
-$desktop-max: 1360px;
+$desktop-lg: 1400px;
+$desktop-max: 1600px;
 
 $tablet-min: 768px;
 $tablet-med: 896px;
@@ -68,9 +69,9 @@ $p1-primary-light: hsl(224, 47%, 60%);
 $p1-accent: hsl(243, 17%, 75%);
 $p1-accent-2: hsl(231, 81%, 43%);
 $p1-accent-3: #5ecedf;
-$p1-accent-4: #9edf5e;
+// $p1-accent-4: hsl(90, 67%, 62%);
 // $p1-accent-4: hsl(326, 89%, 58%);
-// $p1-accent-4: hsl(158, 89%, 58%);
+$p1-accent-4: hsl(158, 89%, 58%);
 $p1-alt-light: hsl(270, 5%, 67%);
 $p1-alt-dark: hsl(229, 45%, 17%);
 $p1-white: hsl(105, 67%, 96%);

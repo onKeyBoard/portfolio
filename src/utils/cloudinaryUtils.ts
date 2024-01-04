@@ -93,6 +93,6 @@ export const getVideoThumbnail = (url: string) => {
 	return replace(url, 'mp4', 'jpg')
 }
 
-export const getImageThumbnail = (url: string) => {
-	return replace(url, 'upload', 'upload/c_thumb,g_face,w_500,h_500')
+export const getImageCustomWidth = (url: string, sizeInPx: number) => {
+	return replace(url, 'upload', `upload/c_limit,w_${sizeInPx},h_${sizeInPx}`)
 }

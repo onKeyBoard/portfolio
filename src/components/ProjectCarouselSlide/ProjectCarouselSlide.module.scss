@@ -29,6 +29,21 @@
 		height: 8vh;
 		width: 100%;
 	}
+	//==================================================
+	// Media Queries
+	//==================================================
+	@media screen and (max-width: $tablet-med) {
+		.image {
+			div {
+				div {
+					height: 300px;
+				}
+			}
+		}
+		.info {
+			height: 4rem;
+		}
+	}
 }
 
 .slide-inactive {

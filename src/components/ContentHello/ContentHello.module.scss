@@ -1,11 +1,21 @@
 @import '../../styles/global/variables.scss';
 
+.container {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
 .profile_grid {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-areas: 'photo bio bio' 'info bio bio';
 	gap: 1rem;
-	height: 100%;
+	justify-self: stretch;
+	width: 100%;
+	max-width: 1400px;
 	padding: 1rem;
 	.photo,
 	.info,
@@ -43,6 +53,7 @@
 		border-radius: 25px;
 		width: 250px;
 		height: 250px;
+		border-radius: 100%;
 		img {
 			width: 100%;
 			border-radius: 25px;
@@ -50,25 +61,43 @@
 	}
 	.content {
 		max-width: 80%;
+		padding: 1rem 0;
 		h3 {
 			display: inline-block;
 			width: auto;
 			padding-bottom: 0.5rem;
 		}
 	}
-	// responsiveness
+	//==================================================
+	// Media Queries
+	//==================================================
 	@media screen and (max-width: $tablet-min) {
-		grid-template-columns: 1fr;
-		grid-template-areas: 'photo' 'info' 'bio';
-		.photo,
+		grid-template-columns: 1fr 2fr;
+		grid-template-areas: 'photo info' 'bio bio';
+		grid-gap: 0.5rem;
+		height: auto;
 		.info,
 		.bio {
 			width: 100%;
-			padding: 1rem;
+			padding: 0.5rem;
 		}
 		.photo {
 			animation: fadeInUp 0.7s 0.3s cubic-bezier(0.46, 0.03, 0.52, 0.96)
 				forwards;
+			display: flex;
+			justify-content: center;
+			align-items: stretch;
+			padding: 0;
+			height: 200px;
+			.profile_image {
+				width: 100%;
+				height: 100%;
+				img {
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+				}
+			}
 		}
 		.bio {
 			animation: fadeInUp 0.7s 0.5s cubic-bezier(0.46, 0.03, 0.52, 0.96)
@@ -77,11 +106,27 @@
 		.info {
 			animation: fadeInUp 0.7s 0.6s cubic-bezier(0.46, 0.03, 0.52, 0.96)
 				forwards;
+			height: 200px;
+		}
+		.content {
+			max-width: 100%;
+			padding: 1rem;
+		}
+	}
+	@media screen and (max-width: $mobile-med) {
+		.photo,
+		.info {
+			height: 130px;
+		}
+		.photo {
+			width: 130px;
 		}
 	}
 }
 
-// Animations //
+//==================================================
+// Animation Keyframes
+//==================================================
 
 @keyframes fadeInLeft {
 	0% {

@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './ProjectCard.module.scss'
+import { getImageCustomWidth } from '../../utils/cloudinaryUtils'
 
 interface ProjectCardProps {
 	title: string
@@ -16,6 +17,8 @@ const ProjectCard = ({
 	active,
 	handleClick,
 }: ProjectCardProps) => {
+	const thumbnailUrl = getImageCustomWidth(imageUrl, 400)
+
 	return (
 		<button
 			className={`${styles['card']} ${active ? styles['active'] : ''}`}
@@ -23,10 +26,10 @@ const ProjectCard = ({
 		>
 			<div className={styles['content']}>
 				<div className={styles['image-container']}>
-					<img src={imageUrl} alt={title} />
+					<img src={thumbnailUrl} alt={title} />
 				</div>
 				<div className={styles['overlay']}>
-					<h2>{title}</h2>
+					<h3>{title}</h3>
 					<div className={styles['year']}>
 						<b>{year}</b>
 					</div>

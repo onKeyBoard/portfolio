@@ -1,13 +1,10 @@
 import React, { useState } from 'react'
 import styles from './Navigation.module.scss'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
 import NavLinkCard from '../NavLinkCard/NavLinkCard'
-import ProfileOverview from '../ProfileOverview/ProfileOverview'
-import SkillsGrid from '../SkillsGrid/SkillsGrid'
-import ExperienceSection from '../ExperienceSection/ExperienceSection'
+import ContentHello from '../ContentHello/ContentHello'
+import ContentSkills from '../ContentSkills/ContentSkills'
+import ContentWork from '../ContentWork/ContentWork'
 import ContentExtras from '../ContentExtras/ContentExtras'
-import ButtonUnstyled from '../ButtonUnstyled/ButtonUnstyled'
 
 interface NavigationProps {
 	handleNavStatusToggle: (status: boolean) => void
@@ -31,17 +28,17 @@ const Navigation = ({
 		{
 			title: 'Hello',
 			description: 'Nice to meet you.',
-			fullContent: <ProfileOverview />,
+			fullContent: <ContentHello />,
 		},
 		{
 			title: 'Skills',
 			description: "I'm an engineer.",
-			fullContent: <SkillsGrid />,
+			fullContent: <ContentSkills />,
 		},
 		{
 			title: 'Work',
 			description: 'I build things.',
-			fullContent: <ExperienceSection />,
+			fullContent: <ContentWork />,
 		},
 		{
 			title: 'Extras',

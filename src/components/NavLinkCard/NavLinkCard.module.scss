@@ -22,7 +22,7 @@ a.border {
 			}
 		}
 	}
-	// mobile styles
+	// Media Queries
 	@media (max-width: $mobile-max) {
 		background: transparent;
 	}
@@ -199,7 +199,7 @@ a.border {
 		pointer-events: none;
 	}
 	//==================================================
-	// Mobile Styles
+	// Media Queries
 	//==================================================
 	@media (max-width: $tablet-min) {
 		width: calc(50% - 1rem);
@@ -216,27 +216,35 @@ a.border {
 			}
 		}
 		&.max {
+			padding: 0;
 			.border {
 				position: relative;
+				border-radius: 0;
 				.card {
 					position: absolute;
 					background: transparent;
 					height: auto;
 					top: 0;
+					border-radius: 0;
 					.title {
 						font-size: 1.5rem;
 					}
 				}
 				.full-content {
-					height: calc(100% - 5rem);
-					padding-top: 5rem;
+					padding: 5rem 0 0 0;
+					border-radius: 0;
+				}
+				.bottom-bar {
+					border-radius: 0;
 				}
 			}
 		}
 	}
 }
 
-// animate reveal close button
+//==================================================
+// Animation Keyframes
+//==================================================
 
 @keyframes revealFullHeader {
 	0% {

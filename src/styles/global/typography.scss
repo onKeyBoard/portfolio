@@ -75,7 +75,6 @@ span {
 }
 
 h1 {
-	// header title
 	font-family: $logo-font-family;
 	font-size: 2.75em;
 	font-weight: 700;
@@ -86,25 +85,27 @@ h1 {
 	}
 }
 h2 {
-	// header subtitle
 	font-family: $headline-font-family;
 	font-weight: 700;
-	font-size: 1.85em;
+	font-size: 1.8em;
 	line-height: 1;
 	margin: 0;
 	margin-bottom: 0.25em;
+	@media screen and (max-width: $desktop-max) {
+		font-size: 1.3em;
+	}
 	@media screen and (max-width: $mobile-max) {
-		font-size: 1.45em;
+		font-size: 1.2em;
 	}
 }
 h3 {
 	font-family: $headline-font-family;
-	font-size: 2em;
+	font-size: 1.8em;
 	font-weight: 700;
 	line-height: 1.15;
 	margin: 0;
 	@media screen and (max-width: $mobile-max) {
-		font-size: 2.5em;
+		font-size: 1.5em;
 	}
 }
 h4 {
@@ -117,30 +118,28 @@ h4 {
 	}
 }
 h5 {
-	font-family: $subhead-font-family;
-	font-size: 1.5em;
+	font-family: $primary-font-family;
+	font-size: 1rem;
+	font-weight: 500;
 	line-height: 1.1;
 	margin: 0;
 	@media screen and (max-width: $mobile-max) {
-		font-size: 2.25em;
+		font-size: 0.8rem;
 	}
 }
 h6 {
 	font-family: $primary-font-family;
-	font-size: 0.95em;
+	font-size: 0.95rem;
 	line-height: 1.1;
 	margin: 0;
 }
 p {
 	// body text
 	font-family: $primary-font-family;
-	font-size: 0.9rem;
+	font-size: 0.8rem;
 	line-height: normal;
-	@media screen and (max-width: $tablet-max) {
-		font-size: 0.8rem;
-	}
 	@media screen and (max-width: $mobile-max) {
-		font-size: 0.8rem;
+		font-size: 0.7rem;
 	}
 	&.lead {
 		font-size: 1.4em;

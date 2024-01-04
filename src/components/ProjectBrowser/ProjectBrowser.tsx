@@ -3,10 +3,10 @@ import React, { useState, useEffect } from 'react'
 import { useQuery } from '@apollo/client'
 import { GET_PROJECTS_SIMPLE } from '../../queries/projects.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleDown, faAngleLeft } from '@fortawesome/free-solid-svg-icons'
+import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 import BlockyLoader from '../BlockyLoader/BlockyLoader'
 import ProjectCard from '../ProjectCard/ProjectCard'
-import Button from '../Button/Button'
+import ButtonUnstyled from '../ButtonUnstyled/ButtonUnstyled'
 import ProjectCarousel from '../ProjectCarousel/ProjectCarousel'
 import SectionTitle from '../SectionTitle/SectionTitle'
 
@@ -55,26 +55,21 @@ const ProjectShowcase = ({ category }: ProjectShowcaseProps) => {
 			{selectedProject && (
 				<ProjectCarousel key={selectedProject} projectId={selectedProject} />
 			)}
-			<a
-				className={styles['go-back']}
-				href='#'
-				onClick={() => setShowNav(true)}
-			>
-				<div className={styles['icon-group']}>
-					<FontAwesomeIcon icon={faAngleLeft} />
-					<span>Go back</span>
+			<ButtonUnstyled handleClick={() => setShowNav(true)}>
+				<div className={styles['go-back']}>
+					<div className={styles['icon-group']}>
+						<FontAwesomeIcon icon={faAngleLeft} />
+						<span>Go back</span>
+					</div>
 				</div>
-			</a>
+			</ButtonUnstyled>
 		</div>
 	)
 
 	const navContent = (
 		<div className={styles['browse-nav']}>
 			<div className={styles['browse-title']}>
-				<SectionTitle text='Select a project' />
-				<div className={styles['browse-icon']}>
-					<FontAwesomeIcon icon={faAngleDown} />
-				</div>
+				<SectionTitle text={`${category} Projects`} />
 			</div>
 			<div className={styles['showcase-cards']}>
 				{projects.map(({ id, title, year, imageUrl }) => (

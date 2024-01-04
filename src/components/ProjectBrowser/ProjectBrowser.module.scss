@@ -57,15 +57,7 @@
 			text-align: center;
 			opacity: 0;
 			animation: revealTitle 0.5s cubic-bezier(0.46, 0.03, 0.52, 0.96) forwards;
-			.browse-icon {
-				margin-top: 1rem;
-				margin-bottom: 1rem;
-				font-size: 2rem;
-				color: $white;
-				opacity: 0;
-				animation: revealIcon 0.5s 0.1s cubic-bezier(0.46, 0.03, 0.52, 0.96)
-					forwards;
-			}
+			margin-bottom: 1rem;
 		}
 		.showcase-cards {
 			width: 75%;
@@ -74,6 +66,7 @@
 			align-items: center;
 			gap: 1rem;
 			flex-wrap: wrap;
+			margin-bottom: 3rem;
 			.card {
 				opacity: 0;
 				width: 22%;
@@ -96,9 +89,47 @@
 			}
 		}
 	}
+	//==================================================
+	// Media Queries
+	//==================================================
+	@media screen and (max-width: $desktop-max) {
+		.browse-nav {
+			.showcase-cards {
+				width: 75%;
+				.card {
+					width: 45%;
+				}
+			}
+		}
+	}
+	@media screen and (max-width: $tablet-med) {
+		.carousel {
+			height: auto;
+			.go-back {
+				top: 0;
+				border-radius: 25px 0 25px 0;
+				height: 2rem;
+				width: 7rem;
+				font-size: 0.8rem;
+			}
+		}
+		.browse-nav {
+			height: auto;
+			padding-bottom: 3rem;
+			.showcase-cards {
+				width: 100%;
+				.card {
+					width: 100%;
+					max-width: 400px;
+				}
+			}
+		}
+	}
 }
 
-// Animations
+//==================================================
+// Animation Keyframes
+//==================================================
 
 @keyframes revealTitle {
 	0% {

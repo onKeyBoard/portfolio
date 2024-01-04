@@ -4,6 +4,7 @@ import {
 	InMemoryCache,
 	ApolloProvider,
 	createHttpLink,
+	NormalizedCacheObject,
 } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 import PageContent from './index'
@@ -25,12 +26,17 @@ const authLink = setContext((_, { headers }) => {
 	}
 })
 
-const client = new ApolloClient({
+const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
 	link: authLink.concat(httpLink),
 	cache: new InMemoryCache(),
 })
 
-function MyApp({ Component, pageProps }) {
+interface IProps {
+	Component: React.FC
+	pageProps: object
+}
+
+const MyApp: React.FC<IProps> = ({ Component, pageProps }) => {
 	return (
 		<ApolloProvider client={client}>
 			<PageContent>

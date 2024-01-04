@@ -31,7 +31,7 @@
 			button {
 				background: transparent;
 				font-size: 1rem;
-				border: solid 2px $white;
+				border: solid 3px $white;
 				width: 4.6vh;
 				height: 4.6vh;
 				line-height: 1;
@@ -39,12 +39,12 @@
 				transition: all cubic-bezier(0.23, 1, 0.32, 1) 0.5s;
 				padding: 0;
 				&:hover {
-					border: solid 2px $p1-accent-4;
+					border: solid 3px $p1-accent-4;
 					color: $p1-accent-4;
 				}
 				&:disabled {
 					background: transparentize($black, 0.8);
-					border: solid 2px transparentize($black, 0.5);
+					border: solid 2px transparent;
 					color: transparentize($black, 0.5);
 					cursor: not-allowed;
 				}
@@ -68,7 +68,7 @@
 				display: inline-block;
 				background: transparentize($black, 0.7);
 				color: $white;
-				padding: 0.5rem 1rem;
+				padding: 0.3rem 1rem;
 				border-radius: 7px;
 				margin-right: 0.5rem;
 				margin-bottom: 0.5rem;
@@ -76,17 +76,57 @@
 			}
 		}
 		.description {
-			margin-top: 1rem;
+			margin-top: 0.5rem;
 			padding-top: 1rem;
 			border-top: solid 2px transparentize($white, 0.5);
-			font-size: 12px;
 			max-height: 350px;
 			overflow-y: scroll;
 		}
 	}
+	//==================================================
+	// Media Queries
+	//==================================================
+	@media screen and (max-width: $desktop-med) {
+		.slide-container {
+			width: calc(100% - (100% / 2));
+		}
+		.carousel-overview {
+			width: calc(100% / 2);
+			.type-list {
+				.type-item {
+					padding: 0.3rem 0.5rem;
+				}
+			}
+			.description {
+				margin-top: 0.5rem;
+			}
+		}
+	}
+	@media screen and (max-width: $tablet-med) {
+		flex-direction: column;
+		width: 100%;
+		height: auto;
+		padding-bottom: 5rem;
+		.slide-container {
+			width: 100%;
+			border-radius: 0 0 25px 25px;
+		}
+		.carousel-overview {
+			border-radius: 25px 25px 0 0;
+			width: 100%;
+			height: auto;
+			padding-top: 3rem;
+			.description {
+				max-height: none;
+				font-size: 1rem;
+			}
+		}
+	}
 }
 
-// animation keyframes
+//==================================================
+// Animation Keyframes
+//==================================================
 
 @keyframes fadeInLeft {
 	0% {
