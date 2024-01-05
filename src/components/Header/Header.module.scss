@@ -16,6 +16,7 @@
 		transparentize($p1-accent-2, 0.3),
 		transparent
 	);
+	background-blend-mode: overlay;
 	border-radius: 10px 10px 0 0;
 	transition: all ease-in-out 1s;
 	.title {

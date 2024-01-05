@@ -10,11 +10,11 @@ import ButtonUnstyled from '../ButtonUnstyled/ButtonUnstyled'
 import ProjectCarousel from '../ProjectCarousel/ProjectCarousel'
 import SectionTitle from '../SectionTitle/SectionTitle'
 
-interface ProjectShowcaseProps {
+interface ProjectBrowserProps {
 	category?: string
 }
 
-const ProjectShowcase = ({ category }: ProjectShowcaseProps) => {
+const ProjectBrowser = ({ category }: ProjectBrowserProps) => {
 	const [selectedProject, setSelectedProject] = useState<string | null>(null)
 	const [showNav, setShowNav] = useState<boolean>(true)
 	const [loading, setLoading] = useState<boolean>(true)
@@ -116,4 +116,4 @@ const ProjectShowcase = ({ category }: ProjectShowcaseProps) => {
 	)
 }
 
-export default ProjectShowcase
+export default ProjectBrowser

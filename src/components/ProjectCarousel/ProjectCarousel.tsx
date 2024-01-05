@@ -16,7 +16,12 @@ interface ProjectCarouselProps {
 const ProjectCarousel = ({ projectId, onLoaded }: ProjectCarouselProps) => {
 	const { loading, error, data } = useQuery(GET_PROJECT, {
 		variables: { id: projectId },
+		skip: !projectId,
 	})
+
+	// If there is no projectId, return null
+	// This component should only be rendered when a project is selected
+	if (!projectId) return null
 
 	// Manage the current slide index
 	const [currentSlide, setCurrentSlide] = useState(0)

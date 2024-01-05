@@ -10,11 +10,7 @@ import limitMouseX from '../../utils/generalUtils'
 const MainContent = () => {
 	const [mouseX, setMouseX] = useState<number>(0)
 	const [isAnyCardOpen, setIsAnyCardOpen] = useState<boolean>(false)
-	const [hoverText, setHoverText] = useState<string>(
-		process.env.NEXT_PUBLIC_PRE_RELEASE === 'true'
-			? 'Under Construction'
-			: 'Hello, World!'
-	)
+	const [hoverText, setHoverText] = useState<string>('Hello, World!')
 
 	const containerRef = useRef<HTMLDivElement>(null)
 	const bgPosX = useRef<number>(0)
@@ -103,12 +99,10 @@ const MainContent = () => {
 								<h2 ref={textBgRef}>{hoverText}</h2>
 							</div>
 						</div>
-						{process.env.NEXT_PUBLIC_PRE_RELEASE !== 'true' && (
-							<Navigation
-								handleNavStatusToggle={switchToggleState}
-								handleCardHover={switchHoverText}
-							/>
-						)}
+						<Navigation
+							handleNavStatusToggle={switchToggleState}
+							handleCardHover={switchHoverText}
+						/>
 						<Footer toggledStyle={isAnyCardOpen} />
 					</div>
 				</div>
