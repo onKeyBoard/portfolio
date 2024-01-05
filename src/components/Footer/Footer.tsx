@@ -16,7 +16,7 @@ const Footer = ({ toggledStyle }: FooterProps) => {
 			<div className={styles['content']}>
 				<div className={styles['info']}>
 					<FontAwesomeIcon icon={faReact} />
-					<h4>I made this project with React and Three.js</h4>
+					<h4>I made this with React and Three.js</h4>
 				</div>
 				<div className={styles['copyright']}>
 					<h4>© 2024</h4>
