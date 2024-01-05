@@ -13,38 +13,6 @@
 		height: 72vh;
 		opacity: 0;
 		animation: revealCarousel 0.5s cubic-bezier(0.46, 0.03, 0.52, 0.96) forwards;
-		position: relative;
-		.go-back {
-			text-decoration: none;
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			background: $black;
-			color: $white;
-			border-radius: 0 25px 0 25px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			height: 3rem;
-			width: 9rem;
-			font-size: 1rem;
-			@include heading-font;
-			transition: all 0.3s ease-in-out;
-			.icon-group {
-				opacity: 0;
-				animation: revealIcon 0.5s 0.5s cubic-bezier(0.46, 0.03, 0.52, 0.96)
-					forwards;
-				span {
-					display: inline-block;
-					margin-left: 0.5rem;
-					transform: translateY(-5%);
-				}
-			}
-			&:hover {
-				background: $white;
-				color: $black;
-			}
-		}
 	}
 	.browse-nav {
 		width: 100%;
@@ -105,13 +73,6 @@
 	@media screen and (max-width: $tablet-med) {
 		.carousel {
 			height: auto;
-			.go-back {
-				top: 0;
-				border-radius: 25px 0 25px 0;
-				height: 2rem;
-				width: 7rem;
-				font-size: 0.8rem;
-			}
 		}
 		.browse-nav {
 			height: auto;
@@ -135,17 +96,6 @@
 	0% {
 		opacity: 0;
 		transform: translateY(25px);
-	}
-	100% {
-		opacity: 1;
-		transform: translateY(0px);
-	}
-}
-
-@keyframes revealIcon {
-	0% {
-		opacity: 0;
-		transform: translateY(-25px);
 	}
 	100% {
 		opacity: 1;

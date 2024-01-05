@@ -1,39 +1,37 @@
 import styles from './ProjectCarousel.module.scss'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useQuery } from '@apollo/client'
 import { GET_PROJECT } from '../../queries/projects.js'
 import ProjectCarouselSlide from '../ProjectCarouselSlide/ProjectCarouselSlide'
 import Button from '../Button/Button'
 import BlockyLoader from '../BlockyLoader/BlockyLoader'
+import ButtonUnstyled from '../ButtonUnstyled/ButtonUnstyled'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
 
 interface ProjectCarouselProps {
 	projectId: string
-	onLoaded: () => void
+	handleBackButton: () => void
 }
 
-const ProjectCarousel = ({ projectId, onLoaded }: ProjectCarouselProps) => {
+const ProjectCarousel = ({
+	projectId,
+	handleBackButton,
+}: ProjectCarouselProps) => {
+	// If there is no projectId, return null
+	// This component should only be rendered when a project is selected
+	if (!projectId) return null
+
+	// Get the project from the database
 	const { loading, error, data } = useQuery(GET_PROJECT, {
 		variables: { id: projectId },
 		skip: !projectId,
 	})
 
-	// If there is no projectId, return null
-	// This component should only be rendered when a project is selected
-	if (!projectId) return null
-
 	// Manage the current slide index
 	const [currentSlide, setCurrentSlide] = useState(0)
 	const [startOfSlides, setStartOfSlides] = useState(true)
 	const [endOfSlides, setEndOfSlides] = useState(false)
-
-	// Reset the slide index when the projectId changes
-	useEffect(() => {
-		setCurrentSlide(0)
-		setStartOfSlides(true)
-		setEndOfSlides(false)
-	}, [projectId])
 
 	// Handle slide change events
 	const handleSlideChange = (direction: 'prev' | 'next') => {
@@ -55,9 +53,6 @@ const ProjectCarousel = ({ projectId, onLoaded }: ProjectCarouselProps) => {
 
 	if (loading) return <BlockyLoader />
 	if (error) return <p>Error : {error.message}</p>
-
-	// first, call the onLoaded callback when the data is loaded.
-	data && onLoaded()
 
 	const { project } = data
 	const { title, year, type, description, link, projectSlides } = project
@@ -93,6 +88,14 @@ const ProjectCarousel = ({ projectId, onLoaded }: ProjectCarouselProps) => {
 					</a>
 				</div>
 			)}
+			<ButtonUnstyled handleClick={handleBackButton}>
+				<div className={styles['go-back']}>
+					<div className={styles['icon-group']}>
+						<FontAwesomeIcon icon={faAngleLeft} />
+						<span>Go back</span>
+					</div>
+				</div>
+			</ButtonUnstyled>
 		</div>
 	)
 

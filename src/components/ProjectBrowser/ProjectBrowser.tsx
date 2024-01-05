@@ -2,11 +2,8 @@ import styles from './ProjectBrowser.module.scss'
 import React, { useState, useEffect } from 'react'
 import { useQuery } from '@apollo/client'
 import { GET_PROJECTS_SIMPLE } from '../../queries/projects.js'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 import BlockyLoader from '../BlockyLoader/BlockyLoader'
 import ProjectCard from '../ProjectCard/ProjectCard'
-import ButtonUnstyled from '../ButtonUnstyled/ButtonUnstyled'
 import ProjectCarousel from '../ProjectCarousel/ProjectCarousel'
 import SectionTitle from '../SectionTitle/SectionTitle'
 
@@ -18,7 +15,7 @@ const ProjectBrowser = ({ category }: ProjectBrowserProps) => {
 	const [selectedProject, setSelectedProject] = useState<string | null>(null)
 	const [showNav, setShowNav] = useState<boolean>(true)
 	const [loading, setLoading] = useState<boolean>(true)
-	const [carouselIsLoaded, setCarouselIsLoaded] = useState<boolean>(false)
+
 	// Category must match one of the enums in the Project model
 	const categoryEnums = ['Personal', 'Professional']
 	// Fallback: if the category prop is not one of the enums, set it to 'Professional'
@@ -47,11 +44,6 @@ const ProjectBrowser = ({ category }: ProjectBrowserProps) => {
 		setSelectedProject(projectId)
 		setShowNav(false)
 	}
-	// Callback function for the Carousel component. When it has loaded, we can show the back button.
-	// This is nice because it means we won't animate the button reveal until the carousel is also revealed.
-	const showBackButton = () => {
-		setCarouselIsLoaded(true)
-	}
 
 	// Back Button functionality
 	const handleBackButton = () => {
@@ -68,18 +60,8 @@ const ProjectBrowser = ({ category }: ProjectBrowserProps) => {
 				<ProjectCarousel
 					key={selectedProject}
 					projectId={selectedProject}
-					onLoaded={() => showBackButton()}
+					handleBackButton={() => handleBackButton()}
 				/>
-			)}
-			{carouselIsLoaded && (
-				<ButtonUnstyled handleClick={() => handleBackButton()}>
-					<div className={styles['go-back']}>
-						<div className={styles['icon-group']}>
-							<FontAwesomeIcon icon={faAngleLeft} />
-							<span>Go back</span>
-						</div>
-					</div>
-				</ButtonUnstyled>
 			)}
 		</div>
 	)
