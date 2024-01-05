@@ -179,11 +179,13 @@ a.border {
 					animation: revealCloseButton 0.5s 0.5s forwards;
 					background: $white;
 					color: $black;
-					background: black;
+					background: transparent;
 					color: $white;
 					transition: all ease-in-out 0.3s;
-					&:hover {
-						background: $white;
+				}
+				&:hover {
+					background: $white;
+					.close {
 						color: $black;
 					}
 				}

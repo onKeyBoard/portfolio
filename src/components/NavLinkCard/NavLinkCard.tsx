@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './NavLinkCard.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
+import ButtonUnstyled from '../ButtonUnstyled/ButtonUnstyled'
 
 interface NavLinkCardProps {
 	title: string
@@ -67,9 +68,11 @@ const NavLinkCard = ({
 				</div>
 			)}
 			<div className={styles['bottom-bar']}>
-				<button className={styles['close']} onClick={onClickClose}>
-					<FontAwesomeIcon icon={faBars} />
-				</button>
+				<ButtonUnstyled handleClick={onClickClose}>
+					<div className={styles['close']}>
+						<FontAwesomeIcon icon={faBars} />
+					</div>
+				</ButtonUnstyled>
 			</div>
 		</div>
 	)
