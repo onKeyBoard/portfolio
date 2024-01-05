@@ -4,9 +4,11 @@ import Scene3D from '../Scene3D2/Scene3D'
 import Header from '../Header/Header'
 import Navigation from '../Navigation/Navigation'
 import Footer from '../Footer/Footer'
+import BlockyLoader from '../BlockyLoader/BlockyLoader'
 import limitMouseX from '../../utils/generalUtils'
 
 const MainContent = () => {
+	const [isLoaded, setIsLoaded] = useState<boolean>(false)
 	const [mouseX, setMouseX] = useState<number>(0)
 	const [isAnyCardOpen, setIsAnyCardOpen] = useState<boolean>(false)
 	const [hoverText, setHoverText] = useState<string>(
@@ -20,6 +22,19 @@ const MainContent = () => {
 	const textRef = useRef<HTMLDivElement>(null)
 	const textBgRef = useRef<HTMLDivElement>(null)
 	const textRotation = useRef<number>(0)
+
+	// Wait til all assets are loaded to show content
+	useEffect(() => {
+		const handleLoad = () => {
+			setIsLoaded(true)
+		}
+
+		window.addEventListener('load', handleLoad)
+
+		return () => {
+			window.removeEventListener('load', handleLoad)
+		}
+	}, [])
 
 	// Animates the background image
 	useEffect(() => {
@@ -75,41 +90,47 @@ const MainContent = () => {
 		}, 200)
 	}
 
+	!isLoaded && <BlockyLoader />
+
 	return (
 		<section
 			className={styles['main']}
 			onMouseMove={(e) => setMouseX(e.clientX)}
 		>
-			<div className={styles['layers']}>
-				<section
-					className={`${styles['canvas-layer']} ${
-						isAnyCardOpen ? styles['zoomed'] : ''
-					}`}
-					ref={containerRef}
-				>
-					<Scene3D mouseX={mouseX} zoomedIn={isAnyCardOpen} />
-				</section>
-				<div className={styles['ui-layer']}>
-					<Header toggledStyle={isAnyCardOpen} />
-					<div id='headline' className={styles['hover-headline']}>
-						<div
-							className={`${styles['headline-background']} ${
-								isAnyCardOpen ? styles['hide'] : ''
-							}`}
-							ref={textRef}
-						>
-							<h2 ref={textBgRef}>{hoverText}</h2>
+			{!isLoaded ? (
+				<BlockyLoader />
+			) : (
+				<div className={styles['layers']}>
+					<section
+						className={`${styles['canvas-layer']} ${
+							isAnyCardOpen ? styles['zoomed'] : ''
+						}`}
+						ref={containerRef}
+					>
+						<Scene3D mouseX={mouseX} zoomedIn={isAnyCardOpen} />
+					</section>
+					<div className={styles['ui-layer']}>
+						<Header toggledStyle={isAnyCardOpen} />
+						<div id='headline' className={styles['hover-headline']}>
+							<div
+								className={`${styles['headline-background']} ${
+									isAnyCardOpen ? styles['hide'] : ''
+								}`}
+								ref={textRef}
+							>
+								<h2 ref={textBgRef}>{hoverText}</h2>
+							</div>
 						</div>
+						{process.env.NEXT_PUBLIC_PRE_RELEASE !== 'true' && (
+							<Navigation
+								handleNavStatusToggle={switchToggleState}
+								handleCardHover={switchHoverText}
+							/>
+						)}
+						<Footer toggledStyle={isAnyCardOpen} />
 					</div>
-					{process.env.NEXT_PUBLIC_PRE_RELEASE !== 'true' && (
-						<Navigation
-							handleNavStatusToggle={switchToggleState}
-							handleCardHover={switchHoverText}
-						/>
-					)}
-					<Footer toggledStyle={isAnyCardOpen} />
 				</div>
-			</div>
+			)}
 		</section>
 	)
 }
