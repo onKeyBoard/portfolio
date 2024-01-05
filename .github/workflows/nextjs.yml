@@ -73,10 +73,6 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
-      - name: Set environment variables
-        # You may pin to the exact commit or the version.
-        # uses: tw3lveparsecs/github-actions-set-variables@23da06e2c4d5804d2082ecf4d79b83a2338fb419
-        uses: tw3lveparsecs/github-actions-set-variables@v0.2
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Static HTML export with Next.js
