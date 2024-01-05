@@ -3,15 +3,45 @@
 /****************************************/
 
 /* Fonts */
-@import url('//fonts.googleapis.com/css2?family=Dhurjati&display=swap');
-@import url('//fonts.googleapis.com/css2?family=Kanit:ital,wght@0,200;0,400;0,700;1,200;1,400;1,700&display=swap');
-@import url('//fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
-@import url('//fonts.googleapis.com/css2?family=Squada+One&display=swap');
-@import url('//fonts.googleapis.com/css2?family=Rubik:wght@700;900&display=swap');
-@import url('//fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap');
+@font-face {
+	font-family: 'Roboto Mono';
+	src: url('../../../public/fonts/Roboto_Mono/RobotoMono-VariableFont_wght.ttf')
+		format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Rubik Bold';
+	src: url('../../../public/fonts/Rubik/static/Rubik-Bold.ttf')
+		format('truetype');
+	font-weight: 700;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Rubik Black';
+	src: url('../../../public/fonts/Rubik/static/Rubik-Black.ttf')
+		format('truetype');
+	font-weight: 900;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Squada One';
+	src: url('../../../public/fonts/Squada_One/SquadaOne-Regular.ttf')
+		format('truetype');
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Dhurjati';
+	src: url('../../../public/fonts/Dhurjati/Dhurjati-Regular.ttf')
+		format('truetype');
+	font-weight: 400;
+	font-style: normal;
+}
 
 $primary-font-family: 'Roboto Mono', Helvetica, Arial, sans-serif;
-$headline-font-family: 'Rubik', Helvetica, Arial, sans-serif;
+$headline-font-family: 'Rubik Bold', Helvetica, Arial, sans-serif;
+$headline-ultra-font-family: 'Rubik Black', Helvetica, Arial, sans-serif;
 $subhead-font-family: 'Dhurjati', Helvetica, Arial, sans-serif;
 $nav-font-family: 'Squada One', Helvetica, Arial, sans-serif;
 $logo-font-family: 'Squada One', Helvetica, Arial, sans-serif;

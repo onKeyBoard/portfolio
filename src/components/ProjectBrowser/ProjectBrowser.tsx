@@ -92,7 +92,7 @@ const ProjectShowcase = ({ category }: ProjectShowcaseProps) => {
 			</div>
 			<div className={styles['showcase-cards']}>
 				{projects.map(({ id, title, year, imageUrl }) => (
-					<div className={styles['card']}>
+					<div key={id} className={styles['card']}>
 						<div className={styles['card-hover']}>
 							<ProjectCard
 								active={selectedProject === id}

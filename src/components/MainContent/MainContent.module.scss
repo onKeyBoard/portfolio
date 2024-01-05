@@ -43,7 +43,6 @@
 			z-index: 4;
 			transition: all ease-in 0.1s;
 			opacity: 0;
-			animation: loadHeadline 0.5s ease-in-out 0.7s forwards;
 			.headline-background {
 				background: $p1-accent-4;
 				padding: 1rem 2rem;
@@ -72,9 +71,10 @@
 				}
 			}
 			h2 {
+				font-family: $headline-ultra-font-family;
 				font-size: 4rem;
 				font-weight: 900;
-				background: url('/images/sky-bg.jpg');
+				background: url('../../../images/sky-bg.jpg');
 				background-size: cover;
 				background-position: center top;
 				background-repeat: repeat-x;
@@ -89,7 +89,7 @@
 		}
 
 		.canvas-layer {
-			background-image: url('/images/sky-bg.jpg');
+			background-image: url('../../../images/sky-bg.jpg');
 			background-color: $p1-accent-2;
 			background-size: auto 110%;
 			background-position: center top;
@@ -114,14 +114,5 @@
 				display: none;
 			}
 		}
-	}
-}
-
-@keyframes loadHeadline {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
 	}
 }

@@ -2,7 +2,6 @@
 const nextConfig = {
 	distDir: 'dist',
 	reactStrictMode: false,
-	output: 'export',
 	optimizeFonts: false,
 	eslint: {
 		ignoreDuringBuilds: true,
