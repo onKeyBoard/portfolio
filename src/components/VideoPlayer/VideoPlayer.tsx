@@ -27,6 +27,7 @@ const VideoPlayer = ({ url, status }: VideoProps) => {
 				width='100%'
 				height='100%'
 				ref={playerRef}
+				config={{ file: { attributes: { playsInline: true } } }}
 			/>
 		</div>
 	)
