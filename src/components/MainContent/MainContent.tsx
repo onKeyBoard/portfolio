@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, Suspense } from 'react'
 import styles from './MainContent.module.scss'
 import Scene3D from '../Scene3D2/Scene3D'
 import Header from '../Header/Header'
@@ -8,7 +8,6 @@ import BlockyLoader from '../BlockyLoader/BlockyLoader'
 import limitMouseX from '../../utils/generalUtils'
 
 const MainContent = () => {
-	const [isLoaded, setIsLoaded] = useState<boolean>(false)
 	const [mouseX, setMouseX] = useState<number>(0)
 	const [isAnyCardOpen, setIsAnyCardOpen] = useState<boolean>(false)
 	const [hoverText, setHoverText] = useState<string>(
@@ -22,19 +21,6 @@ const MainContent = () => {
 	const textRef = useRef<HTMLDivElement>(null)
 	const textBgRef = useRef<HTMLDivElement>(null)
 	const textRotation = useRef<number>(0)
-
-	// Wait til all assets are loaded to show content
-	useEffect(() => {
-		const handleLoad = () => {
-			setIsLoaded(true)
-		}
-
-		window.addEventListener('load', handleLoad)
-
-		return () => {
-			window.removeEventListener('load', handleLoad)
-		}
-	}, [])
 
 	// Animates the background image
 	useEffect(() => {
@@ -90,16 +76,12 @@ const MainContent = () => {
 		}, 200)
 	}
 
-	!isLoaded && <BlockyLoader />
-
 	return (
 		<section
 			className={styles['main']}
 			onMouseMove={(e) => setMouseX(e.clientX)}
 		>
-			{!isLoaded ? (
-				<BlockyLoader />
-			) : (
+			<Suspense fallback={<BlockyLoader />}>
 				<div className={styles['layers']}>
 					<section
 						className={`${styles['canvas-layer']} ${
@@ -130,7 +112,7 @@ const MainContent = () => {
 						<Footer toggledStyle={isAnyCardOpen} />
 					</div>
 				</div>
-			)}
+			</Suspense>
 		</section>
 	)
 }
