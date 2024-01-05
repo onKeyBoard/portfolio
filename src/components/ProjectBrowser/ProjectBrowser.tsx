@@ -55,7 +55,6 @@ const ProjectBrowser = ({ category }: ProjectBrowserProps) => {
 
 	// Back Button functionality
 	const handleBackButton = () => {
-		setSelectedProject(null)
 		setShowNav(true)
 	}
 
