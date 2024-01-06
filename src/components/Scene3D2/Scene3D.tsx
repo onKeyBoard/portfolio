@@ -44,7 +44,7 @@ function PersonalComputer({ mouseX, zoomedIn, ...props }) {
 	const [rotationY, setRotationY] = useState(0)
 	// The 3D object file path, with a failsafe for social network sharing
 	const url = new URL(
-		'3Dobjects/office_window/scene.gltf',
+		'/3Dobjects/office_window/scene.gltf',
 		window.location.href
 	)
 	url.search = '' // this part removes any query string from the url
@@ -84,4 +84,4 @@ function CameraController({ zoomedIn }) {
 	return null
 }
 
-useGLTF.preload('3Dobjects/office_window/scene.gltf')
+useGLTF.preload('/3Dobjects/office_window/scene.gltf')
