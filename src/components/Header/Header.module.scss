@@ -120,6 +120,10 @@
 	// Mobile
 	@media screen and (max-width: $mobile-max) {
 		transition: all ease-in-out 0.5s;
+		width: 100%;
+		top: 0;
+		left: 0;
+		border-radius: 0;
 		&.toggled {
 			transform: translateY(-100%);
 		}
