@@ -25,7 +25,10 @@
 		justify-content: center;
 		align-items: center;
 		background: transparentize($p1-alt-dark, 0.8);
-		border-radius: 25px;
+		border: solid 4px transparentize($p1-accent-3, 0.9);
+		border-radius: 27px;
+		box-shadow: -2px -2px 1px 0 transparentize($p1-accent-4, 0.7),
+			2px 2px 0 0 transparentize($p1-primary-dark, 0.6);
 		padding: 1.5rem;
 		opacity: 0;
 	}

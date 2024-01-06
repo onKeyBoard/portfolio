@@ -1,6 +1,10 @@
 @import '../../styles/global/variables.scss';
 
 .carousel {
+	border: solid 4px transparentize($p1-accent-3, 0.9);
+	border-radius: 27px;
+	box-shadow: -2px -2px 1px 0 transparentize($p1-accent-4, 0.7),
+		2px 2px 0 0 transparentize($p1-primary-dark, 0.6);
 	display: flex;
 	flex-wrap: nowrap;
 	justify-content: center;
@@ -88,7 +92,7 @@
 			position: absolute;
 			bottom: 0;
 			left: 0;
-			background: $black;
+			background: transparentize($black, 0.4);
 			color: $white;
 			border-radius: 0 25px 0 25px;
 			display: flex;
@@ -138,7 +142,6 @@
 		flex-direction: column;
 		width: 100%;
 		height: auto;
-		padding-bottom: 5rem;
 		.slide-container {
 			width: 100%;
 			border-radius: 0 0 25px 25px;
@@ -170,12 +173,10 @@
 @keyframes fadeInLeft {
 	0% {
 		opacity: 0;
-		box-shadow: 0 0 50px 0 white;
 		transform: rotateY(5deg);
 	}
 	100% {
 		opacity: 1;
-		box-shadow: 0 0 0px 0 transparent;
 		transform: rotateY(0deg);
 	}
 }
@@ -183,10 +184,10 @@
 @keyframes revealGoBack {
 	0% {
 		opacity: 0;
-		transform: translateY(-15px);
+		transform: translateX(15px);
 	}
 	100% {
 		opacity: 1;
-		transform: translateY(0px);
+		transform: translateX(0px);
 	}
 }

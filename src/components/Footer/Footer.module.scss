@@ -24,16 +24,14 @@
 		.info {
 			display: inline-flex;
 			gap: 0.5rem;
+			color: $p1-accent;
 		}
 		.copyright {
 			display: inline-block;
-			// border: solid 2px $black;
-			// border-radius: 25px;
 			padding: 0.4rem 0.8rem;
 			width: auto;
 		}
 		h4 {
-			color: $white;
 			font-size: 0.8rem;
 			text-transform: uppercase;
 		}

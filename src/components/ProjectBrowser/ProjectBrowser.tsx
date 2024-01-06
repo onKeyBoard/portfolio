@@ -76,7 +76,6 @@ const ProjectBrowser = ({ category }: ProjectBrowserProps) => {
 					<div key={id} className={styles['card']}>
 						<div className={styles['card-hover']}>
 							<ProjectCard
-								active={selectedProject === id}
 								key={id}
 								title={title}
 								year={year}

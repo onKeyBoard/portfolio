@@ -6,7 +6,6 @@ interface ProjectCardProps {
 	title: string
 	imageUrl: string
 	year: string
-	active: boolean
 	handleClick: () => void
 }
 
@@ -14,16 +13,12 @@ const ProjectCard = ({
 	title,
 	imageUrl,
 	year,
-	active,
 	handleClick,
 }: ProjectCardProps) => {
 	const thumbnailUrl = getImageCustomWidth(imageUrl, 400)
 
 	return (
-		<button
-			className={`${styles['card']} ${active ? styles['active'] : ''}`}
-			onClick={handleClick}
-		>
+		<button className={styles['card']} onClick={handleClick}>
 			<div className={styles['content']}>
 				<div className={styles['image-container']}>
 					<img src={thumbnailUrl} alt={title} />
