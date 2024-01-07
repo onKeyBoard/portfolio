@@ -42,15 +42,8 @@ export default function Scene3D({ mouseX, zoomedIn }: Scene3DProps) {
 function PersonalComputer({ mouseX, zoomedIn, ...props }) {
 	// Rotation state variable
 	const [rotationY, setRotationY] = useState(0)
-	// The 3D object file path, with a failsafe for social network sharing
-	const url = new URL(
-		'3Dobjects/office_window/scene.gltf',
-		window.location.href
-	)
-	url.search = '' // this part removes any query string from the url
-	const cleanUrl = url.href
 
-	const { scene } = useGLTF(cleanUrl)
+	const { scene } = useGLTF('3Dobjects/office_window/scene.gltf')
 
 	useFrame(() => {
 		// Calculate the rotation based on the normalized mouse X coordinate
