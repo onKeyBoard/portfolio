@@ -104,15 +104,17 @@ const ProjectCarousel = ({
 			{carouselOverviewContent}
 			<div className={styles['slide-container']}>
 				<div className={styles['slides']}>
-					{projectSlides.map(({ id, imageUrl, title, description }, index) => (
-						<ProjectCarouselSlide
-							active={currentSlide === index}
-							key={id}
-							imageUrl={imageUrl}
-							title={title}
-							description={description}
-						/>
-					))}
+					{projectSlides.map(
+						({ id, imageUrl, title, description }, index: number) => (
+							<ProjectCarouselSlide
+								active={currentSlide === index}
+								key={id}
+								imageUrl={imageUrl}
+								title={title}
+								description={description}
+							/>
+						)
+					)}
 				</div>
 				{totalSlides >= 2 && (
 					<div className={styles['controls']}>
@@ -122,9 +124,9 @@ const ProjectCarousel = ({
 						>
 							<FontAwesomeIcon icon={faAngleLeft} />
 						</button>
-						<div className={styles['slide-count']}>
+						<h5 className={styles['slide-count']}>
 							{currentSlide + 1} / {totalSlides}
-						</div>
+						</h5>
 						<button
 							onClick={() => handleSlideChange('next')}
 							disabled={endOfSlides ? true : undefined}

@@ -20,7 +20,7 @@ const ProjectCarouselSlide = ({
 }: ProjectCarouselSlideProps) => {
 	// conditionally render slide class
 	const slideStatusClass = active ? styles['slide'] : styles['slide-inactive']
-	// conditionally render image or video
+	// conditionally render video or image
 	const renderMedia = () => {
 		if (isVideo(imageUrl)) {
 			return (
