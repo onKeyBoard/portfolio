@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from 'react'
+import React, { Suspense, useState, useEffect } from 'react'
 import * as THREE from 'three'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import limitMouseX from '../../utils/generalUtils'
@@ -70,13 +70,32 @@ function PersonalComputer({ mouseX, zoomedIn, ...props }) {
 }
 // Toggle the camera position between zoomed in and zoomed out
 function CameraController({ zoomedIn }) {
+	const [initialZoom, setInitialZoom] = useState(true)
 	const { camera } = useThree()
+
+	useEffect(() => {
+		// start the camera from a very zoomed in position
+		camera.position.set(0, 1, 1)
+		camera.lookAt(0, 0, 0)
+		camera.updateProjectionMatrix()
+	}, [])
+
 	const targetPosition = zoomedIn
 		? new THREE.Vector3(0, 1, 6)
 		: new THREE.Vector3(0, 1, 9)
 
 	useFrame(() => {
-		camera.position.lerp(targetPosition, 0.05)
+		if (initialZoom && !zoomedIn) {
+			// If it's the initial zoom, move the camera to the default position
+			camera.position.lerp(new THREE.Vector3(0, 1, 9), 0.02)
+			if (camera.position.distanceTo(new THREE.Vector3(0, 1, 9)) < 0.1) {
+				// If the camera is close enough to the default position, stop the initial zoom
+				setInitialZoom(false)
+			}
+		} else {
+			// If it's not the initial zoom, move the camera to the target position
+			camera.position.lerp(targetPosition, 0.05)
+		}
 		camera.lookAt(0, 0, 0)
 		camera.updateProjectionMatrix()
 	})

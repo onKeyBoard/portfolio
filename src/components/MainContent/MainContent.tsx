@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, Suspense } from 'react'
+import React, { useState, useRef, useEffect, Suspense, use } from 'react'
 import styles from './MainContent.module.scss'
 import Scene3D from '../Scene3D2/Scene3D'
 import Header from '../Header/Header'
@@ -53,10 +53,20 @@ const MainContent = () => {
 		}
 	}, [mouseX, isAnyCardOpen, bgPosX, textRotation])
 
+	// Reset the hover text value when a card is opened
+	useEffect(() => {
+		if (isAnyCardOpen) {
+			setHoverText('Thanks for visiting!')
+		}
+	}, [isAnyCardOpen])
+
+	// track if any card is open
 	const switchToggleState = () => {
 		setIsAnyCardOpen((prevState) => !prevState)
 	}
 
+	// switch the headline when hovering over a card
+	// Hover text is defined in the Navigation component
 	const switchHoverText = (textValue: string) => {
 		const hoverHeadline: HTMLElement | null =
 			document.getElementById('headline')

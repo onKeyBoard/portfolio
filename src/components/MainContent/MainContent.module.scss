@@ -50,8 +50,10 @@
 				padding: 1rem 2rem;
 				border-radius: 10px;
 				position: relative;
-				opacity: 1;
 				transition: opacity ease-in-out 0.4s 0.8s;
+				opacity: 0;
+				animation: fadeInHeadline cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s 0.7s
+					forwards;
 				&:after {
 					content: '';
 					position: absolute;
@@ -68,7 +70,7 @@
 					z-index: 1;
 				}
 				&.hide {
-					opacity: 0;
+					display: none;
 					transition: opacity ease-in-out 0.3s;
 				}
 			}
@@ -116,5 +118,16 @@
 				display: none;
 			}
 		}
+	}
+}
+//==================================================
+// Animation Keyframes
+//==================================================
+@keyframes fadeInHeadline {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
 	}
 }
