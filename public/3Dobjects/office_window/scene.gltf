@@ -14536,25 +14536,25 @@
 	],
 	"images": [
 		{
-			"uri": "textures/Material.003_baseColor.jpg"
+			"uri": "/textures/Material.003_baseColor.jpg"
 		},
 		{
-			"uri": "textures/Material.001_baseColor.jpg"
+			"uri": "/textures/Material.001_baseColor.jpg"
 		},
 		{
-			"uri": "textures/Material.002_baseColor.jpg"
+			"uri": "/textures/Material.002_baseColor.jpg"
 		},
 		{
-			"uri": "textures/Material.006_baseColor.jpg"
+			"uri": "/textures/Material.006_baseColor.jpg"
 		},
 		{
-			"uri": "textures/Material.008_baseColor.jpg"
+			"uri": "/textures/Material.008_baseColor.jpg"
 		},
 		{
-			"uri": "textures/Material.004_baseColor.jpg"
+			"uri": "/textures/Material.004_baseColor.jpg"
 		},
 		{
-			"uri": "textures/Material.007_baseColor.jpg"
+			"uri": "/textures/Material.007_baseColor.jpg"
 		}
 	],
 	"animations": [],
