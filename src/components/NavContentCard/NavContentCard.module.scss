@@ -26,6 +26,15 @@ a.border {
 	// Media Queries
 	@media (max-width: $mobile-max) {
 		background: transparent;
+		&:hover {
+			transform: none;
+			.card {
+				.title {
+					transform: none;
+					color: $p1-accent-4;
+				}
+			}
+		}
 	}
 }
 

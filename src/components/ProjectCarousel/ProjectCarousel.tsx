@@ -7,7 +7,11 @@ import Button from '../Button/Button'
 import BlockyLoader from '../BlockyLoader/BlockyLoader'
 import ButtonUnstyled from '../ButtonUnstyled/ButtonUnstyled'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
+import {
+	faAngleLeft,
+	faAngleRight,
+	faArrowLeft,
+} from '@fortawesome/free-solid-svg-icons'
 
 interface ProjectCarouselProps {
 	projectId: string
@@ -91,8 +95,7 @@ const ProjectCarousel = ({
 			<ButtonUnstyled handleClick={handleBackButton}>
 				<div className={styles['go-back']}>
 					<div className={styles['icon-group']}>
-						<FontAwesomeIcon icon={faAngleLeft} />
-						<span>Go back</span>
+						<FontAwesomeIcon icon={faArrowLeft} />
 					</div>
 				</div>
 			</ButtonUnstyled>

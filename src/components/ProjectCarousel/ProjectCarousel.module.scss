@@ -33,9 +33,9 @@
 			border-top: solid 2px transparentize($p1-accent-4, 0.8);
 			padding: 0 1rem;
 			button {
-				background: transparent;
+				background: transparentize($p1-accent-3, 0.7);
+				border: none;
 				font-size: 1rem;
-				border: solid 3px $white;
 				width: 4.6vh;
 				height: 4.6vh;
 				line-height: 1;
@@ -43,8 +43,8 @@
 				transition: all cubic-bezier(0.23, 1, 0.32, 1) 0.5s;
 				padding: 0;
 				&:hover {
-					border: solid 3px $p1-accent-4;
-					color: $p1-accent-4;
+					background: $p1-accent-4;
+					color: $black;
 				}
 				&:disabled {
 					background: transparentize($black, 0.8);
@@ -90,23 +90,23 @@
 		.go-back {
 			text-decoration: none;
 			position: absolute;
-			bottom: 0;
-			left: 0;
-			background: transparentize($black, 0.4);
-			color: $white;
-			border-radius: 0 25px 0 25px;
+			bottom: 50%;
+			left: 0rem;
+			background: $p1-accent-4;
+			color: $black;
+			border-radius: 10px 0 0 10px;
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			height: 3rem;
-			width: 9rem;
+			height: 2rem;
+			width: 0rem;
 			font-size: 1rem;
 			@include heading-font;
-			transition: all 0.3s ease-in-out;
+			transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+			overflow: hidden;
+			animation: revealGoBack 0.4s 0.5s cubic-bezier(0.46, 0.03, 0.52, 0.96)
+				forwards;
 			.icon-group {
-				opacity: 0;
-				animation: revealGoBack 0.5s 0.5s cubic-bezier(0.46, 0.03, 0.52, 0.96)
-					forwards;
 				span {
 					display: inline-block;
 					margin-left: 0.5rem;
@@ -114,15 +114,15 @@
 				}
 			}
 			&:hover {
-				background: $white;
-				color: $black;
+				background: $black;
+				color: $p1-accent-4;
 			}
 		}
 	}
 	//==================================================
 	// Media Queries
 	//==================================================
-	@media screen and (max-width: $desktop-med) {
+	@media screen and (max-width: $desktop-med), screen and (max-height: 860px) {
 		.slide-container {
 			width: calc(100% - (100% / 2));
 		}
@@ -157,10 +157,12 @@
 			}
 			.go-back {
 				top: 0;
+				left: 0;
 				border-radius: 25px 0 25px 0;
 				height: 2rem;
 				width: 7rem;
 				font-size: 0.8rem;
+				animation: none;
 			}
 		}
 	}
@@ -183,11 +185,13 @@
 
 @keyframes revealGoBack {
 	0% {
-		opacity: 0;
+		width: 0rem;
+		left: -1rem;
 		transform: translateX(15px);
 	}
 	100% {
-		opacity: 1;
+		width: 2rem;
+		left: -2rem;
 		transform: translateX(0px);
 	}
 }

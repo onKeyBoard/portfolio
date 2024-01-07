@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styles from './Navigation.module.scss'
-import NavLinkCard from '../NavLinkCard/NavLinkCard'
+import NavContentCard from '../NavContentCard/NavContentCard'
 import ContentHello from '../ContentHello/ContentHello'
 import ContentSkills from '../ContentSkills/ContentSkills'
 import ContentWork from '../ContentWork/ContentWork'
@@ -11,7 +11,7 @@ interface NavigationProps {
 	handleCardHover: (description: string) => void
 }
 
-interface NavLinkCardData {
+interface NavContentCardData {
 	title: string
 	description: string
 	fullContent: JSX.Element
@@ -24,7 +24,7 @@ const Navigation = ({
 	handleCardHover,
 }: NavigationProps) => {
 	// TODO: make this data dynamic
-	const data: NavLinkCardData[] = [
+	const data: NavContentCardData[] = [
 		{
 			title: 'Hello',
 			description: 'Nice to meet you.',
@@ -76,8 +76,8 @@ const Navigation = ({
 			<div className={styles['nav']}>
 				<div className={styles['nav-inner']}>
 					{data.map(
-						({ title, fullContent }: NavLinkCardData, index: number) => (
-							<NavLinkCard
+						({ title, fullContent }: NavContentCardData, index: number) => (
+							<NavContentCard
 								key={index}
 								title={title}
 								status={cardStatuses[index]}

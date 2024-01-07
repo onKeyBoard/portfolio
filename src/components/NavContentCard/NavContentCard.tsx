@@ -1,10 +1,10 @@
 import React from 'react'
-import styles from './NavLinkCard.module.scss'
+import styles from './NavContentCard.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import ButtonUnstyled from '../ButtonUnstyled/ButtonUnstyled'
 
-interface NavLinkCardProps {
+interface NavContentCardProps {
 	title: string
 	status: string
 	onClick: () => void
@@ -13,14 +13,14 @@ interface NavLinkCardProps {
 	fullContent?: React.ReactNode
 }
 
-const NavLinkCard = ({
+const NavContentCard = ({
 	title,
 	status,
 	onClick,
 	onClickClose,
 	onHover,
 	fullContent,
-}: NavLinkCardProps) => {
+}: NavContentCardProps) => {
 	// Use an enum to make sure the status is only one of three values
 	const StatusEnum = {
 		MIN: 'min',
@@ -88,4 +88,4 @@ const NavLinkCard = ({
 	)
 }
 
-export default NavLinkCard
+export default NavContentCard
