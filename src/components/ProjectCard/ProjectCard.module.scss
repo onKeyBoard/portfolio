@@ -2,7 +2,7 @@
 
 .card {
 	background: transparent;
-	border: solid 3px white;
+	border: solid 2px white;
 	border-radius: 18px;
 	overflow: hidden;
 	padding: 0;
@@ -18,12 +18,12 @@
 		position: relative;
 		.image-container {
 			height: 200px;
+			transform: scale(1.1);
+			transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 			img {
 				height: 100%;
 				width: 100%;
 				object-fit: cover;
-				transform: scale(1.1);
-				transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 			}
 		}
 		.overlay {
@@ -47,12 +47,10 @@
 		}
 	}
 	&:hover {
-		border: solid 3px $p1-accent-4;
+		border-color: $p1-accent-4;
 		transform: scale(1.05);
 		.image-container {
-			img {
-				transform: scale(1);
-			}
+			transform: scale(1);
 		}
 	}
 }

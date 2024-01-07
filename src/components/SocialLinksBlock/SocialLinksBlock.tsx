@@ -17,6 +17,7 @@ interface SocialLinksProps {
 }
 
 const SocialLinksBlock = () => {
+	// To Do - Move this data to the database
 	const data = [
 		{
 			name: 'Github',
@@ -65,7 +66,7 @@ const SocialLinksBlock = () => {
 			))}
 			<div className={styles['location']}>
 				<b>
-					<FontAwesomeIcon icon={faLocationDot} /> Colorado, USA
+					<FontAwesomeIcon icon={faLocationDot} /> Colorado
 				</b>
 			</div>
 		</div>
