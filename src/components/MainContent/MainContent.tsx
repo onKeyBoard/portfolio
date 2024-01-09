@@ -19,7 +19,7 @@ const MainContent = () => {
 	const textBgRef = useRef<HTMLDivElement>(null)
 	const textRotation = useRef<number>(0)
 
-	const theme = useContext(ThemeContext).theme
+	const { theme } = useContext(ThemeContext)
 
 	// Animates the background image
 	useEffect(() => {

@@ -26,7 +26,9 @@ const Header = ({ toggledStyle }: HeaderProps) => {
 					</h3>
 				</div>
 			</div>
-			<ThemeSwitcher />
+			<div className={styles['theme-switcher']}>
+				<ThemeSwitcher />
+			</div>
 			<div className={styles['socials']}>
 				<a href='https://www.linkedin.com/in/shawn-pavlas/' target='_blank'>
 					<FontAwesomeIcon icon={faLinkedin} />
