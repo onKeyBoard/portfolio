@@ -1,5 +1,6 @@
 import styles from './ProjectBrowser.module.scss'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { ThemeContext } from '../../context/ThemeProvider'
 import { useQuery } from '@apollo/client'
 import { GET_PROJECTS_SIMPLE } from '../../queries/projects.js'
 import BlockyLoader from '../BlockyLoader/BlockyLoader'
@@ -12,6 +13,7 @@ interface ProjectBrowserProps {
 }
 
 const ProjectBrowser = ({ category }: ProjectBrowserProps) => {
+	const { theme } = useContext(ThemeContext)
 	const [selectedProject, setSelectedProject] = useState<string | null>(null)
 	const [showNav, setShowNav] = useState<boolean>(true)
 	const [loading, setLoading] = useState<boolean>(true)
@@ -60,6 +62,7 @@ const ProjectBrowser = ({ category }: ProjectBrowserProps) => {
 				<ProjectCarousel
 					key={selectedProject}
 					projectId={selectedProject}
+					theme={theme}
 					handleBackButton={() => handleBackButton()}
 				/>
 			)}
@@ -77,6 +80,7 @@ const ProjectBrowser = ({ category }: ProjectBrowserProps) => {
 						<div className={styles['card-hover']}>
 							<ProjectCard
 								key={id}
+								theme={theme}
 								title={title}
 								year={year}
 								imageUrl={imageUrl}

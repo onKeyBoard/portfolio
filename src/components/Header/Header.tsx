@@ -1,16 +1,21 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { ThemeContext } from '../../context/ThemeProvider'
+import ThemeSwitcher from '../ThemeSwitcher/ThemeSwitcher'
 import styles from './Header.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons'
 
 interface HeaderProps {
 	toggledStyle: boolean
 }
 
 const Header = ({ toggledStyle }: HeaderProps) => {
+	const { theme } = useContext(ThemeContext)
+
 	const headerClass = toggledStyle
 		? `${styles['header']} ${styles['toggled']}`
-		: `${styles['header']}`
+		: `${styles['header']} ${styles[theme]}`
+
 	return (
 		<header className={headerClass}>
 			<div className={styles['title']}>
@@ -21,7 +26,7 @@ const Header = ({ toggledStyle }: HeaderProps) => {
 					</h3>
 				</div>
 			</div>
-
+			<ThemeSwitcher />
 			<div className={styles['socials']}>
 				<a href='https://www.linkedin.com/in/shawn-pavlas/' target='_blank'>
 					<FontAwesomeIcon icon={faLinkedin} />

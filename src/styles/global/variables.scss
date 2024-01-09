@@ -100,9 +100,9 @@ $p1-accent: hsl(243, 17%, 75%);
 $p1-accent-2: hsl(231, 44%, 41%);
 $p1-accent-3: #5ecedf;
 // $p1-accent-4: hsl(90, 67%, 62%);
-// $p1-accent-4: hsl(326, 89%, 58%);
 $p1-accent-4: hsl(132, 79%, 65%);
 $p1-accent-5: hsl(231, 81%, 43%);
+$p1-accent-6: hsl(349, 69%, 63%);
 $p1-alt-light: hsl(270, 5%, 67%);
 $p1-alt-dark: hsl(229, 45%, 17%);
 $p1-white: hsl(105, 67%, 96%);
@@ -125,37 +125,4 @@ $primary-font-color: $white;
 @mixin label-font {
 	font-family: $subhead-font-family;
 	font-weight: 700;
-}
-
-@mixin glitch-border {
-	position: relative;
-	margin-bottom: 2rem;
-	&:before {
-		content: ' ';
-		position: absolute;
-		top: -10px;
-		left: 0;
-		display: block;
-		width: 100%;
-		height: 20px;
-		border-style: solid;
-		border-width: 2px 2px 0 2px;
-		border-color: $p1-accent-2;
-		background-color: transparent;
-		transform: perspective(300px) rotateY(15deg) skewX(5deg);
-	}
-	&:after {
-		content: ' ';
-		position: absolute;
-		bottom: -10px;
-		left: 0;
-		display: block;
-		width: 100%;
-		height: 20px;
-		border-style: solid;
-		border-width: 0 2px 2px 2px;
-		border-color: $p1-accent-2;
-		background-color: transparent;
-		transform: perspective(300px) rotateY(-15deg) skewX(5deg);
-	}
 }

@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { ThemeContext } from '../../context/ThemeProvider'
 import styles from './NavContentCard.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
@@ -21,6 +22,8 @@ const NavContentCard = ({
 	onHover,
 	fullContent,
 }: NavContentCardProps) => {
+	const { theme } = useContext(ThemeContext)
+	const themeClass = `${styles['border']} ${styles[theme]}`
 	// Use an enum to make sure the status is only one of three values
 	const StatusEnum = {
 		MIN: 'min',
@@ -50,17 +53,13 @@ const NavContentCard = ({
 	)
 	// Render the min card if the status is not max, otherwise render the full card
 	const minCard = () => (
-		<a
-			className={styles['border']}
-			onClick={handleClick}
-			onMouseEnter={handleHover}
-		>
+		<a className={themeClass} onClick={handleClick} onMouseEnter={handleHover}>
 			{cardContent}
 		</a>
 	)
 
 	const fullCard = () => (
-		<div className={styles['border']}>
+		<div className={themeClass}>
 			{cardContent}
 			{fullContent && (
 				<div className={styles['full-content']}>

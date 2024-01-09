@@ -15,11 +15,13 @@ import {
 
 interface ProjectCarouselProps {
 	projectId: string
+	theme: string
 	handleBackButton: () => void
 }
 
 const ProjectCarousel = ({
 	projectId,
+	theme,
 	handleBackButton,
 }: ProjectCarouselProps) => {
 	// If there is no projectId, return null
@@ -86,14 +88,12 @@ const ProjectCarousel = ({
 				</div>
 			)}
 			{link && (
-				<div className={styles['link']}>
-					<a href={link} target='_blank' rel='noopener noreferrer'>
-						<Button text='View Project' />
-					</a>
-				</div>
+				<a href={link} target='_blank' rel='noopener noreferrer'>
+					<Button text='View Project' theme={theme} />
+				</a>
 			)}
 			<ButtonUnstyled handleClick={handleBackButton}>
-				<div className={styles['go-back']}>
+				<div className={`${styles['go-back']} ${styles[theme]}`}>
 					<div className={styles['icon-group']}>
 						<FontAwesomeIcon icon={faArrowLeft} />
 					</div>
@@ -112,6 +112,7 @@ const ProjectCarousel = ({
 							<ProjectCarouselSlide
 								active={currentSlide === index}
 								key={id}
+								theme={theme}
 								imageUrl={imageUrl}
 								title={title}
 								description={description}
@@ -120,7 +121,7 @@ const ProjectCarousel = ({
 					)}
 				</div>
 				{totalSlides >= 2 && (
-					<div className={styles['controls']}>
+					<div className={`${styles['controls']} ${styles[theme]}`}>
 						<button
 							onClick={() => handleSlideChange('prev')}
 							disabled={startOfSlides ? true : undefined}

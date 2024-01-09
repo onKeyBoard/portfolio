@@ -1,4 +1,5 @@
 import { Suspense } from 'react'
+import ThemeProvider from '../context/ThemeProvider'
 import MainContent from '../components/MainContent/MainContent'
 import BlockyLoader from '../components/BlockyLoader/BlockyLoader'
 import Head from 'next/head'
@@ -14,7 +15,9 @@ const PageContent: React.FC<PageContentProps> = ({ children }) => {
 				<title key='title'>Shawn Pavlas - Porfolio</title>
 			</Head>
 			<Suspense fallback={<BlockyLoader />}>
-				<MainContent />
+				<ThemeProvider>
+					<MainContent />
+				</ThemeProvider>
 			</Suspense>
 		</>
 	)

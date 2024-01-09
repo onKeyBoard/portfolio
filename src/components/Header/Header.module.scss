@@ -144,10 +144,38 @@
 			}
 		}
 	}
+	//==================================================
+	// themes
+	//==================================================
+	&.blue {
+		.title {
+			h1 {
+				color: $p1-accent-3;
+			}
+		}
+		.socials {
+			a {
+				color: $p1-accent-3;
+			}
+		}
+	}
+	&.red {
+		.title {
+			h1 {
+				color: $p1-accent-6;
+			}
+		}
+		.socials {
+			a {
+				color: $p1-accent-6;
+			}
+		}
+	}
 }
 
-// Animation Keyframes
-
+//==================================================
+// animation keyframes
+//==================================================
 @keyframes fadeIn {
 	0% {
 		opacity: 0;

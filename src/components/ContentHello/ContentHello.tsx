@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { ThemeContext } from '../../context/ThemeProvider'
 import BlockyLoader from '../BlockyLoader/BlockyLoader'
 import { RichText } from '@graphcms/rich-text-react-renderer'
 import { RichTextContent } from '@graphcms/rich-text-types'
@@ -18,6 +19,7 @@ interface ContentHelloData {
 }
 
 const ContentHello = () => {
+	const { theme } = useContext(ThemeContext)
 	const { loading, error, data } = useQuery(GET_BIO)
 	if (loading) return <BlockyLoader />
 	if (error) return <p>Error : {error.message}</p>
@@ -31,14 +33,14 @@ const ContentHello = () => {
 
 	return (
 		<section className={styles['container']}>
-			<div className={styles['profile_grid']}>
+			<div className={`${styles['profile_grid']} ${styles[theme]}`}>
 				<div className={styles['photo']}>
 					<div className={styles['profile_image']}>
 						<img src={ResizedProfileImageUrl} alt='profile' />
 					</div>
 				</div>
 				<div className={styles['info']}>
-					<SocialLinksBlock />
+					<SocialLinksBlock theme={theme} />
 				</div>
 				<div className={styles['bio']}>
 					<div className={styles['content']}>

@@ -53,6 +53,22 @@
 					cursor: not-allowed;
 				}
 			}
+			@mixin controlsThemeStyles($color) {
+				border-top: solid 2px transparentize($color, 0.8);
+				button {
+					background: transparentize($color, 0.7);
+					&:hover {
+						background: $black;
+						color: $color;
+					}
+				}
+			}
+			&.blue {
+				@include controlsThemeStyles($p1-accent-3);
+			}
+			&.red {
+				@include controlsThemeStyles($p1-accent-6);
+			}
 		}
 	}
 	.carousel-overview {
@@ -116,6 +132,20 @@
 			&:hover {
 				background: $black;
 				color: $p1-accent-4;
+			}
+			@mixin goBackThemeStyles($color) {
+				background: $color;
+				color: $black;
+				&:hover {
+					background: $black;
+					color: $color;
+				}
+			}
+			&.blue {
+				@include goBackThemeStyles($p1-accent-3);
+			}
+			&.red {
+				@include goBackThemeStyles($p1-accent-6);
 			}
 		}
 	}

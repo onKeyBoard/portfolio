@@ -71,6 +71,21 @@
 			padding-bottom: 0.5rem;
 		}
 	}
+	@mixin themeStyles($color) {
+		.photo,
+		.info,
+		.bio {
+			box-shadow: -2px -2px 1px 0 transparentize($color, 0.7),
+				2px 2px 0 0 transparentize($p1-primary-dark, 0.6);
+		}
+	}
+	// Themes
+	&.blue {
+		@include themeStyles($p1-accent-3);
+	}
+	&.red {
+		@include themeStyles($p1-accent-6);
+	}
 	//==================================================
 	// Media Queries
 	//==================================================

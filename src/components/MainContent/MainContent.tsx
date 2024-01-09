@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect, Suspense, use } from 'react'
+import React, { useState, useRef, useEffect, Suspense, useContext } from 'react'
+import { ThemeContext } from '../../context/ThemeProvider'
 import styles from './MainContent.module.scss'
 import Scene3D from '../Scene3D2/Scene3D'
 import Header from '../Header/Header'
@@ -17,6 +18,8 @@ const MainContent = () => {
 	const textRef = useRef<HTMLDivElement>(null)
 	const textBgRef = useRef<HTMLDivElement>(null)
 	const textRotation = useRef<number>(0)
+
+	const theme = useContext(ThemeContext).theme
 
 	// Animates the background image
 	useEffect(() => {
@@ -101,7 +104,7 @@ const MainContent = () => {
 						<Header toggledStyle={isAnyCardOpen} />
 						<div id='headline' className={styles['hover-headline']}>
 							<div
-								className={`${styles['headline-background']} ${
+								className={`${styles['headline-background']} ${styles[theme]} ${
 									isAnyCardOpen ? styles['hide'] : ''
 								}`}
 								ref={textRef}

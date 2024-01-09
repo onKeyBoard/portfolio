@@ -33,6 +33,17 @@
 			font-size: 0.6rem;
 			color: $p1-accent-4;
 		}
+		// Theme styles
+		&.blue {
+			p {
+				color: $p1-accent-3;
+			}
+		}
+		&.red {
+			p {
+				color: $p1-accent-6;
+			}
+		}
 	}
 	//==================================================
 	// Media Queries

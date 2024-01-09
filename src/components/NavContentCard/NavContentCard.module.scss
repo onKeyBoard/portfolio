@@ -1,5 +1,56 @@
 @import '../../styles/global/variables.scss';
 
+//==================================================
+// THEME MIXINS
+//==================================================
+
+@mixin minThemeStyles($color) {
+	background: linear-gradient(45deg, transparent, transparent, $color);
+	background-size: 280% 280%;
+	background-position: 0% 50%;
+	box-shadow: inset 0 0 0 -3px $color;
+	&:hover {
+		box-shadow: inset 0 0 0 2px $color;
+		background-position: 50% 50%;
+		.card {
+			.title {
+				color: $color;
+			}
+		}
+	}
+}
+
+@mixin maxThemeStyles($color) {
+	border: solid 1px $color;
+	box-shadow: 0 0 10px 1px transparentize($color, 0.2);
+	background: linear-gradient(
+		45deg,
+		transparentize($p1-alt-dark, 0.3),
+		transparentize($color, 0.3),
+		transparentize($p1-accent-2, 0.3)
+	);
+	.card {
+		.title {
+			color: $color;
+		}
+	}
+	.bottom-bar {
+		background: $color;
+		.close {
+			color: $black;
+		}
+		&:hover {
+			background: $black;
+			.close {
+				color: $color;
+			}
+		}
+	}
+}
+
+//==================================================
+// MAIN STYLES
+//==================================================
 // Styles related to the min card form exclusively to manage hover effects
 a.border {
 	background: linear-gradient(45deg, transparent, transparent, $p1-accent-4);
@@ -35,6 +86,13 @@ a.border {
 				}
 			}
 		}
+	}
+	// Themes
+	&.blue {
+		@include minThemeStyles($p1-accent-3);
+	}
+	&.red {
+		@include minThemeStyles($p1-accent-6);
 	}
 }
 
@@ -199,6 +257,13 @@ a.border {
 					}
 				}
 			}
+			//Themes
+			&.blue {
+				@include maxThemeStyles($p1-accent-3);
+			}
+			&.red {
+				@include maxThemeStyles($p1-accent-6);
+			}
 		}
 	}
 	&.hidden {
@@ -254,6 +319,9 @@ a.border {
 			}
 		}
 	}
+	//==================================================
+	// Themes
+	//==================================================
 }
 
 //==================================================

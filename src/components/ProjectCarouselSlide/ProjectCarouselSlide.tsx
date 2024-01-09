@@ -8,6 +8,7 @@ import 'react-medium-image-zoom/dist/styles.css'
 interface ProjectCarouselSlideProps {
 	imageUrl: string
 	title: string
+	theme: string
 	description: string
 	active: boolean
 }
@@ -15,6 +16,7 @@ interface ProjectCarouselSlideProps {
 const ProjectCarouselSlide = ({
 	imageUrl,
 	title,
+	theme,
 	description,
 	active,
 }: ProjectCarouselSlideProps) => {
@@ -40,7 +42,7 @@ const ProjectCarouselSlide = ({
 	const renderInfo = () => {
 		if (title || description) {
 			return (
-				<div className={styles['info']}>
+				<div className={`${styles['info']} ${styles[theme]}`}>
 					{title && <h5>{title}</h5>}
 					{description && <p>{description}</p>}
 				</div>

@@ -1,0 +1,107 @@
+@import '../../styles/global/variables.scss';
+
+.theme-switcher {
+	position: fixed;
+	bottom: 1rem;
+	left: 50%;
+	transform: translateX(-50%);
+	font-size: 1.5rem;
+	.theme-palette {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		width: auto;
+		gap: 0.5rem;
+		padding: 0.5rem;
+		opacity: 0;
+		animation: revealThemePalette ease-in-out 0.3s forwards;
+		.green,
+		.blue,
+		.red {
+			border-radius: 3px;
+			width: 0.75rem;
+			height: 0.75rem;
+			margin: 0;
+			transition: all ease-in-out 0.5s;
+			&:hover {
+				transform: scaleY(1.5);
+				transition: all ease-in-out 0.2s;
+			}
+		}
+		.green {
+			background-color: $p1-accent-4;
+		}
+		.blue {
+			background-color: $p1-accent-3;
+		}
+		.red {
+			background-color: $p1-accent-6;
+		}
+	}
+	.palette-button {
+		opacity: 0;
+		animation: revealPaletteButton ease-in-out 0.3s forwards;
+		&:hover {
+			color: transparentize($white, 0.5);
+			button {
+				color: $white !important;
+			}
+		}
+		button {
+			color: $p1-accent-4;
+		}
+		&.blue {
+			button {
+				color: $p1-accent-3;
+			}
+		}
+		&.red {
+			button {
+				color: $p1-accent-6;
+			}
+		}
+	}
+	//==================================================
+	// Media Queries
+	//==================================================
+	@media screen and (max-width: $mobile-max) {
+		bottom: 0.5rem;
+		left: 1rem;
+		transform: none;
+	}
+}
+
+@keyframes revealThemePalette {
+	0% {
+		opacity: 0;
+		transform: scaleX(0.1);
+	}
+	100% {
+		opacity: 1;
+		transform: scaleX(1);
+	}
+}
+
+@keyframes revealPaletteButton {
+	0% {
+		opacity: 0;
+		transform: scale(0.1);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}

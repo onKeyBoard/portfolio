@@ -53,4 +53,15 @@
 			transform: scale(1);
 		}
 	}
+	// Themes
+	&.blue {
+		&:hover {
+			border-color: $p1-accent-3;
+		}
+	}
+	&.red {
+		&:hover {
+			border-color: $p1-accent-6;
+		}
+	}
 }

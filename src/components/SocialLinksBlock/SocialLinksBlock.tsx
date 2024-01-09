@@ -9,14 +9,18 @@ import {
 } from '@fortawesome/free-brands-svg-icons'
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 
-interface SocialLinksProps {
+interface SocialLinksData {
 	name: string
 	icon: string
 	url: string
 	index: number
 }
 
-const SocialLinksBlock = () => {
+interface SocialLinksBlockProps {
+	theme: string
+}
+
+const SocialLinksBlock = ({ theme }: SocialLinksBlockProps) => {
 	// To Do - Move this data to the database
 	const data = [
 		{
@@ -34,7 +38,7 @@ const SocialLinksBlock = () => {
 			icon: 'faInstagram',
 			url: 'instagram.com/shawnpavlas',
 		},
-	] as SocialLinksProps[]
+	] as SocialLinksData[]
 
 	const getIcon = (iconName: string): IconDefinition => {
 		switch (iconName) {
@@ -50,7 +54,7 @@ const SocialLinksBlock = () => {
 	}
 
 	return (
-		<div className={styles['container']}>
+		<div className={`${styles['container']} ${styles[theme]}`}>
 			{data.map(({ name, icon, url }, index) => (
 				<li key={index} className={styles['item']}>
 					<a

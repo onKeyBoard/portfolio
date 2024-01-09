@@ -4,6 +4,7 @@ import { getImageCustomWidth } from '../../utils/cloudinaryUtils'
 
 interface ProjectCardProps {
 	title: string
+	theme: string
 	imageUrl: string
 	year: string
 	handleClick: () => void
@@ -11,6 +12,7 @@ interface ProjectCardProps {
 
 const ProjectCard = ({
 	title,
+	theme,
 	imageUrl,
 	year,
 	handleClick,
@@ -18,7 +20,10 @@ const ProjectCard = ({
 	const thumbnailUrl = getImageCustomWidth(imageUrl, 400)
 
 	return (
-		<button className={styles['card']} onClick={handleClick}>
+		<button
+			className={`${styles['card']} ${styles[theme]}`}
+			onClick={handleClick}
+		>
 			<div className={styles['content']}>
 				<div className={styles['image-container']}>
 					<img src={thumbnailUrl} alt={title} />
