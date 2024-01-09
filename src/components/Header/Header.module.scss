@@ -133,6 +133,9 @@
 		border-radius: 0;
 		&.toggled {
 			transform: translateY(-100%);
+			.theme-switcher {
+				display: none;
+			}
 		}
 		.title {
 			h1 {
