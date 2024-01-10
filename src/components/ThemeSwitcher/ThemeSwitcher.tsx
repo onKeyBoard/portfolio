@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPalette } from '@fortawesome/free-solid-svg-icons'
 import styles from './ThemeSwitcher.module.scss'
 
-const ThemeSwitcher = () => {
+const ThemeSwitcher = ({ isHidden = false }) => {
 	const { theme, switchTheme } = useContext(ThemeContext)
 	const handleThemeSwitch = (themeName: string) => {
 		switchTheme(themeName)
@@ -15,7 +15,11 @@ const ThemeSwitcher = () => {
 	const [paletteOpen, setPaletteOpen] = useState(false)
 
 	return (
-		<div className={styles['theme-switcher']}>
+		<div
+			className={`${styles['theme-switcher']} ${
+				isHidden ? styles['hidden'] : ''
+			}`}
+		>
 			{paletteOpen ? (
 				<div className={styles['theme-palette']}>
 					<ButtonUnstyled handleClick={() => handleThemeSwitch('green')}>

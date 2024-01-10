@@ -86,10 +86,6 @@
 		}
 	}
 
-	.theme-switcher {
-		transition: all ease-in-out 0.4s;
-	}
-
 	&.toggled {
 		background: none;
 		.title {
@@ -118,10 +114,6 @@
 					opacity: 0.8;
 				}
 			}
-		}
-		.theme-switcher {
-			opacity: 0;
-			pointer-events: none;
 		}
 	}
 	// Mobile

@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { ThemeContext } from '../../context/ThemeProvider'
-import ThemeSwitcher from '../ThemeSwitcher/ThemeSwitcher'
 import styles from './Header.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons'
@@ -25,9 +24,6 @@ const Header = ({ toggledStyle }: HeaderProps) => {
 						Software Engineer<sup>+</sup>
 					</h3>
 				</div>
-			</div>
-			<div className={styles['theme-switcher']}>
-				<ThemeSwitcher />
 			</div>
 			<div className={styles['socials']}>
 				<a href='https://www.linkedin.com/in/shawn-pavlas/' target='_blank'>

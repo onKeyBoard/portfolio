@@ -6,6 +6,7 @@ import Header from '../Header/Header'
 import Navigation from '../Navigation/Navigation'
 import Footer from '../Footer/Footer'
 import BlockyLoader from '../BlockyLoader/BlockyLoader'
+import ThemeSwitcher from '../ThemeSwitcher/ThemeSwitcher'
 import limitMouseX from '../../utils/generalUtils'
 
 const MainContent = () => {
@@ -117,6 +118,7 @@ const MainContent = () => {
 							handleCardHover={switchHoverText}
 						/>
 						<Footer toggledStyle={isAnyCardOpen} />
+						<ThemeSwitcher isHidden={isAnyCardOpen} />
 					</div>
 				</div>
 			</Suspense>

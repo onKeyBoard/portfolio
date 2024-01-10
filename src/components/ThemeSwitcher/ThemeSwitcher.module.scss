@@ -6,6 +6,8 @@
 	left: 50%;
 	transform: translateX(-50%);
 	font-size: 1.5rem;
+	z-index: 11;
+	transition: opacity ease-in-out 0.3s;
 	.theme-palette {
 		display: flex;
 		flex-direction: row;
@@ -61,6 +63,10 @@
 				color: $p1-accent-6;
 			}
 		}
+	}
+	&.hidden {
+		opacity: 0;
+		pointer-events: none;
 	}
 	//==================================================
 	// Media Queries
