@@ -36,7 +36,7 @@ const SocialLinksBlock = ({ theme }: SocialLinksBlockProps) => {
 		{
 			name: 'Instagram',
 			icon: 'faInstagram',
-			url: 'instagram.com/shawnpavlas',
+			url: 'instagram.com/shawn.joseph.pictures',
 		},
 	] as SocialLinksData[]
 
