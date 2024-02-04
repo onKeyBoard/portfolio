@@ -27,7 +27,7 @@ const ContentSkills = () => {
 				{skills.map(({ id, title, iconUrl }: Skill) => (
 					<div key={id} className={styles['card']}>
 						<div className={styles['icon']}>
-							<img src={getImageCustomWidth(iconUrl, 250)} alt={title} />
+							<img src={getImageCustomWidth(iconUrl, 200)} alt={title} />
 						</div>
 						<h3 className={styles['title']}>{title}</h3>
 					</div>
