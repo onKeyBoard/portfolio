@@ -21,14 +21,13 @@
 	transition: all ease-in-out 1s;
 	.title {
 		width: auto;
-		transform: translateZ(200px) skewY(-2deg);
 		transition: all ease-in-out 0.2s;
 		backface-visibility: hidden;
 		transform-style: preserve-3d;
 		will-change: transform;
 		text-align: center;
-		opacity: 0;
-		animation: fadeIn 1s 0.8s forwards;
+		transform: translateY(-200px) translateZ(200px) skewY(-2deg);
+		animation: slideInTitle 0.6s 0.8s forwards;
 		.inner {
 			box-shadow: 0 0 20px 0 transparentize($white, 0.5);
 			border-radius: 10px;
@@ -63,13 +62,12 @@
 		justify-content: center;
 		align-items: center;
 		height: 2rem;
-		opacity: 0;
 		transition: all ease-in-out 0.5s 0.2s;
-		transform: scale(1) translateZ(200px);
+		transform: translateY(-200px) translateZ(200px) scale(1.1);
 		transform-style: preserve-3d;
 		will-change: transform;
 		backface-visibility: hidden;
-		animation: fadeIn 1s 0.8s forwards;
+		animation: slideInSocial 0.6s 0.8s forwards;
 		a {
 			color: $p1-accent-4;
 			border: solid 2px transparent;
@@ -179,11 +177,20 @@
 //==================================================
 // animation keyframes
 //==================================================
-@keyframes fadeIn {
+@keyframes slideInTitle {
 	0% {
-		opacity: 0;
+		transform: translateY(-200px) translateZ(200px) skewY(-2deg);
 	}
 	100% {
-		opacity: 1;
+		transform: translateY(0) translateZ(200px) skewY(-2deg);
+	}
+}
+
+@keyframes slideInSocial {
+	0% {
+		transform: translateY(-200px) translateZ(200px) scale(1.1);
+	}
+	100% {
+		transform: translateY(0) translateZ(200px) scale(1);
 	}
 }
