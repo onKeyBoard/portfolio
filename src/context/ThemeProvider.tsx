@@ -8,10 +8,10 @@ interface ThemeContextProps {
 export const ThemeContext = createContext<ThemeContextProps>(undefined!)
 
 const ThemeProvider = ({ children }) => {
-	const [theme, setTheme] = useState('green')
+	const validThemes = ['green', 'blue', 'red']
+	const [theme, setTheme] = useState(validThemes[(Math.random() * 3) | 0])
 
 	const switchTheme = (themeName: string) => {
-		const validThemes = ['green', 'blue', 'red']
 		validThemes.includes(themeName) ? setTheme(themeName) : setTheme('green')
 	}
 
