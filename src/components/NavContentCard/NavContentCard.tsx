@@ -1,9 +1,10 @@
-import React, { useContext } from 'react'
+import React, { useContext, Suspense } from 'react'
 import { ThemeContext } from '../../context/ThemeProvider'
 import styles from './NavContentCard.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import ButtonUnstyled from '../ButtonUnstyled/ButtonUnstyled'
+import BlockyLoader from '../BlockyLoader/BlockyLoader'
 
 interface NavContentCardProps {
 	title: string
@@ -63,7 +64,9 @@ const NavContentCard = ({
 			{cardContent}
 			{fullContent && (
 				<div className={styles['full-content']}>
-					<div>{fullContent}</div>
+					<Suspense fallback={<BlockyLoader />}>
+						<div>{fullContent} </div>
+					</Suspense>
 				</div>
 			)}
 			<div className={styles['bottom-bar']}>
