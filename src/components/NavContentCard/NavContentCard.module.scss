@@ -226,10 +226,10 @@ a.border {
 				height: 3rem;
 				background: $p1-accent-4;
 				position: absolute;
-				bottom: 0;
-				right: 0;
+				bottom: 0.5rem;
+				right: 0.5rem;
 				padding-right: 0.5rem;
-				border-radius: 8px 0 8px 0;
+				border-radius: 8px;
 				display: flex;
 				justify-content: flex-end;
 				align-items: center;
