@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import { ThemeContext } from '../../context/ThemeProvider'
 import styles from './Footer.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faReact } from '@fortawesome/free-brands-svg-icons'
@@ -9,11 +8,6 @@ interface FooterProps {
 }
 
 const Footer = ({ toggledStyle }: FooterProps) => {
-	const { theme, switchTheme } = useContext(ThemeContext)
-	const handleThemeSwitch = (themeName: string) => {
-		switchTheme(themeName)
-	}
-
 	const footerClass = toggledStyle
 		? `${styles['footer']} ${styles['toggled']}`
 		: `${styles['footer']}`

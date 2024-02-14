@@ -13,6 +13,7 @@ const ThemeProvider = ({ children }) => {
 	const [theme, setTheme] = useState<string>(validThemes[0])
 
 	const switchTheme = (themeName: string) => {
+		console.log('switchTheme', themeName)
 		validThemes.includes(themeName)
 			? setTheme(themeName)
 			: setTheme(validThemes[0])
