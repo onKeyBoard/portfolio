@@ -21,7 +21,7 @@
 }
 
 @mixin maxThemeStyles($color) {
-	border: solid 1px $color;
+	border: none;
 	box-shadow: 0 0 10px 1px transparentize($color, 0.2);
 	background: linear-gradient(
 		45deg,
@@ -29,11 +29,6 @@
 		transparentize($color, 0.3),
 		transparentize($p1-accent-2, 0.3)
 	);
-	.card {
-		.title {
-			color: $color;
-		}
-	}
 	.bottom-bar {
 		background: $color;
 		.close {
@@ -156,16 +151,14 @@ a.border {
 		width: 100%;
 		height: 100%;
 		transform: translate3d(0, 0, 0) translateY(0);
-		padding: 0.5rem;
+		// padding: 0.5rem;
 		background-color: transparentize(darken($p1-accent-5, 20%), 0.4);
 		transition: width cubic-bezier(0.23, 1, 0.32, 1) 0.3s,
 			height cubic-bezier(0.39, 0.575, 0.565, 1) 0.3s 0.1s,
 			transform cubic-bezier(0.39, 0.575, 0.565, 1) 0.6s,
 			background-color ease-in-out 0.3s 0.8s;
 		.border {
-			border: solid 1px $p1-accent-4;
-			box-shadow: 0 0 10px 1px transparentize($p1-accent-4, 0.2);
-			border-radius: 10px;
+			border-radius: 0;
 			background: linear-gradient(
 				45deg,
 				transparentize($p1-alt-dark, 0.3),
@@ -177,7 +170,6 @@ a.border {
 			overflow: hidden;
 			.card {
 				position: absolute;
-				border-radius: 10px 10px 0 0;
 				width: 100%;
 				height: 6.8rem;
 				background: none;
@@ -191,9 +183,9 @@ a.border {
 					height: auto;
 				}
 				.title {
-					color: $p1-accent-4;
+					color: $black;
 					font-size: 2rem;
-					margin-top: 0;
+					margin-top: 0.5rem;
 					border-radius: 0 0 20px 20px;
 					box-shadow: 0 0 10px 0 transparentize($p1-alt-dark, 0.8);
 					padding: 0.5rem 2rem;
@@ -210,7 +202,6 @@ a.border {
 				height: 100%;
 				opacity: 1;
 				background: transparentize($p1-primary-dark, 0.8);
-				border-radius: 10px;
 				overflow-y: scroll;
 				scroll-behavior: smooth;
 				> div {
@@ -302,7 +293,9 @@ a.border {
 					top: 0;
 					border-radius: 0;
 					.title {
+						color: $white;
 						font-size: 1.5rem;
+						margin-top: 0;
 					}
 				}
 				.full-content {

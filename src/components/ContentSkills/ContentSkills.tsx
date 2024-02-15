@@ -19,7 +19,7 @@ const ContentSkills = () => {
 	const { skills } = data
 
 	return (
-		<>
+		<div className={styles['skills-content']}>
 			<div className={styles['skills-headline']}>
 				<SectionTitle text="I'm well-versed in these tools & technologies" />
 			</div>
@@ -27,13 +27,13 @@ const ContentSkills = () => {
 				{skills.map(({ id, title, iconUrl }: Skill) => (
 					<div key={id} className={styles['card']}>
 						<div className={styles['icon']}>
-							<img src={getImageCustomWidth(iconUrl, 200)} alt={title} />
+							<img src={getImageCustomWidth(iconUrl, 120)} alt={title} />
 						</div>
 						<h3 className={styles['title']}>{title}</h3>
 					</div>
 				))}
 			</div>
-		</>
+		</div>
 	)
 }
 
