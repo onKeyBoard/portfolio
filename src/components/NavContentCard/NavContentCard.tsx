@@ -2,7 +2,7 @@ import React, { useContext, Suspense } from 'react'
 import { ThemeContext } from '../../context/ThemeProvider'
 import styles from './NavContentCard.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
 import ButtonUnstyled from '../ButtonUnstyled/ButtonUnstyled'
 import BlockyLoader from '../BlockyLoader/BlockyLoader'
 
@@ -72,7 +72,7 @@ const NavContentCard = ({
 			<div className={styles['bottom-bar']}>
 				<ButtonUnstyled handleClick={onClickClose}>
 					<div className={styles['close']}>
-						<FontAwesomeIcon icon={faBars} />
+						<FontAwesomeIcon icon={faXmark} />
 					</div>
 				</ButtonUnstyled>
 			</div>
