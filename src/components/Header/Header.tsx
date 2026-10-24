@@ -21,7 +21,7 @@ const Header = ({ toggledStyle }: HeaderProps) => {
 				<div className={styles['inner']}>
 					<h1>Shawn Pavlas</h1>
 					<h3>
-						Software Engineer<sup>+</sup>
+						UX Designer/Engineer
 					</h3>
 				</div>
 			</div>
