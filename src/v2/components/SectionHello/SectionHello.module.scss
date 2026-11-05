@@ -1,0 +1,131 @@
+@import '../../styles/tokens.scss';
+
+.section {
+	width: 100%;
+	background: var(--bg);
+	@include full-viewport-section();
+}
+
+.inner {
+	@include section-shell();
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: 220px 1fr;
+	gap: 48px;
+	align-items: start;
+	@include cascade-reveal(2, 120ms);
+	@include exit-fade();
+
+	@media screen and (max-width: 640px) {
+		grid-template-columns: 1fr;
+	}
+}
+
+.photoColumn {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+
+	@media screen and (max-width: 640px) {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		align-items: center;
+		gap: 20px 24px;
+	}
+}
+
+.photoImage {
+	display: block;
+	width: 220px;
+	height: 220px;
+	border-radius: var(--radius-lg);
+	object-fit: cover;
+	background: var(--bg-elevated);
+
+	@media screen and (max-width: 640px) {
+		width: 120px;
+		height: 120px;
+	}
+}
+
+.info {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 20px;
+
+	@media screen and (max-width: 640px) {
+		gap: 14px;
+	}
+}
+
+.social {
+	display: flex;
+	gap: 10px;
+
+	@media screen and (max-width: 640px) {
+		flex-wrap: wrap;
+	}
+}
+
+.socialIcon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: var(--bg-elevated);
+	color: var(--text-muted);
+	font-size: 16px;
+	text-decoration: none;
+	transition: background var(--duration-hover) var(--ease-gentle),
+		color var(--duration-hover) var(--ease-gentle);
+
+	&:hover,
+	&:focus-visible {
+		background: var(--accent-a);
+		color: var(--bg-elevated);
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--accent-a);
+		outline-offset: 2px;
+	}
+}
+
+.location {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	font-size: var(--text-sm);
+	font-weight: 600;
+	color: var(--text-muted);
+}
+
+.content {
+	padding-top: 4px;
+}
+
+.headline {
+	@include section-title();
+	font-size: var(--text-lg);
+	margin-bottom: 20px;
+}
+
+.body {
+	font-size: var(--text-base);
+	line-height: 1.7;
+	color: var(--text-muted);
+	max-width: 62ch;
+
+	p {
+		font-size: inherit;
+	}
+
+	p + p {
+		margin-top: 1em;
+	}
+}

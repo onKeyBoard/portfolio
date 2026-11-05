@@ -1,0 +1,29 @@
+@import '../../styles/tokens.scss';
+
+.toggle {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	border-radius: var(--radius-sm);
+	border: var(--border-width) solid var(--border-subtle);
+	background: var(--bg-elevated);
+	color: var(--text);
+	cursor: pointer;
+	font-size: 18px;
+	line-height: 1;
+	transition: background var(--duration-hover) var(--ease-gentle),
+		border-color var(--duration-hover) var(--ease-gentle);
+
+	&:hover,
+	&:focus-visible {
+		background: var(--bg-elevated-hover);
+		border-color: var(--accent-a);
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--accent-a);
+		outline-offset: 2px;
+	}
+}

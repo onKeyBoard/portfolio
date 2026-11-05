@@ -1,0 +1,16 @@
+@import '../../styles/tokens.scss';
+
+.section {
+	width: 100%;
+	background: var(--surface-alt);
+	--surface: var(--surface-alt);
+	@include full-viewport-section();
+}
+
+.inner {
+	@include section-shell();
+}
+
+.title {
+	@include visually-hidden();
+}

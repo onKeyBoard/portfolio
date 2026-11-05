@@ -1,0 +1,137 @@
+.v2-root {
+	--font-headline: var(--font-outfit), 'Outfit', Helvetica, Arial, sans-serif;
+	--font-body: var(--font-open-sans), 'Open Sans', Helvetica, Arial,
+		sans-serif;
+
+	--radius-sm: 8px;
+	--radius-md: 14px;
+	--radius-lg: 24px;
+	--border-width: 1.5px;
+	--max-width: 1200px;
+	--gutter: clamp(20px, 5vw, 90px);
+	--section-gap: clamp(64px, 10vw, 140px);
+
+	--ease-gentle: cubic-bezier(0.22, 1, 0.36, 1);
+	--duration-reveal: 560ms;
+	--duration-hover: 420ms;
+
+	--text-base: 18px;
+	--text-sm: 16px;
+	--text-md: 19px;
+	--text-lg: 22px;
+
+	--bg: hsl(36, 40%, 88%);
+	--surface-alt: hsl(36, 34%, 83%);
+	--bg-elevated: hsl(36, 48%, 93%);
+	--bg-elevated-hover: hsl(36, 48%, 96%);
+	--text: hsl(24, 38%, 18%);
+	--text-muted: hsl(24, 24%, 36%);
+	--border-subtle: hsl(36, 22%, 76%);
+	--accent-a: hsl(150, 65%, 48%);
+	--accent-b: hsl(208, 92%, 54%);
+	--metal-highlight: hsl(40, 55%, 97%);
+	--hero-gradient: linear-gradient(
+		135deg,
+		hsla(150, 65%, 48%, 0.16),
+		hsla(208, 92%, 54%, 0.22)
+	);
+
+	background: var(--bg);
+	color: var(--text);
+	font-family: var(--font-body);
+	font-size: var(--text-base);
+	line-height: 1.6;
+	min-height: 100vh;
+	-webkit-font-smoothing: antialiased;
+}
+
+.v2-root[data-v2-theme='dark'] {
+	--bg: hsl(222, 26%, 13%);
+	--surface-alt: hsl(222, 30%, 10%);
+	--bg-elevated: hsl(222, 24%, 17%);
+	--bg-elevated-hover: hsl(222, 24%, 21%);
+	--text: hsl(210, 36%, 94%);
+	--text-muted: hsl(212, 18%, 68%);
+	--border-subtle: hsl(222, 18%, 26%);
+	--accent-a: hsl(150, 70%, 58%);
+	--accent-b: hsl(208, 92%, 64%);
+	--metal-highlight: hsl(210, 55%, 93%);
+	--hero-gradient: linear-gradient(
+		135deg,
+		hsla(150, 70%, 58%, 0.14),
+		hsla(208, 92%, 64%, 0.18)
+	);
+}
+
+.v2-root * {
+	box-sizing: border-box;
+}
+
+.v2-root--snap {
+	height: 100vh;
+	height: 100dvh;
+	overflow-y: auto;
+	overflow-x: hidden;
+	scroll-behavior: smooth;
+
+	@media screen and (min-width: 900px) {
+		scroll-snap-type: y mandatory;
+	}
+}
+
+@media screen and (max-width: 899px) {
+	.v2-root--snap #top,
+	.v2-root--snap #hello,
+	.v2-root--snap #skills,
+	.v2-root--snap #work,
+	.v2-root--snap #extras {
+		display: none;
+	}
+
+	.v2-root--snap[data-active-mobile-section='top'] #top,
+	.v2-root--snap[data-active-mobile-section='hello'] #hello,
+	.v2-root--snap[data-active-mobile-section='skills'] #skills,
+	.v2-root--snap[data-active-mobile-section='work'] #work,
+	.v2-root--snap[data-active-mobile-section='extras'] #extras {
+		display: flex;
+		position: fixed;
+		inset: 0;
+	}
+}
+
+.v2-top-line {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: var(--border-width);
+	background: linear-gradient(90deg, var(--accent-a), var(--accent-b));
+	z-index: 30;
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity var(--duration-hover) var(--ease-gentle);
+
+	&.revealed {
+		opacity: 1;
+	}
+}
+
+.v2-root :where(h1, h2, h3, h4) {
+	font-family: var(--font-headline);
+	font-weight: 600;
+	margin: 0;
+}
+
+.v2-root :where(p) {
+	margin: 0;
+	font-family: var(--font-body);
+}
+
+.v2-root a {
+	color: inherit;
+}
+
+.v2-root img {
+	max-width: 100%;
+	display: block;
+}

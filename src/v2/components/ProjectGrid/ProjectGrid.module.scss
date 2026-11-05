@@ -1,0 +1,152 @@
+@import '../../styles/tokens.scss';
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+	gap: 36px;
+	@include cascade-reveal(12, 90ms);
+	@include exit-fade();
+
+	@media screen and (max-width: 640px) {
+		gap: 24px;
+	}
+
+	&.carousel {
+		display: flex;
+		grid-template-columns: none;
+		overflow-x: auto;
+		scroll-snap-type: x proximity;
+		scroll-padding-left: var(--gutter);
+		-webkit-overflow-scrolling: touch;
+		padding: 10px 2px 20px;
+		scrollbar-width: none;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+
+		> * {
+			flex: 0 0 clamp(260px, 70vw, 420px);
+			scroll-snap-align: start;
+		}
+
+		@media screen and (max-width: 899px) {
+			display: flex;
+			flex-direction: column;
+			overflow-x: visible;
+			scroll-snap-type: none;
+			scroll-padding-left: 0;
+			-webkit-overflow-scrolling: auto;
+
+			> * {
+				flex: 0 0 auto;
+				width: 100%;
+				scroll-snap-align: none;
+			}
+		}
+	}
+}
+
+.carouselWrap {
+	position: relative;
+}
+
+.edgeFade {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 140px;
+	pointer-events: none;
+	z-index: 3;
+	opacity: 0;
+	transition: opacity var(--duration-hover) var(--ease-gentle);
+
+	@media screen and (max-width: 640px) {
+		width: 64px;
+	}
+
+	@media screen and (max-width: 899px) {
+		display: none;
+	}
+}
+
+.edgeFadeLeft {
+	left: 0;
+	background: linear-gradient(
+		to right,
+		var(--bg) 0%,
+		color-mix(in srgb, var(--bg) 85%, transparent) 20%,
+		color-mix(in srgb, var(--bg) 55%, transparent) 45%,
+		color-mix(in srgb, var(--bg) 22%, transparent) 70%,
+		transparent 100%
+	);
+}
+
+.edgeFadeRight {
+	right: 0;
+	background: linear-gradient(
+		to left,
+		var(--bg) 0%,
+		color-mix(in srgb, var(--bg) 85%, transparent) 20%,
+		color-mix(in srgb, var(--bg) 55%, transparent) 45%,
+		color-mix(in srgb, var(--bg) 22%, transparent) 70%,
+		transparent 100%
+	);
+}
+
+.arrow {
+	position: absolute;
+	top: 50%;
+	translate: 0 -50%;
+	z-index: 5;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	border: none;
+	border-radius: 999px;
+	background: var(--bg-elevated);
+	color: var(--text);
+	font-size: 16px;
+	cursor: pointer;
+	box-shadow: 0 8px 24px -10px rgba(0, 0, 0, 0.4);
+	opacity: 1;
+	transition: opacity var(--duration-hover) var(--ease-gentle),
+		color var(--duration-hover) var(--ease-gentle),
+		background-color var(--duration-hover) var(--ease-gentle);
+
+	&:hover,
+	&:focus-visible {
+		background: var(--accent-b);
+		color: var(--bg);
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--accent-a);
+		outline-offset: 3px;
+	}
+
+	&:disabled {
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	@media screen and (max-width: 640px) {
+		width: 36px;
+		height: 36px;
+		font-size: 14px;
+	}
+
+	@media screen and (max-width: 899px) {
+		display: none;
+	}
+}
+
+.arrowLeft {
+	left: 12px;
+}
+
+.arrowRight {
+	right: 12px;
+}
