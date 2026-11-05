@@ -36,6 +36,21 @@ $hero-footer-height-mobile: 56px;
 	justify-content: center;
 	justify-content: safe center;
 	overflow-y: auto;
+
+	@media screen and (max-width: 899px) {
+		position: relative;
+		isolation: isolate;
+
+		&::before {
+			content: '';
+			position: absolute;
+			inset: 0;
+			z-index: -1;
+			pointer-events: none;
+			@include dot-grid-bg();
+			mask-image: radial-gradient(ellipse at 50% 45%, #000 20%, transparent 75%);
+		}
+	}
 }
 
 .frame {
@@ -124,13 +139,9 @@ $hero-footer-height-mobile: 56px;
 
 	@media screen and (max-width: 899px) {
 		grid-template-columns: 1fr;
-		grid-template-rows: 1fr auto;
-		gap: 36px;
 	}
 
 	@media screen and (max-width: 640px) {
-		grid-template-rows: auto auto;
-		gap: 24px;
 		height: auto;
 	}
 }
@@ -142,11 +153,7 @@ $hero-footer-height-mobile: 56px;
 	align-self: stretch;
 	@include dot-grid-bg();
 
-	@media screen and (max-width: 899px) {
-		justify-content: flex-start;
-	}
-
-	@media screen and (max-height: 600px) {
+	@media screen and (max-width: 899px), screen and (max-height: 600px) {
 		display: none;
 	}
 }
