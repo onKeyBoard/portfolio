@@ -1,0 +1,18 @@
+@import '../../styles/tokens.scss';
+
+.reveal {
+	opacity: 0;
+	transform: translateY(24px);
+	transition: opacity var(--duration-reveal) var(--ease-gentle),
+		transform var(--duration-reveal) var(--ease-gentle);
+
+	&.visible {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		transform: none;
+		transition: opacity var(--duration-reveal) var(--ease-gentle);
+	}
+}

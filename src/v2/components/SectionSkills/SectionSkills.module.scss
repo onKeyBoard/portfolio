@@ -1,0 +1,89 @@
+@import '../../styles/tokens.scss';
+
+.section {
+	width: 100%;
+	background: var(--surface-alt);
+	--surface: var(--surface-alt);
+	@include full-viewport-section();
+
+	@media screen and (min-width: 900px) {
+		padding-top: 110px;
+	}
+}
+
+.inner {
+	@include section-shell();
+
+	@media screen and (min-width: 900px) {
+		padding-top: 16px;
+		padding-bottom: 16px;
+	}
+}
+
+.title {
+	font-family: var(--font-headline);
+	font-weight: 600;
+	font-size: clamp(20px, 2.6vw, 28px);
+	line-height: 1.4;
+	color: var(--text);
+	text-align: center;
+	max-width: 42ch;
+	margin: 0 auto 44px;
+	animation: cascade-reveal-in 620ms var(--ease-gentle) backwards;
+	@include exit-fade();
+
+	@media (prefers-reduced-motion: reduce) {
+		animation-duration: 1ms;
+		transform: none !important;
+	}
+
+	@media screen and (max-width: 640px) {
+		margin-bottom: 32px;
+	}
+}
+
+.list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	columns: 3;
+	column-gap: 32px;
+	@include cascade-reveal(21, 60ms);
+	@include exit-fade();
+
+	@media screen and (max-width: 900px) {
+		columns: 2;
+	}
+
+	@media screen and (max-width: 520px) {
+		columns: 1;
+	}
+}
+
+.row {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 10px 6px;
+	border-bottom: var(--border-width) solid var(--border-subtle);
+	break-inside: avoid;
+	transition: background-color var(--duration-hover) var(--ease-gentle);
+
+	&:hover {
+		background: var(--bg-elevated-hover);
+	}
+}
+
+.icon {
+	flex-shrink: 0;
+	width: 24px;
+	height: 24px;
+	object-fit: contain;
+}
+
+.name {
+	font-family: var(--font-headline);
+	font-weight: 600;
+	font-size: var(--text-sm);
+	color: var(--text);
+}

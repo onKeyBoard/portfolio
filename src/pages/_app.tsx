@@ -7,8 +7,8 @@ import {
 	NormalizedCacheObject,
 } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
-import PageContent from './index'
 import '../styles/styles.scss'
+import '../v2/styles/global.scss'
 
 const httpLink = createHttpLink({
 	uri: process.env.NEXT_PUBLIC_HYGRAPH_API_URL,
@@ -39,9 +39,7 @@ interface IProps {
 const MyApp: React.FC<IProps> = ({ Component, pageProps }) => {
 	return (
 		<ApolloProvider client={client}>
-			<PageContent>
-				<Component {...pageProps} />
-			</PageContent>
+			<Component {...pageProps} />
 		</ApolloProvider>
 	)
 }

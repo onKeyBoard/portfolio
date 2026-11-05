@@ -1,0 +1,748 @@
+@import '../../styles/tokens.scss';
+
+$hero-wash: radial-gradient(
+	circle at 18% 20%,
+	color-mix(in srgb, var(--accent-b) 30%, transparent) 0%,
+	color-mix(in srgb, var(--accent-a) 20%, transparent) 55%,
+	transparent 100%
+);
+
+$hero-mobile-gutter: clamp(28px, 8vw, 44px);
+
+$hero-footer-height: 64px;
+$hero-footer-height-mobile: 56px;
+
+@property --sweep-angle {
+	syntax: '<angle>';
+	inherits: false;
+	initial-value: 0deg;
+}
+
+.hero {
+	position: relative;
+	z-index: 0;
+	width: 100%;
+	overflow: hidden;
+	background: #{$hero-wash} var(--bg);
+	@include full-viewport-section();
+}
+
+.main {
+	flex: 1 1 auto;
+	min-height: 0;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	justify-content: safe center;
+	overflow-y: auto;
+}
+
+.frame {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: $hero-footer-height;
+	z-index: -1;
+	padding: 10px;
+	border-radius: 0;
+	background: var(--bg);
+	pointer-events: none;
+	--sweep-angle: 0deg;
+	mask-image: conic-gradient(
+		from 0deg,
+		#000 0deg,
+		#000 var(--sweep-angle),
+		transparent var(--sweep-angle)
+	);
+	-webkit-mask-image: conic-gradient(
+		from 0deg,
+		#000 0deg,
+		#000 var(--sweep-angle),
+		transparent var(--sweep-angle)
+	);
+	opacity: 1;
+	transition: --sweep-angle 0ms var(--ease-gentle), opacity 420ms linear;
+
+	&.frameActive {
+		--sweep-angle: 360deg;
+	}
+
+	&:not(.frameActive) {
+		opacity: 0;
+		transition: opacity 420ms var(--ease-gentle),
+			--sweep-angle 0s linear 420ms;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: --sweep-angle 1ms linear, opacity 1ms linear;
+
+		&:not(.frameActive) {
+			transition: --sweep-angle 1ms linear, opacity 1ms linear;
+		}
+	}
+
+	@media screen and (max-width: 640px) {
+		bottom: $hero-footer-height-mobile;
+	}
+}
+
+.frameInner {
+	width: 100%;
+	height: 100%;
+	border-radius: 40px;
+	background: #{$hero-wash} var(--bg);
+}
+
+.inner {
+	width: 100%;
+	max-width: var(--max-width);
+	margin: 0 auto;
+	padding: var(--section-gap) var(--gutter);
+	height: 100%;
+	@include exit-fade();
+
+	@media screen and (max-width: 899px) {
+		padding: var(--section-gap) $hero-mobile-gutter;
+	}
+
+	@media screen and (max-width: 640px) {
+		padding-top: clamp(12px, 3vh, 20px);
+		padding-bottom: clamp(12px, 3vh, 20px);
+		height: auto;
+	}
+}
+
+.layout {
+	display: grid;
+	grid-template-columns: 0.85fr 1fr;
+	align-items: center;
+	gap: clamp(32px, 5vw, 64px);
+	height: 100%;
+	@include cascade-reveal(2, 150ms);
+
+	@media screen and (max-width: 899px) {
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr auto;
+		gap: 36px;
+	}
+
+	@media screen and (max-width: 640px) {
+		grid-template-rows: auto auto;
+		gap: 24px;
+		height: auto;
+	}
+}
+
+.graphic {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	align-self: stretch;
+	@include dot-grid-bg();
+
+	@media screen and (max-width: 899px) {
+		justify-content: flex-start;
+	}
+
+	@media screen and (max-height: 600px) {
+		display: none;
+	}
+}
+
+.wireStage {
+	position: relative;
+	width: 100%;
+	max-width: 380px;
+	height: 270px;
+	perspective: 1000px;
+
+	@media screen and (max-width: 899px) {
+		max-width: 300px;
+		height: 220px;
+	}
+
+	@media screen and (max-width: 640px) {
+		max-width: 210px;
+		height: 145px;
+	}
+}
+
+.wireWindow {
+	position: absolute;
+	width: 220px;
+	border-radius: 3px;
+	border: 1.5px solid currentColor;
+	background: rgba(0,0,0,0.2);
+	box-shadow: 0 0 16px color-mix(in srgb, currentColor 55%, transparent);
+	transform-style: preserve-3d;
+
+	@media screen and (max-width: 899px) {
+		width: 172px;
+	}
+
+	@media screen and (max-width: 640px) {
+		width: 120px;
+	}
+}
+
+.wireWindowInner {
+	border-radius: inherit;
+	overflow: hidden;
+}
+
+.wireBar {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	padding: 7px 10px;
+	border-bottom: 1px solid currentColor;
+	opacity: 0.9;
+
+	@media screen and (max-width: 640px) {
+		padding: 5px 8px;
+	}
+}
+
+.wireCtrl {
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	border: 1px solid currentColor;
+}
+
+.wireLabel {
+	margin-left: auto;
+	font-family: var(--font-headline);
+	font-size: 8px;
+	letter-spacing: 0.04em;
+	opacity: 0.75;
+}
+
+.wireBody {
+	padding: 12px 14px 16px;
+	display: flex;
+	flex-direction: column;
+	gap: 9px;
+
+	@media screen and (max-width: 640px) {
+		padding: 8px 10px 10px;
+		gap: 6px;
+	}
+}
+
+.wireLine {
+	height: 0;
+	border-bottom: 1px solid currentColor;
+	opacity: 0.6;
+}
+
+.wireLineW70 {
+	width: 70%;
+}
+
+.wireLineW45 {
+	width: 45%;
+}
+
+.wireImage {
+	height: 48px;
+	border: 1px solid currentColor;
+	border-radius: 2px;
+	opacity: 0.75;
+	position: relative;
+	overflow: hidden;
+
+	@media screen and (max-width: 640px) {
+		height: 30px;
+	}
+
+	&::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(
+			135deg,
+			transparent 48%,
+			currentColor 49%,
+			currentColor 50%,
+			transparent 51%
+		);
+		opacity: 0.5;
+	}
+}
+
+.wireButton {
+	align-self: flex-start;
+	padding: 5px 14px;
+	border-radius: 999px;
+	border: 1px solid currentColor;
+	font-family: var(--font-headline);
+	font-size: 9px;
+	letter-spacing: 0.05em;
+
+	@media screen and (max-width: 640px) {
+		padding: 4px 10px;
+		font-size: 8px;
+	}
+}
+
+.wireScan {
+	position: absolute;
+	left: 0;
+	right: 0;
+	height: 2px;
+	background: linear-gradient(90deg, transparent, currentColor, transparent);
+}
+
+.wireWindowA {
+	top: 18px;
+	left: 4px;
+	color: var(--accent-a);
+	transform: rotateY(-22deg) rotateX(8deg) rotateZ(-3deg);
+	border-radius: 8px;
+
+	@media screen and (max-width: 640px) {
+		top: 8px;
+		left: 2px;
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		animation:
+			wireRevealLeft 800ms var(--ease-gentle) 200ms backwards,
+			wireFloatA 8s ease-in-out infinite;
+	}
+}
+
+.wireWindowB {
+	top: 118px;
+	left: 146px;
+	width: 198px;
+	color: var(--accent-b);
+	transform: rotateY(18deg) rotateX(-9deg) rotateZ(4deg);
+	border-radius: 8px;
+
+	@media screen and (max-width: 899px) {
+		left: 112px;
+		width: 156px;
+	}
+
+	@media screen and (max-width: 640px) {
+		top: 43px;
+		left: 80px;
+		width: 108px;
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		animation:
+			wireRevealRight 800ms var(--ease-gentle) 200ms backwards,
+			wireFloatB 9s ease-in-out infinite 0.6s;
+	}
+}
+
+.wireCursor {
+	position: absolute;
+	top: 196px;
+	left: 182px;
+	z-index: 4;
+	width: 16px;
+	color: var(--accent-b);
+	filter: drop-shadow(0 0 4px var(--accent-b));
+
+	svg {
+		display: block;
+		width: 100%;
+	}
+
+	@media screen and (max-width: 899px) {
+		top: 166px;
+		left: 142px;
+	}
+
+	@media screen and (max-width: 640px) {
+		top: 79px;
+		left: 96px;
+		width: 13px;
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		animation: wireRevealDown 800ms var(--ease-gentle) 200ms backwards;
+	}
+}
+
+// Centered on the cursor tip, a few px above it.
+.wireRipple {
+	--size: 14px;
+	position: absolute;
+	top: calc(-4px - var(--size) / 2);
+	left: calc(50% - var(--size) / 2);
+	z-index: -1;
+	width: var(--size);
+	height: var(--size);
+	border-radius: 50%;
+	border: 1.5px solid var(--accent-b);
+
+	@media screen and (max-width: 640px) {
+		--size: 11px;
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		animation: wireRipple 2.6s ease-out infinite 1000ms;
+	}
+}
+
+@keyframes wireRevealDown {
+	from {
+		opacity: 0;
+		translate: 0 -48px;
+		scale: 0.92;
+	}
+	to {
+		opacity: 1;
+		translate: 0 0;
+		scale: 1;
+	}
+}
+
+@keyframes wireRevealLeft {
+	from {
+		opacity: 0;
+		translate: -48px 0;
+		scale: 0.92;
+	}
+	to {
+		opacity: 1;
+		translate: 0 0;
+		scale: 1;
+	}
+}
+
+@keyframes wireRevealRight {
+	from {
+		opacity: 0;
+		translate: 48px 0;
+		scale: 0.92;
+	}
+	to {
+		opacity: 1;
+		translate: 0 0;
+		scale: 1;
+	}
+}
+
+@keyframes wireFloatA {
+	0%,
+	100% {
+		transform: rotateY(-22deg) rotateX(8deg) rotateZ(-3deg) translateY(0);
+	}
+	50% {
+		transform: rotateY(-27deg) rotateX(11deg) rotateZ(-3deg) translateY(-9px);
+	}
+}
+
+@keyframes wireFloatB {
+	0%,
+	100% {
+		transform: rotateY(18deg) rotateX(-9deg) rotateZ(4deg) translateY(0);
+	}
+	50% {
+		transform: rotateY(13deg) rotateX(-12deg) rotateZ(4deg) translateY(9px);
+	}
+}
+
+@keyframes wireRipple {
+	0% {
+		transform: scale(0.4);
+		opacity: 0.9;
+	}
+	80%,
+	100% {
+		transform: scale(2.2);
+		opacity: 0;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.wireScan {
+		animation: wireScanMove 3.4s linear infinite;
+	}
+}
+
+@keyframes wireScanMove {
+	0% {
+		top: 4px;
+		opacity: 0;
+	}
+	12% {
+		opacity: 0.9;
+	}
+	88% {
+		opacity: 0.9;
+	}
+	100% {
+		top: 100%;
+		opacity: 0;
+	}
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	@include cascade-reveal(4, 100ms);
+}
+
+.nameLine {
+	font-family: var(--font-headline);
+	font-weight: 500;
+	font-size: var(--text-md);
+	color: var(--text-muted);
+}
+
+.titleLine {
+	font-size: clamp(32px, 4vw, 48px);
+	line-height: 1.08;
+	max-width: 12ch;
+	margin: 10px 0 0;
+
+	@media screen and (max-width: 640px) {
+		font-size: clamp(26px, 8vw, 34px);
+		margin-top: 4px;
+	}
+}
+
+.titleAccent {
+	background: linear-gradient(100deg, var(--accent-a), var(--accent-b));
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+}
+
+.blurb {
+	font-family: var(--font-body);
+	font-size: var(--text-base);
+	color: var(--text-muted);
+	max-width: 42ch;
+	line-height: 1.6;
+	margin-top: 20px;
+
+	b {
+		font-weight: 700;
+	}
+
+	@media screen and (max-width: 640px) {
+		font-size: var(--text-sm);
+		line-height: 1.5;
+		margin-top: 16px;
+	}
+}
+
+.ctaGroup {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	width: 100%;
+	margin-top: 32px;
+	animation: none;
+
+	> * {
+		animation: cascade-reveal-in 520ms var(--ease-gentle) backwards;
+	}
+
+	@for $i from 1 through 4 {
+		> *:nth-child(#{$i}) {
+			animation-delay: #{300 + ($i - 1) * 80}ms;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		> * {
+			animation-duration: 1ms;
+			animation-delay: 0ms;
+		}
+	}
+
+	@media screen and (max-width: 640px) {
+		gap: 5px;
+		margin-top: 22px;
+	}
+}
+
+.cta {
+	position: relative;
+	display: flex;
+	width: 100%;
+	border-radius: 999px;
+	text-decoration: none;
+	transition: transform var(--duration-hover) var(--ease-gentle);
+
+	&::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		padding: var(--border-width);
+		background-image: linear-gradient(
+			90deg,
+			var(--accent-a),
+			var(--accent-b),
+			var(--metal-highlight),
+			var(--accent-a)
+		);
+		background-size: 220% 100%;
+		background-position: 0% 0%;
+		transition: background-position 600ms var(--ease-gentle);
+		-webkit-mask: linear-gradient(#000 0 0) content-box,
+			linear-gradient(#000 0 0);
+		-webkit-mask-composite: xor;
+		mask: linear-gradient(#000 0 0) content-box,
+			linear-gradient(#000 0 0);
+		mask-composite: exclude;
+		pointer-events: none;
+	}
+
+	&:hover,
+	&:focus-visible {
+		transform: translateX(2px);
+
+		&::before {
+			background-position: 100% 0%;
+		}
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--accent-a);
+		outline-offset: 4px;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		&::before {
+			transition: none;
+		}
+	}
+}
+
+.ctaInner {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 14px;
+	width: 100%;
+	padding: 14px 24px;
+	color: var(--text);
+	font-weight: 600;
+	font-size: var(--text-sm);
+
+	@media screen and (max-width: 640px) {
+		padding: 7px 18px;
+		gap: 10px;
+	}
+}
+
+.ctaArrow {
+	flex-shrink: 0;
+	font-size: 13px;
+	color: var(--text-muted);
+	transition: transform var(--duration-hover) var(--ease-gentle);
+
+	.cta:hover &,
+	.cta:focus-visible & {
+		transform: translateX(3px);
+	}
+}
+
+.heroFooter {
+	flex: 0 0 auto;
+	width: 100%;
+	height: $hero-footer-height;
+	background: var(--bg);
+
+	@media screen and (max-width: 640px) {
+		height: $hero-footer-height-mobile;
+	}
+}
+
+.heroFooterInner {
+	width: 100%;
+	max-width: var(--max-width);
+	height: 100%;
+	margin: 0 auto;
+	padding: 0 var(--gutter);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 24px;
+
+	@media screen and (max-width: 899px) {
+		padding: 0 $hero-mobile-gutter;
+	}
+}
+
+.heroSocial {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	@include cascade-reveal(3, 90ms);
+
+	&.exiting > * {
+		opacity: 0;
+		transform: translateY(22px) scale(0.94);
+	}
+
+	@for $i from 1 through 3 {
+		&.exiting > *:nth-last-child(#{$i}) {
+			transition-delay: #{($i - 1) * 70ms};
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		&.exiting > * {
+			transform: none;
+			transition-delay: 0ms;
+		}
+	}
+}
+
+.heroSocialIcon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	border-radius: 50%;
+	background: var(--bg-elevated);
+	color: var(--text-muted);
+	font-size: 18px;
+	text-decoration: none;
+	transition:
+		background var(--duration-hover) var(--ease-gentle),
+		color var(--duration-hover) var(--ease-gentle),
+		opacity 260ms var(--ease-gentle),
+		transform 260ms var(--ease-gentle);
+
+	&:hover,
+	&:focus-visible {
+		background: var(--accent-a);
+		color: var(--bg-elevated);
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--accent-a);
+		outline-offset: 2px;
+	}
+}
+
+.ctaLabel {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.ctaIcon {
+	flex-shrink: 0;
+	width: 16px;
+	font-size: 14px;
+	color: var(--accent-a);
+}

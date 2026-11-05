@@ -1,0 +1,140 @@
+@mixin section-shell {
+	width: 100%;
+	max-width: var(--max-width);
+	margin: 0 auto;
+	padding: var(--section-gap) var(--gutter);
+}
+
+@mixin dot-grid-bg {
+	background-image: radial-gradient(
+		circle,
+		color-mix(in srgb, var(--text) 16%, transparent) 1.4px,
+		transparent 1.4px
+	);
+	background-size: 20px 20px;
+}
+
+@mixin section-title {
+	font-family: var(--font-headline);
+	font-weight: 600;
+	font-size: clamp(26px, 3.4vw, 37px);
+	margin-bottom: 40px;
+}
+
+@mixin full-viewport-section {
+	position: relative;
+	height: 100vh;
+	height: 100dvh;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	justify-content: safe center;
+	scroll-snap-align: start;
+	scroll-snap-stop: always;
+}
+
+@mixin visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+@keyframes cascade-reveal-in {
+	from {
+		opacity: 0;
+		transform: translateY(22px) scale(0.94);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
+@mixin cascade-reveal($max: 12, $step: 70ms) {
+	:where(&) > * {
+		animation: cascade-reveal-in 620ms var(--ease-gentle) backwards;
+	}
+
+	@for $i from 1 through $max {
+		:where(&) > *:nth-child(#{$i}) {
+			animation-delay: #{($i - 1) * $step};
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		:where(&) > * {
+			animation-duration: 1ms;
+			animation-delay: 0ms;
+			transform: none !important;
+		}
+	}
+}
+
+@mixin exit-fade($duration: 420ms) {
+	transition: opacity $duration var(--ease-gentle),
+		transform $duration var(--ease-gentle);
+
+	&.exiting {
+		opacity: 0;
+		transform: translateY(-16px) scale(0.97);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: opacity $duration var(--ease-gentle);
+
+		&.exiting {
+			transform: none;
+		}
+	}
+}
+
+@mixin metallic-underline($thickness: 3px, $offset: -4px) {
+	position: relative;
+	transition: color var(--duration-hover) var(--ease-gentle);
+
+	&::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: $offset;
+		height: $thickness;
+		border-radius: $thickness;
+		background: linear-gradient(
+			90deg,
+			var(--accent-a),
+			var(--metal-highlight),
+			var(--accent-b),
+			var(--accent-a)
+		);
+		background-size: 300% 100%;
+		background-position: 0% 50%;
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 320ms var(--ease-gentle),
+			background-position 900ms var(--ease-gentle);
+	}
+
+	&:hover,
+	&:focus-visible {
+		color: var(--accent-b);
+
+		&::after {
+			transform: scaleX(1);
+			background-position: 100% 50%;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		&::after {
+			transition: transform 320ms var(--ease-gentle);
+		}
+	}
+}

@@ -1,0 +1,36 @@
+@import '../../styles/tokens.scss';
+
+.footer {
+	width: 100%;
+	background: var(--bg);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	padding: 32px var(--gutter) 48px;
+	border-top: var(--border-width) solid var(--border-subtle);
+	color: var(--text-muted);
+	font-size: var(--text-sm);
+
+	@media screen and (max-width: 640px) {
+		flex-direction: column;
+		text-align: center;
+	}
+}
+
+.actions {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.link {
+	text-decoration: none;
+	color: inherit;
+	font-weight: 600;
+
+	&:hover,
+	&:focus-visible {
+		color: var(--accent-a);
+	}
+}
