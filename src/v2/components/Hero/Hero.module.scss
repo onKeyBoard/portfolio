@@ -4,13 +4,12 @@ $hero-wash: radial-gradient(
 	circle at 18% 20%,
 	color-mix(in srgb, var(--accent-b) 30%, transparent) 0%,
 	color-mix(in srgb, var(--accent-a) 20%, transparent) 55%,
-	transparent 100%
+	color-mix(in srgb, var(--accent-a) 8%, transparent) 100%
 );
 
 $hero-mobile-gutter: clamp(28px, 8vw, 44px);
 
 $hero-footer-height: 64px;
-$hero-footer-height-mobile: 56px;
 
 @property --sweep-angle {
 	syntax: '<angle>';
@@ -99,7 +98,7 @@ $hero-footer-height-mobile: 56px;
 	}
 
 	@media screen and (max-width: 640px) {
-		bottom: $hero-footer-height-mobile;
+		bottom: 0;
 	}
 }
 
@@ -107,7 +106,7 @@ $hero-footer-height-mobile: 56px;
 	width: 100%;
 	height: 100%;
 	border-radius: 40px;
-	background: #{$hero-wash} var(--bg);
+	background: #{$hero-wash} var(--bg-elevated);
 }
 
 .inner {
@@ -667,7 +666,7 @@ $hero-footer-height-mobile: 56px;
 	background: var(--bg);
 
 	@media screen and (max-width: 640px) {
-		height: $hero-footer-height-mobile;
+		display: none;
 	}
 }
 
