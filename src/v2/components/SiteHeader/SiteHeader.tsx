@@ -82,7 +82,7 @@ const SiteHeader = () => {
 					>
 						Shawn Pavlas
 					</a>
-					<span className={styles['title']}>UX Designer / Engineer</span>
+					<span className={styles['title']}>UX Designer + Engineer</span>
 				</div>
 				<div className={`${styles['rightStrip']} ${revealedClass}`}>
 					<nav className={styles['nav']} aria-label='Primary'>
