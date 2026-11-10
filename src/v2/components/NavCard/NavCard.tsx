@@ -1,5 +1,13 @@
 import React from 'react'
+import {
+	getCloudinaryImage,
+	getCloudinarySrcSet,
+} from '../../../utils/cloudinaryUtils'
 import styles from './NavCard.module.scss'
+
+const IMAGE_WIDTHS = [400, 800, 1200]
+const IMAGE_ASPECT = '16:10'
+const IMAGE_SIZES = '(max-width: 899px) 100vw, 380px'
 
 interface NavCardProps {
 	title: string
@@ -25,7 +33,15 @@ const NavCard = ({
 	const content = (
 		<>
 			{imageUrl && (
-				<img className={styles['image']} src={imageUrl} alt='' />
+				<img
+					className={styles['image']}
+					src={getCloudinaryImage(imageUrl, IMAGE_WIDTHS[1], IMAGE_ASPECT)}
+					srcSet={getCloudinarySrcSet(imageUrl, IMAGE_WIDTHS, IMAGE_ASPECT)}
+					sizes={IMAGE_SIZES}
+					loading='lazy'
+					decoding='async'
+					alt=''
+				/>
 			)}
 			{iconUrl && <img className={styles['icon']} src={iconUrl} alt='' />}
 			{meta && <span className={styles['meta']}>{meta}</span>}

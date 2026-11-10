@@ -9,9 +9,15 @@ import {
 import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
 import { useProjectModal } from '../../context/ProjectModalContext'
-import { isVideo } from '../../../utils/cloudinaryUtils'
+import {
+	isVideo,
+	getCloudinaryImage,
+	getCloudinarySrcSet,
+} from '../../../utils/cloudinaryUtils'
 import { getVisitLinkLabel } from '../../utils/linkLabel'
 import styles from './ProjectModal.module.scss'
+
+const SLIDE_WIDTHS = [640, 1024, 1600, 2200]
 
 const VideoPlayer = dynamic(
 	() => import('../../../components/VideoPlayer/VideoPlayer'),
@@ -129,12 +135,19 @@ const ProjectModal = () => {
 						) : (
 							<div className={styles['slideImageWrap']}>
 								<Zoom
-									zoomImg={{ src: activeSlide.imageUrl }}
+									zoomImg={{
+										src: getCloudinaryImage(activeSlide.imageUrl, 2560),
+									}}
 									classDialog={styles['zoomDialog']}
 								>
 									<img
 										className={styles['slideImage']}
-										src={activeSlide.imageUrl}
+										src={getCloudinaryImage(activeSlide.imageUrl, 1600)}
+										srcSet={getCloudinarySrcSet(
+											activeSlide.imageUrl,
+											SLIDE_WIDTHS
+										)}
+										sizes='(max-width: 760px) 100vw, min(1100px, 70vw)'
 										alt={activeSlide.title || title}
 									/>
 								</Zoom>

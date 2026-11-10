@@ -7,9 +7,16 @@ import V2PageShell from '../V2PageShell/V2PageShell'
 import SiteHeader from '../SiteHeader/SiteHeader'
 import SiteFooter from '../SiteFooter/SiteFooter'
 import RevealSection from '../RevealSection/RevealSection'
-import { isVideo } from '../../../utils/cloudinaryUtils'
+import {
+	isVideo,
+	getCloudinaryImage,
+	getCloudinarySrcSet,
+} from '../../../utils/cloudinaryUtils'
 import { getVisitLinkLabel } from '../../utils/linkLabel'
 import styles from './ProjectPage.module.scss'
+
+const HERO_WIDTHS = [640, 1024, 1600, 2200, 2880]
+const SLIDE_WIDTHS = [640, 1024, 1600, 2400]
 
 const VideoPlayer = dynamic(
 	() => import('../../../components/VideoPlayer/VideoPlayer'),
@@ -75,7 +82,9 @@ const ProjectPage = () => {
 							<div className={styles['heroImageWrap']}>
 								<img
 									className={styles['heroImage']}
-									src={project.imageUrl}
+									src={getCloudinaryImage(project.imageUrl, 1600)}
+									srcSet={getCloudinarySrcSet(project.imageUrl, HERO_WIDTHS)}
+									sizes='100vw'
 									alt=''
 								/>
 								<a href='/#work' className={styles['backPill']}>
@@ -131,7 +140,14 @@ const ProjectPage = () => {
 											) : (
 												<img
 													className={styles['slideImage']}
-													src={slide.imageUrl}
+													src={getCloudinaryImage(slide.imageUrl, 1200)}
+													srcSet={getCloudinarySrcSet(
+														slide.imageUrl,
+														SLIDE_WIDTHS
+													)}
+													sizes='(max-width: 1200px) 100vw, 1200px'
+													loading='lazy'
+													decoding='async'
 													alt=''
 												/>
 											)

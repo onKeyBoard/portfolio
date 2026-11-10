@@ -96,3 +96,30 @@ export const getVideoThumbnail = (url: string) => {
 export const getImageCustomWidth = (url: string, sizeInPx: number) => {
 	return replace(url, 'upload', `upload/c_limit,w_${sizeInPx},h_${sizeInPx}`)
 }
+
+const isCloudinary = (url: string) =>
+	url.includes('res.cloudinary.com') && url.includes('/upload/')
+
+// Without an aspect ratio, c_limit only shrinks. c_lfill crops to it without upscaling.
+export const getCloudinaryImage = (
+	url: string,
+	width: number,
+	aspectRatio?: string
+) => {
+	if (!isCloudinary(url)) return url
+	const crop = aspectRatio
+		? `c_lfill,w_${width},ar_${aspectRatio}`
+		: `c_limit,w_${width}`
+	return url.replace('/upload/', `/upload/${crop}/f_auto,q_auto/`)
+}
+
+export const getCloudinarySrcSet = (
+	url: string,
+	widths: number[],
+	aspectRatio?: string
+) =>
+	isCloudinary(url)
+		? widths
+				.map((w) => `${getCloudinaryImage(url, w, aspectRatio)} ${w}w`)
+				.join(', ')
+		: undefined
