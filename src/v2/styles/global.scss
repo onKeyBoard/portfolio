@@ -9,6 +9,8 @@
 	--border-width: 1.5px;
 	--max-width: 1200px;
 	--gutter: clamp(20px, 5vw, 90px);
+	--bar-height: 64px;
+	--bar-height-mobile: 56px;
 	--section-gap: clamp(64px, 10vw, 140px);
 
 	--ease-gentle: cubic-bezier(0.22, 1, 0.36, 1);
@@ -25,10 +27,12 @@
 	--bg-elevated: hsl(36, 48%, 93%);
 	--bg-elevated-hover: hsl(36, 48%, 96%);
 	--text: hsl(24, 38%, 18%);
-	--text-muted: hsl(24, 24%, 36%);
-	--border-subtle: hsl(36, 22%, 76%);
-	--accent-a: hsl(150, 65%, 48%);
-	--accent-b: hsl(208, 92%, 54%);
+	--text-muted: hsl(24, 26%, 31%);
+	--border-subtle: hsl(36, 20%, 64%);
+	--accent-a: hsl(152, 80%, 23%);
+	--accent-b: hsl(212, 86%, 35%);
+	--wire-fill: hsla(36, 48%, 96%, 0.7);
+	--wire-glow: 22%;
 	--metal-highlight: hsl(40, 55%, 97%);
 	--hero-gradient: linear-gradient(
 		135deg,
@@ -55,6 +59,8 @@
 	--border-subtle: hsl(222, 18%, 26%);
 	--accent-a: hsl(150, 70%, 58%);
 	--accent-b: hsl(208, 92%, 64%);
+	--wire-fill: rgba(0, 0, 0, 0.2);
+	--wire-glow: 55%;
 	--metal-highlight: hsl(210, 55%, 93%);
 	--hero-gradient: linear-gradient(
 		135deg,
@@ -67,32 +73,25 @@
 	box-sizing: border-box;
 }
 
-.v2-root--snap {
+.v2-root--paged {
 	height: 100vh;
 	height: 100dvh;
-	overflow-y: auto;
-	overflow-x: hidden;
-	scroll-behavior: smooth;
+	overflow: hidden;
 
-	@media screen and (min-width: 900px) {
-		scroll-snap-type: y mandatory;
-	}
-}
-
-@media screen and (max-width: 899px) {
-	.v2-root--snap #top,
-	.v2-root--snap #hello,
-	.v2-root--snap #skills,
-	.v2-root--snap #work,
-	.v2-root--snap #extras {
+	#top,
+	#hello,
+	#skills,
+	#work,
+	#extras {
 		display: none;
 	}
 
-	.v2-root--snap[data-active-mobile-section='top'] #top,
-	.v2-root--snap[data-active-mobile-section='hello'] #hello,
-	.v2-root--snap[data-active-mobile-section='skills'] #skills,
-	.v2-root--snap[data-active-mobile-section='work'] #work,
-	.v2-root--snap[data-active-mobile-section='extras'] #extras {
+	&:not([data-active-section]) #top,
+	&[data-active-section='top'] #top,
+	&[data-active-section='hello'] #hello,
+	&[data-active-section='skills'] #skills,
+	&[data-active-section='work'] #work,
+	&[data-active-section='extras'] #extras {
 		display: flex;
 		position: fixed;
 		inset: 0;

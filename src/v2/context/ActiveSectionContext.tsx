@@ -9,11 +9,9 @@ import React, {
 
 export const PANEL_IDS = ['top', 'hello', 'skills', 'work', 'extras']
 
-const DESKTOP_QUERY = '(min-width: 900px)'
-
 interface ActiveSectionContextValue {
 	activeId: string
-	navigateToSection: (id: string, instant: boolean) => void
+	navigateToSection: (id: string) => void
 }
 
 const ActiveSectionContext = createContext<ActiveSectionContextValue | null>(
@@ -25,47 +23,25 @@ const ActiveSectionProvider = ({ children }: { children: React.ReactNode }) => {
 	const activeIdRef = useRef(activeId)
 	activeIdRef.current = activeId
 
+	const previousIdRef = useRef<string | null>(null)
 	useEffect(() => {
-		const root = document.querySelector<HTMLElement>('.v2-root--snap')
-		root?.setAttribute('data-active-mobile-section', activeId)
+		const root = document.querySelector<HTMLElement>('.v2-root--paged')
+		root?.setAttribute('data-previous-section', previousIdRef.current ?? '')
+		root?.setAttribute('data-active-section', activeId)
+		previousIdRef.current = activeId
 	}, [activeId])
 
-	const navigateToSection = useCallback((id: string, instant: boolean) => {
+	const navigateToSection = useCallback((id: string) => {
 		const panel = document.getElementById(id)
 		if (!panel) return
-
-		if (!window.matchMedia(DESKTOP_QUERY).matches) {
-			panel.scrollTop = 0
-			setActiveId(id)
-			return
-		}
-
-		if (!instant) {
-			panel.scrollIntoView({ behavior: 'smooth', block: 'start' })
-			return
-		}
-
-		const scroller = document.querySelector<HTMLElement>('.v2-root--snap')
-		if (!scroller) {
-			panel.scrollIntoView({ block: 'start' })
-			return
-		}
-
-		const prevSnapType = scroller.style.scrollSnapType
-		const prevBehavior = scroller.style.scrollBehavior
-		scroller.style.scrollSnapType = 'none'
-		scroller.style.scrollBehavior = 'auto'
-		panel.scrollIntoView({ block: 'start' })
-		requestAnimationFrame(() => {
-			scroller.style.scrollSnapType = prevSnapType
-			scroller.style.scrollBehavior = prevBehavior
-		})
+		panel.scrollTop = 0
+		setActiveId(id)
 	}, [])
 
 	useEffect(() => {
 		const jumpToHash = () => {
 			const id = window.location.hash.slice(1)
-			if (PANEL_IDS.includes(id)) navigateToSection(id, true)
+			if (PANEL_IDS.includes(id)) navigateToSection(id)
 		}
 		jumpToHash()
 		window.addEventListener('hashchange', jumpToHash)
@@ -83,26 +59,6 @@ const ActiveSectionProvider = ({ children }: { children: React.ReactNode }) => {
 		const url = activeId === 'top' ? pathname + search : `${pathname}${search}#${activeId}`
 		window.history.replaceState(window.history.state, '', url)
 	}, [activeId])
-
-	useEffect(() => {
-		const elements = PANEL_IDS.map((id) => document.getElementById(id)).filter(
-			(el): el is HTMLElement => !!el
-		)
-		if (!elements.length) return
-
-		const observer = new IntersectionObserver(
-			(entries) => {
-				entries.forEach((entry) => {
-					if (entry.isIntersecting) setActiveId(entry.target.id)
-				})
-			},
-			// -50% collapses to a zero-height band that never intersects.
-			{ rootMargin: '-49% 0px -49% 0px', threshold: 0 }
-		)
-
-		elements.forEach((el) => observer.observe(el))
-		return () => observer.disconnect()
-	}, [])
 
 	useEffect(() => {
 		const handleKeyDown = (event: KeyboardEvent) => {
@@ -127,7 +83,7 @@ const ActiveSectionProvider = ({ children }: { children: React.ReactNode }) => {
 			if (nextIndex === currentIndex) return
 
 			event.preventDefault()
-			navigateToSection(PANEL_IDS[nextIndex], false)
+			navigateToSection(PANEL_IDS[nextIndex])
 		}
 
 		window.addEventListener('keydown', handleKeyDown)

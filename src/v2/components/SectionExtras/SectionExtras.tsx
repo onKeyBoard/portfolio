@@ -6,8 +6,7 @@ const SectionExtras = () => {
 	return (
 		<section id='extras' className={styles['section']}>
 			<div className={styles['inner']}>
-				<h2 className={styles['title']}>Extras</h2>
-				<ProjectGrid category='Personal' sectionId='extras' />
+				<ProjectGrid title='Personal Projects' category='Personal' sectionId='extras' />
 			</div>
 		</section>
 	)

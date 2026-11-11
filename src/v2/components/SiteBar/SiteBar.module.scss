@@ -1,0 +1,318 @@
+@import '../../styles/tokens.scss';
+
+$corner: 40px;
+$shift: 420ms;
+
+.bar {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 20;
+	height: var(--bar-height);
+	background: var(--bg);
+
+	&::before,
+	&::after {
+		content: '';
+		position: absolute;
+		bottom: 100%;
+		width: $corner;
+		height: $corner;
+		background: var(--bg);
+		pointer-events: none;
+	}
+
+	&::before {
+		left: 0;
+		mask-image: radial-gradient(circle at top right, transparent $corner, #000 $corner);
+		-webkit-mask-image: radial-gradient(
+			circle at top right,
+			transparent $corner,
+			#000 $corner
+		);
+	}
+
+	&::after {
+		right: 0;
+		mask-image: radial-gradient(circle at top left, transparent $corner, #000 $corner);
+		-webkit-mask-image: radial-gradient(
+			circle at top left,
+			transparent $corner,
+			#000 $corner
+		);
+	}
+
+	@media screen and (max-width: 640px) {
+		height: calc(var(--bar-height-mobile) + env(safe-area-inset-bottom, 0px));
+		padding: 0 20px env(safe-area-inset-bottom, 0px);
+	}
+}
+
+.glow {
+	position: absolute;
+	z-index: 1;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: calc(100% + #{$corner});
+	background: linear-gradient(
+			90deg,
+			color-mix(in srgb, var(--accent-b) 30%, transparent),
+			color-mix(in srgb, var(--accent-a) 20%, transparent) 60%,
+			color-mix(in srgb, var(--accent-a) 10%, transparent)
+		),
+		var(--bg);
+	$mask: linear-gradient(#000, #000) bottom / 100% calc(100% - #{$corner}) no-repeat,
+		radial-gradient(circle at top right, transparent $corner, #000 $corner) top
+			left / $corner $corner no-repeat,
+		radial-gradient(circle at top left, transparent $corner, #000 $corner) top
+			right / $corner $corner no-repeat;
+	mask: $mask;
+	-webkit-mask: $mask;
+	pointer-events: none;
+	transition: opacity $shift var(--ease-gentle);
+
+	.onHero & {
+		opacity: 0;
+	}
+}
+
+.inner {
+	position: relative;
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	max-width: var(--max-width);
+	height: 100%;
+	margin: 0 auto;
+	padding: 0 var(--gutter);
+
+	@media screen and (max-width: 640px) {
+		position: absolute;
+		inset: 0 0 env(safe-area-inset-bottom, 0px);
+		padding: 0;
+	}
+}
+
+@mixin mobile-swap($visibleOnHero) {
+	@media screen and (max-width: 640px) {
+		transition: opacity $shift var(--ease-gentle), visibility 0s;
+
+		@if $visibleOnHero {
+			.bar:not(.onHero) & {
+				opacity: 0;
+				visibility: hidden;
+				transition: opacity $shift var(--ease-gentle), visibility 0s linear $shift;
+			}
+		} @else {
+			.onHero & {
+				opacity: 0;
+				visibility: hidden;
+				transition: opacity $shift var(--ease-gentle), visibility 0s linear $shift;
+			}
+		}
+	}
+}
+
+@mixin bar-reveal($from) {
+	transition: opacity $shift var(--ease-gentle),
+		translate $shift var(--ease-gentle), visibility 0s;
+
+	.onHero & {
+		opacity: 0;
+		translate: $from;
+		visibility: hidden;
+		transition: opacity $shift var(--ease-gentle),
+			translate $shift var(--ease-gentle), visibility 0s linear $shift;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		translate: none !important;
+	}
+}
+
+.identity {
+	@media screen and (max-width: 640px) {
+		display: none !important;
+	}
+
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	min-width: 0;
+	text-decoration: none;
+	@include bar-reveal(-16px 0);
+
+	&:focus-visible {
+		outline: 2px solid var(--accent-a);
+		outline-offset: 4px;
+		border-radius: 2px;
+	}
+}
+
+.name {
+	flex-shrink: 0;
+	font-family: var(--font-headline);
+	font-weight: 600;
+	font-size: var(--text-md);
+	letter-spacing: 0.01em;
+	color: var(--accent-a);
+	white-space: nowrap;
+	transition: color var(--duration-hover) var(--ease-gentle);
+
+	.identity:hover &,
+	.identity:focus-visible & {
+		color: var(--text);
+	}
+}
+
+.title {
+	font-size: var(--text-sm);
+	color: var(--text-muted);
+	white-space: nowrap;
+	transition: color var(--duration-hover) var(--ease-gentle);
+
+	.identity:hover &,
+	.identity:focus-visible & {
+		color: var(--text);
+	}
+
+	&::before {
+		content: '•';
+		margin-right: 12px;
+		opacity: 0.6;
+	}
+
+	@media screen and (max-width: 1023px) {
+		display: none;
+	}
+}
+
+.nav {
+	@media screen and (max-width: 640px) {
+		display: none !important;
+	}
+
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	align-items: center;
+	gap: 28px;
+	@include bar-reveal(0 12px);
+}
+
+.navLink {
+	@include metallic-underline(2px, -5px);
+	cursor: pointer;
+	font-size: var(--text-sm);
+	font-weight: 600;
+	text-decoration: none;
+	color: var(--text-muted);
+
+	&:focus-visible {
+		outline: 2px solid var(--accent-a);
+		outline-offset: 4px;
+		border-radius: 2px;
+	}
+
+	&.active {
+		color: var(--text);
+		font-weight: 700;
+
+		&::after {
+			transform: scaleX(1);
+			background-position: 100% 50%;
+		}
+	}
+}
+
+.social {
+	position: absolute;
+	top: 50%;
+	left: calc(100% - var(--gutter));
+	transform: translate(-100%, -50%);
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	transition: left $shift var(--ease-gentle), transform $shift var(--ease-gentle);
+	@include cascade-reveal(3, 90ms);
+
+	.onHero & {
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	@media screen and (max-width: 640px) {
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	@include mobile-swap(true);
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+	}
+}
+
+.socialIcon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	color: var(--text-muted);
+	font-size: 22px;
+	text-decoration: none;
+	transition: color var(--duration-hover) var(--ease-gentle);
+
+	&:hover,
+	&:focus-visible {
+		color: var(--accent-a);
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--accent-a);
+		outline-offset: 2px;
+		border-radius: var(--radius-sm);
+	}
+}
+
+.mobileNav {
+	position: relative;
+	z-index: 2;
+	display: none;
+	align-items: center;
+	height: 100%;
+	justify-content: space-between;
+	width: 100%;
+
+	@media screen and (max-width: 640px) {
+		display: flex;
+	}
+
+	@include mobile-swap(false);
+}
+
+.profileLink {
+	display: inline-flex;
+	align-items: center;
+	font-size: 20px;
+	color: var(--accent-a);
+	text-decoration: none;
+	transition: color var(--duration-hover) var(--ease-gentle);
+
+	&:hover,
+	&:focus-visible {
+		color: var(--text);
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--accent-a);
+		outline-offset: 4px;
+		border-radius: 999px;
+	}
+}

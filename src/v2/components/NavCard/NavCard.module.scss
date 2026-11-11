@@ -1,65 +1,19 @@
 @import '../../styles/tokens.scss';
 
 .ringWrap {
-	display: block;
-	height: 100%;
-	border-radius: calc(var(--radius-md) + var(--border-width) + 8px);
-	padding: var(--border-width);
-	background-color: transparent;
-	transition: background-position 2600ms linear;
-
-	@media screen and (max-width: 640px) {
-		border-radius: calc(var(--radius-md) + var(--border-width) + 5px);
-	}
+	@include card-ring;
 
 	&.interactive {
-		transition: background-position 2600ms linear,
-			transform 240ms var(--ease-gentle), box-shadow 240ms var(--ease-gentle);
-
-		&:hover,
-		&:focus-within {
-			transform: translateY(-4px);
-			box-shadow: 0 16px 32px -16px rgba(0, 0, 0, 0.35);
-		}
-	}
-
-	&:hover,
-	&:focus-within {
-		background-image: linear-gradient(
-			135deg,
-			var(--accent-a),
-			var(--bg),
-			var(--metal-highlight),
-			var(--bg),
-			var(--accent-b),
-			var(--bg),
-			var(--accent-a)
-		);
-		background-size: 260% 260%;
-		background-position: 100% 50%;
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		transition: none;
+		@include card-ring-lift;
 	}
 }
 
 .gapLayer {
-	display: block;
-	height: 100%;
-	border-radius: calc(var(--radius-md) + 8px);
-	padding: 8px;
-	background: var(--surface, var(--bg));
-
-	@media screen and (max-width: 640px) {
-		border-radius: calc(var(--radius-md) + 5px);
-		padding: 5px;
-	}
+	@include card-gap-layer;
 }
 
 .card {
-	background: var(--bg-elevated);
-	border-radius: var(--radius-md);
+	@include card-surface;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;

@@ -11,7 +11,7 @@
 	right: 0;
 	z-index: 20;
 	display: flex;
-	gap: 10px;
+	gap: 2px;
 	align-items: center;
 	pointer-events: none;
 
@@ -103,7 +103,6 @@
 	min-width: 0;
 	justify-content: flex-end;
 	gap: 12px;
-	border-radius: 0 0 9px 0;
 	background-position: left center;
 	transform: translateX(-20px);
 	position: relative;
@@ -121,7 +120,6 @@
 	flex: 1 1 0;
 	min-width: 0;
 	justify-content: flex-start;
-	border-radius: 0 0 0 9px;
 	background-position: right center;
 	transform: translateX(20px);
 
@@ -195,12 +193,12 @@ $edge-corner: 40px;
 	text-overflow: ellipsis;
 	font-size: var(--text-sm);
 	color: var(--text-muted);
-	padding-left: 12px;
-	border-left: 1px solid var(--border-subtle);
 	white-space: nowrap;
 
-	@media screen and (max-width: 640px) {
-		padding-left: 8px;
+	&::before {
+		content: '•';
+		margin-right: 12px;
+		opacity: 0.6;
 	}
 }
 
