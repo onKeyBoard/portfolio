@@ -6,8 +6,7 @@ const SectionWork = () => {
 	return (
 		<section id='work' className={styles['section']}>
 			<div className={styles['inner']}>
-				<h2 className={styles['title']}>Work</h2>
-				<ProjectGrid category='Professional' sectionId='work' carousel />
+				<ProjectGrid title='Professional Work' category='Professional' sectionId='work' carousel />
 			</div>
 		</section>
 	)

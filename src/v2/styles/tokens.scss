@@ -14,6 +14,43 @@
 	background-size: 20px 20px;
 }
 
+@mixin dot-grid-floor($height: 30%) {
+	isolation: isolate;
+
+	&::before {
+		content: '';
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: calc(var(--bar-height-mobile) + env(safe-area-inset-bottom, 0px));
+		height: $height;
+		z-index: -1;
+		pointer-events: none;
+		@include dot-grid-bg();
+		mask-image: linear-gradient(to top, #000, transparent);
+		-webkit-mask-image: linear-gradient(to top, #000, transparent);
+
+		@media screen and (min-width: 641px) {
+			bottom: var(--bar-height);
+		}
+	}
+
+	:global(.v2-root--paged[data-previous-section='top']) &::before {
+		animation: dot-grid-rise 900ms var(--ease-gentle) backwards;
+
+		@media (prefers-reduced-motion: reduce) {
+			animation: none;
+		}
+	}
+}
+
+@keyframes dot-grid-rise {
+	from {
+		opacity: 0;
+		transform: translateY(48px);
+	}
+}
+
 @mixin section-title {
 	font-family: var(--font-headline);
 	font-weight: 600;
@@ -21,7 +58,7 @@
 	margin-bottom: 40px;
 }
 
-@mixin full-viewport-section {
+@mixin full-viewport-section($center-on-mobile: false) {
 	position: relative;
 	height: 100vh;
 	height: 100dvh;
@@ -30,8 +67,18 @@
 	flex-direction: column;
 	justify-content: center;
 	justify-content: safe center;
-	scroll-snap-align: start;
-	scroll-snap-stop: always;
+
+	@if not $center-on-mobile {
+		@media screen and (max-width: 640px) {
+			justify-content: flex-start;
+		}
+	}
+
+	padding-bottom: calc(var(--bar-height-mobile) + env(safe-area-inset-bottom, 0px));
+
+	@media screen and (min-width: 641px) {
+		padding-bottom: var(--bar-height);
+	}
 }
 
 @mixin visually-hidden {
@@ -136,5 +183,101 @@
 		&::after {
 			transition: transform 320ms var(--ease-gentle);
 		}
+	}
+}
+
+@mixin card-ring {
+	display: block;
+	height: 100%;
+	border-radius: calc(var(--radius-md) + var(--border-width) + 8px);
+	padding: var(--border-width);
+	background-color: transparent;
+	transition: background-position 2600ms linear;
+
+	@media screen and (max-width: 640px) {
+		border-radius: calc(var(--radius-md) + var(--border-width) + 5px);
+	}
+
+	&:hover,
+	&:has(:focus-visible) {
+		background-image: linear-gradient(
+			135deg,
+			var(--accent-a),
+			var(--bg),
+			var(--metal-highlight),
+			var(--bg),
+			var(--accent-b),
+			var(--bg),
+			var(--accent-a)
+		);
+		background-size: 260% 260%;
+		background-position: 100% 50%;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+	}
+}
+
+@mixin card-ring-lift {
+	transition: background-position 2600ms linear,
+		transform 240ms var(--ease-gentle), box-shadow 240ms var(--ease-gentle);
+
+	&:hover,
+	&:has(:focus-visible) {
+		transform: translateY(-4px);
+		box-shadow: 0 16px 32px -16px rgba(0, 0, 0, 0.35);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+	}
+}
+
+@mixin card-gap-layer {
+	display: block;
+	height: 100%;
+	border-radius: calc(var(--radius-md) + 8px);
+	padding: 8px;
+	background: var(--surface, var(--bg));
+
+	@media screen and (max-width: 640px) {
+		border-radius: calc(var(--radius-md) + 5px);
+		padding: 5px;
+	}
+}
+
+@mixin card-surface {
+	background: var(--bg-elevated);
+	border-radius: var(--radius-md);
+}
+
+@mixin back-button {
+	display: inline-flex;
+	align-items: center;
+	align-self: flex-start;
+	gap: 8px;
+	margin-bottom: 24px;
+	padding: 6px 14px 6px 10px;
+	border: var(--border-width) solid var(--border-subtle);
+	border-radius: 999px;
+	background: none;
+	color: var(--text);
+	font: inherit;
+	font-size: var(--text-sm);
+	font-weight: 600;
+	cursor: pointer;
+	transition: border-color var(--duration-hover) var(--ease-gentle),
+		background-color var(--duration-hover) var(--ease-gentle);
+
+	&:hover,
+	&:focus-visible {
+		border-color: var(--accent-a);
+		background: var(--bg-elevated-hover);
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--accent-a);
+		outline-offset: 2px;
 	}
 }

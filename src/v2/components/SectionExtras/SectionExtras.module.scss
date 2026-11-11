@@ -5,12 +5,19 @@
 	background: var(--surface-alt);
 	--surface: var(--surface-alt);
 	@include full-viewport-section();
+	@include dot-grid-floor();
+
+	&:has([data-anchored]) {
+		justify-content: flex-start;
+	}
 }
 
 .inner {
 	@include section-shell();
-}
+	padding-block: clamp(32px, 7vh, 96px);
 
-.title {
-	@include visually-hidden();
+	&:has([data-anchored]) {
+		padding-top: 0;
+		padding-bottom: 32px;
+	}
 }

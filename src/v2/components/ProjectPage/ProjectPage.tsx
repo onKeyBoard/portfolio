@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
+import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { useQuery } from '@apollo/client'
 import { GET_PROJECT } from '../../../queries/projects.js'
@@ -74,7 +75,7 @@ const ProjectPage = () => {
 				) : error || !project ? (
 					<div className={styles['status']}>
 						<p>Couldn&apos;t find that project.</p>
-						<a href='/#work'>Back to work</a>
+						<Link href='/#work'>Back to work</Link>
 					</div>
 				) : (
 					<article>
@@ -87,15 +88,15 @@ const ProjectPage = () => {
 									sizes='100vw'
 									alt=''
 								/>
-								<a href='/#work' className={styles['backPill']}>
+								<Link href='/#work' className={styles['backPill']}>
 									Back to work
-								</a>
+								</Link>
 							</div>
 						) : (
 							<div className={styles['backRow']}>
-								<a href='/#work' className={styles['backPill']}>
+								<Link href='/#work' className={styles['backPill']}>
 									Back to work
-								</a>
+								</Link>
 							</div>
 						)}
 

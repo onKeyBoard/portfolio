@@ -17,7 +17,7 @@ const V2Root = ({ children, panelScroll }: V2RootProps) => {
 			data-v2-theme={theme}
 			className={[
 				'v2-root',
-				panelScroll && 'v2-root--snap',
+				panelScroll && 'v2-root--paged',
 				outfit.variable,
 				openSans.variable,
 			]

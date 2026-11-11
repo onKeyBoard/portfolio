@@ -8,11 +8,6 @@ import {
 	faFlask,
 } from '@fortawesome/free-solid-svg-icons'
 import {
-	faGithub,
-	faLinkedin,
-	faInstagram,
-} from '@fortawesome/free-brands-svg-icons'
-import {
 	useActiveSectionId,
 	useSectionNavigation,
 } from '../../context/ActiveSectionContext'
@@ -41,20 +36,6 @@ const CTA_LINKS = [
 	},
 ]
 
-const SOCIAL_LINKS = [
-	{ name: 'GitHub', icon: faGithub, url: 'https://github.com/onKeyBoard' },
-	{
-		name: 'LinkedIn',
-		icon: faLinkedin,
-		url: 'https://linkedin.com/in/shawn-pavlas',
-	},
-	{
-		name: 'Instagram',
-		icon: faInstagram,
-		url: 'https://instagram.com/shawn.joseph.pictures',
-	},
-]
-
 const Hero = () => {
 	const activeId = useActiveSectionId()
 	const navigateToSection = useSectionNavigation()
@@ -73,7 +54,7 @@ const Hero = () => {
 				return
 			}
 			event.preventDefault()
-			navigateToSection(id, true)
+			navigateToSection(id)
 		}
 
 	return (
@@ -180,31 +161,6 @@ const Hero = () => {
 					</div>
 				)}
 			</div>
-			</div>
-			<div className={styles['heroFooter']}>
-				<div className={styles['heroFooterInner']}>
-					{isMounted && (
-					<nav
-						className={`${styles['heroSocial']} ${
-							isExiting ? styles['exiting'] : ''
-						}`}
-						aria-label='Social links'
-					>
-						{SOCIAL_LINKS.map(({ name, icon, url }) => (
-							<a
-								key={name}
-								className={styles['heroSocialIcon']}
-								href={url}
-								target='_blank'
-								rel='noreferrer'
-								aria-label={name}
-							>
-								<FontAwesomeIcon icon={icon} />
-							</a>
-						))}
-					</nav>
-					)}
-				</div>
 			</div>
 		</section>
 	)

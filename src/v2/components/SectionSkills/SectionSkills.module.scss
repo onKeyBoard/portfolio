@@ -5,85 +5,145 @@
 	background: var(--surface-alt);
 	--surface: var(--surface-alt);
 	@include full-viewport-section();
-
-	@media screen and (min-width: 900px) {
-		padding-top: 110px;
-	}
+	@include dot-grid-floor();
 }
 
 .inner {
 	@include section-shell();
-
-	@media screen and (min-width: 900px) {
-		padding-top: 16px;
-		padding-bottom: 16px;
-	}
 }
 
-.title {
-	font-family: var(--font-headline);
-	font-weight: 600;
-	font-size: clamp(20px, 2.6vw, 28px);
-	line-height: 1.4;
-	color: var(--text);
-	text-align: center;
-	max-width: 42ch;
-	margin: 0 auto 44px;
-	animation: cascade-reveal-in 620ms var(--ease-gentle) backwards;
+.explorer {
+	display: flex;
+	flex-direction: column;
+	gap: 36px;
 	@include exit-fade();
+}
+
+.visuallyHidden {
+	@include visually-hidden();
+}
+
+.panel {
+	animation: cascade-reveal-in 620ms var(--ease-gentle) backwards;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	position: relative;
+	padding: 4px 4px 16px;
+
+	&::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: 2px;
+		border-radius: 999px;
+		background: linear-gradient(90deg, var(--accent-a), var(--accent-b));
+	}
 
 	@media (prefers-reduced-motion: reduce) {
 		animation-duration: 1ms;
 		transform: none !important;
 	}
+}
 
-	@media screen and (max-width: 640px) {
-		margin-bottom: 32px;
+.panelHover {
+	min-height: 180px;
+}
+
+.headline {
+	font-family: var(--font-headline);
+	font-weight: 600;
+	font-size: clamp(22px, 2.8vw, 30px);
+	line-height: 1.3;
+	color: var(--text);
+}
+
+.hint {
+	margin-top: 8px;
+	font-size: var(--text-sm);
+	color: var(--text-muted);
+}
+
+@keyframes skills-fade-in {
+	from {
+		opacity: 0;
+		transform: translateY(6px);
+	}
+	to {
+		opacity: 1;
+		transform: none;
 	}
 }
 
-.list {
+.fade {
+	animation: skills-fade-in var(--duration-hover) var(--ease-gentle);
+
+	@media (prefers-reduced-motion: reduce) {
+		animation-duration: 1ms;
+	}
+}
+
+.panelTitle {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	column-gap: 12px;
+	font-family: var(--font-headline);
+	font-weight: 600;
+	font-size: clamp(20px, 2.4vw, 26px);
+	color: var(--text);
+}
+
+.panelMeta {
+	font-family: var(--font-body);
+	font-size: var(--text-sm);
+	font-weight: 600;
+	color: var(--text-muted);
+}
+
+.panelText {
+	margin-top: 8px;
+	max-width: 70ch;
+	font-size: var(--text-base);
+	line-height: 1.55;
+	color: var(--text-muted);
+}
+
+.skillNames {
+	margin-top: 10px;
+	font-size: var(--text-sm);
+	font-weight: 600;
+	color: var(--accent-a);
+}
+
+.back {
+	@include back-button;
+}
+
+.categories,
+.skills {
 	list-style: none;
 	margin: 0;
 	padding: 0;
-	columns: 3;
-	column-gap: 32px;
-	@include cascade-reveal(21, 60ms);
-	@include exit-fade();
-
-	@media screen and (max-width: 900px) {
-		columns: 2;
-	}
-
-	@media screen and (max-width: 520px) {
-		columns: 1;
-	}
+	display: grid;
+	gap: 16px;
+	@include cascade-reveal(12, 50ms);
 }
 
-.row {
-	display: flex;
-	align-items: center;
-	gap: 12px;
-	padding: 10px 6px;
-	border-bottom: var(--border-width) solid var(--border-subtle);
-	break-inside: avoid;
-	transition: background-color var(--duration-hover) var(--ease-gentle);
+.categories {
+	grid-template-columns: repeat(5, minmax(0, 1fr));
 
-	&:hover {
-		background: var(--bg-elevated-hover);
+	@media screen and (max-width: 1100px) {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	@media screen and (max-width: 899px) {
+		grid-template-columns: 1fr;
 	}
 }
 
-.icon {
-	flex-shrink: 0;
-	width: 24px;
-	height: 24px;
-	object-fit: contain;
-}
-
-.name {
-	font-family: var(--font-headline);
-	font-weight: 600;
-	font-size: var(--text-sm);
-	color: var(--text);
+.skills {
+	grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
 }

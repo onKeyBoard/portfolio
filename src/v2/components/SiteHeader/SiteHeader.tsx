@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
@@ -32,7 +33,7 @@ const SiteHeader = () => {
 			if (!document.getElementById(id)) return
 
 			event.preventDefault()
-			navigateToSection(id, true)
+			navigateToSection(id)
 		}
 
 	const revealed = activeId === null || (activeId !== '' && activeId !== 'top')
@@ -40,7 +41,7 @@ const SiteHeader = () => {
 	const revealedClass = revealed ? styles['revealed'] : ''
 
 	const navLinks = () => [
-		<a
+		<Link
 			key='/#top'
 			className={`${styles['profileLink']} ${
 				activeId === 'top' ? styles['active'] : ''
@@ -51,7 +52,7 @@ const SiteHeader = () => {
 			onClick={handleNavClick('top')}
 		>
 			<FontAwesomeIcon icon={faCircleUser} />
-		</a>,
+		</Link>,
 		...NAV_LINKS.map(({ href, label, id }) => (
 			<a
 				key={href}
@@ -75,13 +76,13 @@ const SiteHeader = () => {
 			/>
 			<div className={styles['bar']}>
 				<div className={`${styles['leftStrip']} ${revealedClass}`}>
-					<a
+					<Link
 						className={styles['name']}
 						href='/#top'
 						onClick={handleNavClick('top')}
 					>
 						Shawn Pavlas
-					</a>
+					</Link>
 					<span className={styles['title']}>UX Designer + Engineer</span>
 				</div>
 				<div className={`${styles['rightStrip']} ${revealedClass}`}>

@@ -2,8 +2,10 @@
 
 .section {
 	width: 100%;
-	background: var(--bg);
+	background: var(--surface-alt);
+	--surface: var(--surface-alt);
 	@include full-viewport-section();
+	@include dot-grid-floor();
 }
 
 .inner {

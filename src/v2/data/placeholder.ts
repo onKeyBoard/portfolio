@@ -5,15 +5,6 @@ export const placeholderBio = {
 		"I'm a UX designer and front end engineer who likes systems that feel considered — clean, accessible, and built to last.",
 }
 
-export const placeholderSkills = [
-	{ id: '1', title: 'Figma', iconUrl: '' },
-	{ id: '2', title: 'TypeScript', iconUrl: '' },
-	{ id: '3', title: 'React', iconUrl: '' },
-	{ id: '4', title: 'Design Systems', iconUrl: '' },
-	{ id: '5', title: 'Accessibility', iconUrl: '' },
-	{ id: '6', title: 'Motion Design', iconUrl: '' },
-]
-
 export const placeholderProjects = [
 	{
 		id: 'p1',
