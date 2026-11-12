@@ -12,10 +12,14 @@ const SkillCard = ({ skill }: { skill: Skill }) => {
 			<div className={styles['gapLayer']}>
 				<div className={styles['card']}>
 					{iconUrl ? (
-						<img
-							className={styles['icon']}
-							src={getCloudinaryImage(iconUrl, 64)}
-							alt=''
+						<span
+							className={`${styles['icon']} ${styles['maskIcon']}`}
+							style={
+								{
+									'--icon-url': `url(${getCloudinaryImage(iconUrl, 64)})`,
+								} as React.CSSProperties
+							}
+							aria-hidden='true'
 						/>
 					) : (
 						faIcon && (
