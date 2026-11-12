@@ -29,6 +29,13 @@
 	color: var(--accent-a);
 }
 
+.maskIcon {
+	display: block;
+	background-color: var(--text);
+	mask: var(--icon-url) center / contain no-repeat;
+	-webkit-mask: var(--icon-url) center / contain no-repeat;
+}
+
 .title {
 	font-family: var(--font-headline);
 	font-weight: 600;
