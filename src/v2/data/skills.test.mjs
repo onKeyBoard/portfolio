@@ -95,3 +95,12 @@ test('every category has a summary', () => {
 		assert.ok(c.summary.length <= 200, `${c.title} summary too long`)
 	}
 })
+
+test('category summaries are similar lengths so hover previews fit the same space', () => {
+	for (const c of skillCategories) {
+		assert.ok(
+			c.summary.length >= 105 && c.summary.length <= 130,
+			`${c.title} summary is ${c.summary.length} chars (want 105–130)`
+		)
+	}
+})

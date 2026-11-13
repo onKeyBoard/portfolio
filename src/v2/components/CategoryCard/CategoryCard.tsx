@@ -7,17 +7,23 @@ import styles from './CategoryCard.module.scss'
 interface CategoryCardProps {
 	category: SkillCategory
 	showSummary?: boolean
+	showArrow?: boolean
+	selected?: boolean
 	onPreview?: (id: string) => void
 	onOpen: (id: string) => void
 }
 
 const CategoryCard = forwardRef<HTMLButtonElement, CategoryCardProps>(
-	({ category, showSummary, onPreview, onOpen }, ref) => {
+	(
+		{ category, showSummary, showArrow = true, selected, onPreview, onOpen },
+		ref
+	) => {
 		const { id, title, tag, summary, skills } = category
 
 		return (
 			<li
 				className={styles['ring']}
+				data-selected={selected || undefined}
 				onMouseEnter={onPreview && (() => onPreview(id))}
 			>
 				<div className={styles['gapLayer']}>
@@ -25,6 +31,7 @@ const CategoryCard = forwardRef<HTMLButtonElement, CategoryCardProps>(
 						ref={ref}
 						type='button'
 						className={styles['card']}
+						aria-pressed={selected === undefined ? undefined : selected}
 						onFocus={
 							onPreview &&
 							((event) => {
@@ -35,13 +42,18 @@ const CategoryCard = forwardRef<HTMLButtonElement, CategoryCardProps>(
 					>
 						<span className={styles['top']}>
 							<span className={styles['tag']}>{tag}</span>
-							<FontAwesomeIcon className={styles['arrow']} icon={faArrowRight} />
+							{showArrow && (
+								<FontAwesomeIcon
+									className={styles['arrow']}
+									icon={faArrowRight}
+								/>
+							)}
 						</span>
 						<span className={styles['title']}>{title}</span>
-						{showSummary && <span className={styles['summary']}>{summary}</span>}
-						<span className={styles['count']}>
-							{skills.length} skills
-						</span>
+						{showSummary && (
+							<span className={styles['summary']}>{summary}</span>
+						)}
+						<span className={styles['count']}>{skills.length} skills</span>
 					</button>
 				</div>
 			</li>

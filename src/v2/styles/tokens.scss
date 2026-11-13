@@ -199,7 +199,8 @@
 	}
 
 	&:hover,
-	&:has(:focus-visible) {
+	&:has(:focus-visible),
+	&[data-selected] {
 		background-image: linear-gradient(
 			135deg,
 			var(--accent-a),
@@ -252,32 +253,58 @@
 	border-radius: var(--radius-md);
 }
 
+@mixin corner-brackets($arm: 12px, $start: 8px) {
+	--bracket-in: linear-gradient(var(--accent-a), var(--accent-a));
+	--bracket-out: linear-gradient(var(--accent-b), var(--accent-b));
+	position: relative;
+	outline: none;
+
+	&::before {
+		content: '';
+		position: absolute;
+		inset: $start;
+		opacity: 0;
+		background: var(--bracket-in) left top / #{$arm} var(--border-width),
+			var(--bracket-in) left top / var(--border-width) #{$arm},
+			var(--bracket-in) left bottom / #{$arm} var(--border-width),
+			var(--bracket-in) left bottom / var(--border-width) #{$arm},
+			var(--bracket-out) right top / #{$arm} var(--border-width),
+			var(--bracket-out) right top / var(--border-width) #{$arm},
+			var(--bracket-out) right bottom / #{$arm} var(--border-width),
+			var(--bracket-out) right bottom / var(--border-width) #{$arm};
+		background-repeat: no-repeat;
+		transition: inset var(--duration-hover) var(--ease-gentle),
+			opacity var(--duration-hover) var(--ease-gentle);
+		pointer-events: none;
+	}
+
+	&:hover::before,
+	&:focus-visible::before {
+		inset: 0;
+		opacity: 1;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		&::before {
+			inset: 0;
+			transition: opacity var(--duration-hover) var(--ease-gentle);
+		}
+	}
+}
+
 @mixin back-button {
 	display: inline-flex;
 	align-items: center;
 	align-self: flex-start;
 	gap: 8px;
-	margin-bottom: 24px;
-	padding: 6px 14px 6px 10px;
-	border: var(--border-width) solid var(--border-subtle);
-	border-radius: 999px;
+	margin: 0 0 24px -12px;
+	padding: 6px 12px;
+	border: none;
 	background: none;
 	color: var(--text);
 	font: inherit;
 	font-size: var(--text-sm);
 	font-weight: 600;
 	cursor: pointer;
-	transition: border-color var(--duration-hover) var(--ease-gentle),
-		background-color var(--duration-hover) var(--ease-gentle);
-
-	&:hover,
-	&:focus-visible {
-		border-color: var(--accent-a);
-		background: var(--bg-elevated-hover);
-	}
-
-	&:focus-visible {
-		outline: 2px solid var(--accent-a);
-		outline-offset: 2px;
-	}
+	@include corner-brackets(8px, 6px);
 }

@@ -46,7 +46,7 @@ export const skillCategories: SkillCategory[] = [
 		title: 'UX & Product Design',
 		tag: 'Design',
 		summary:
-			'I start with the people I’m designing for: researching, testing ideas early, and mapping how they move through a product before shaping it in Figma.',
+			'I start with the people I’m designing for: researching, testing ideas early, and mapping how they move through a product.',
 		skills: [
 			{
 				id: 'user-research',
@@ -319,7 +319,7 @@ export const skillCategories: SkillCategory[] = [
 		title: 'Tooling & Platforms',
 		tag: 'Ship',
 		summary:
-			'The everyday tools and platforms I use to build, version, and ship projects.',
+			'The everyday tools and platforms I use to build, version, and ship projects, from Git and Webpack to Shopify and WordPress.',
 		skills: [
 			{
 				id: 'git',
