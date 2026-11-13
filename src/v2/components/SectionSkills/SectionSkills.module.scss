@@ -29,7 +29,7 @@
 	flex-direction: column;
 	justify-content: flex-end;
 	position: relative;
-	padding: 4px 4px 16px;
+	padding: 4px 4px 44px;
 
 	&::after {
 		content: '';
@@ -49,7 +49,14 @@
 }
 
 .panelHover {
-	min-height: 180px;
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	align-content: end;
+	align-items: end;
+
+	> * {
+		grid-area: 1 / 1;
+	}
 }
 
 .headline {
@@ -111,11 +118,23 @@
 	color: var(--text-muted);
 }
 
-.skillNames {
-	margin-top: 10px;
-	font-size: var(--text-sm);
-	font-weight: 600;
-	color: var(--accent-a);
+.sizer {
+	display: grid;
+	visibility: hidden;
+	pointer-events: none;
+
+	> * {
+		grid-area: 1 / 1;
+	}
+}
+
+.previewSkills {
+	list-style: none;
+	margin: 12px 0 0;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
+	gap: 8px;
 }
 
 .back {
