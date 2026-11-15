@@ -14,37 +14,24 @@ interface ThemeContextV2Props {
 
 export const ThemeContextV2 = createContext<ThemeContextV2Props>(undefined!)
 
-const STORAGE_KEY = 'v2-theme'
+export const THEME_STORAGE_KEY = 'v2-theme'
 
 const ThemeProviderV2 = ({ children }: { children: React.ReactNode }) => {
-	const [theme, setTheme] = useState<ThemeNameV2>('light')
+	const [theme, setTheme] = useState<ThemeNameV2>('dark')
 
 	useEffect(() => {
-		const stored = window.localStorage.getItem(STORAGE_KEY) as ThemeNameV2 | null
-		if (stored === 'light' || stored === 'dark') {
-			setTheme(stored)
-			return
+		if (document.documentElement.dataset.v2Theme === 'light') {
+			setTheme('light')
 		}
-		const prefersDark = window.matchMedia(
-			'(prefers-color-scheme: dark)'
-		).matches
-		setTheme(prefersDark ? 'dark' : 'light')
 	}, [])
-
-	useEffect(() => {
-		document.body.style.background =
-			theme === 'dark' ? 'hsl(222, 26%, 13%)' : 'hsl(36, 40%, 88%)'
-		document.documentElement.style.colorScheme = theme
-		return () => {
-			document.body.style.background = ''
-			document.documentElement.style.colorScheme = ''
-		}
-	}, [theme])
 
 	const toggleTheme = useCallback(() => {
 		setTheme((prev) => {
 			const next = prev === 'light' ? 'dark' : 'light'
-			window.localStorage.setItem(STORAGE_KEY, next)
+			document.documentElement.dataset.v2Theme = next
+			try {
+				window.localStorage.setItem(THEME_STORAGE_KEY, next)
+			} catch {}
 			return next
 		})
 	}, [])
