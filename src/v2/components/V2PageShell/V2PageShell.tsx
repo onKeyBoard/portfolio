@@ -1,7 +1,5 @@
-import React, { useContext } from 'react'
-import ThemeProviderV2, {
-	ThemeContextV2,
-} from '../../context/ThemeProviderV2'
+import React from 'react'
+import ThemeProviderV2 from '../../context/ThemeProviderV2'
 import { outfit, openSans } from '../../styles/fonts'
 
 interface V2RootProps {
@@ -10,11 +8,8 @@ interface V2RootProps {
 }
 
 const V2Root = ({ children, panelScroll }: V2RootProps) => {
-	const { theme } = useContext(ThemeContextV2)
-
 	return (
 		<div
-			data-v2-theme={theme}
 			className={[
 				'v2-root',
 				panelScroll && 'v2-root--paged',

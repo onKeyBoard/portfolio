@@ -49,7 +49,23 @@
 	-webkit-font-smoothing: antialiased;
 }
 
-.v2-root[data-v2-theme='dark'] {
+:root:has(.v2-root) {
+	color-scheme: dark;
+}
+
+:root[data-v2-theme='light']:has(.v2-root) {
+	color-scheme: light;
+}
+
+body:has(.v2-root) {
+	background: hsl(222, 26%, 13%);
+}
+
+:root[data-v2-theme='light'] body:has(.v2-root) {
+	background: hsl(36, 40%, 88%);
+}
+
+:root:not([data-v2-theme='light']) .v2-root {
 	--bg: hsl(222, 26%, 13%);
 	--surface-alt: hsl(222, 30%, 10%);
 	--bg-elevated: hsl(222, 24%, 17%);
